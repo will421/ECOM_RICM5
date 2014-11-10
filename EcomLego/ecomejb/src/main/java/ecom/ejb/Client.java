@@ -12,43 +12,33 @@ import javax.persistence.Table;
 public class Client implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	private String nameV;
-	private String prenomV;
-	@Id@GeneratedValue(strategy = GenerationType.AUTO) private long idV;
+	private String nameC;
+	private String prenomC;
+	@Id@GeneratedValue(strategy = GenerationType.AUTO) private long idC;
 	
-	public Client(String nameV){
-		this.nameV =nameV;
+	public Client(String nameC, String prenomC){
+		this.setNameC(nameC);
+		this.setPrenomC(prenomC);
 	}
 
 	public Client(){
 		
 	}
 
-	public String getNameV() {
-		return nameV;
+	public String getNameC() {
+		return nameC;
 	}
 
-	public void setNameV(String nameV) {
-		this.nameV = nameV;
+	public void setNameC(String nameC) {
+		this.nameC = nameC;
 	}
 
-	public String getPrenomV() {
-		return prenomV;
+	public String getPrenomC() {
+		return prenomC;
 	}
 
-	public void setPrenomV(String prenomV) {
-		this.prenomV = prenomV;
+	public void setPrenomC(String prenomC) {
+		this.prenomC = prenomC;
 	}
 
-	public long getIdV() {
-		return idV;
-	}
-
-	public void setIdV(int idV) {
-		this.idV = idV;
-	}
-	
-	
-	
-	
 }

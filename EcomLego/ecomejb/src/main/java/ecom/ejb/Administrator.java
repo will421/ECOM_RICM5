@@ -12,43 +12,32 @@ import javax.persistence.Table;
 public class Administrator implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	private String nameV;
-	private String prenomV;
-	@Id@GeneratedValue(strategy = GenerationType.AUTO) private long idV;
+	private String nameA;
+	private String prenomA;
+	@Id@GeneratedValue(strategy = GenerationType.AUTO) private long idA;
 	
-	public Administrator(String nameV){
-		this.nameV =nameV;
+	public Administrator(String nameA, String prenomA){
+		this.nameA = nameA;
+		this.prenomA = prenomA;
 	}
 
 	public Administrator(){
 		
 	}
 
-	public String getNameV() {
-		return nameV;
+	public String getPrenomA() {
+		return prenomA;
 	}
 
-	public void setNameV(String nameV) {
-		this.nameV = nameV;
+	public void setPrenomA(String prenomA) {
+		this.prenomA = prenomA;
 	}
 
-	public String getPrenomV() {
-		return prenomV;
+	public String getNameA() {
+		return nameA;
 	}
 
-	public void setPrenomV(String prenomV) {
-		this.prenomV = prenomV;
+	public void setNameA(String nameA) {
+		this.nameA = nameA;
 	}
-
-	public long getIdV() {
-		return idV;
-	}
-
-	public void setIdV(int idV) {
-		this.idV = idV;
-	}
-	
-	
-	
-	
 }

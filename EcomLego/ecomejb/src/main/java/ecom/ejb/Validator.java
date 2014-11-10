@@ -16,8 +16,9 @@ public class Validator implements Serializable{
 	private String prenomV;
 	@Id@GeneratedValue(strategy = GenerationType.AUTO) private long idV;
 	
-	public Validator(String nameV){
-		this.nameV =nameV;
+	public Validator(String nameV, String prenomV){
+		this.nameV = nameV;
+		this.prenomV = prenomV;
 	}
 
 	public Validator(){
