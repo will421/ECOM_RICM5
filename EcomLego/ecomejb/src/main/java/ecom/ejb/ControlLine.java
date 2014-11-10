@@ -1,5 +1,6 @@
 package ecom.ejb;
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,12 +14,12 @@ public class ControlLine implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private String nomLC;
-	private float priceLC;
+	private BigDecimal priceLC;//BigDecimal
 	private String colorLC;
 	private String theme;
 	@Id@GeneratedValue(strategy = GenerationType.AUTO) private long idCom;
 	
-	public ControlLine(String nomLC, float priceLC, String colorLC, String theme){
+	public ControlLine(String nomLC, BigDecimal priceLC, String colorLC, String theme){
 		this.nomLC=nomLC;
 		this.priceLC=priceLC;
 		this.colorLC=colorLC;
@@ -37,11 +38,11 @@ public class ControlLine implements Serializable{
 		this.nomLC = nomLC;
 	}
 
-	public float getPriceLC() {
+	public BigDecimal getPriceLC() {
 		return priceLC;
 	}
 
-	public void setPriceLC(float priceLC) {
+	public void setPriceLC(BigDecimal priceLC) {
 		this.priceLC = priceLC;
 	}
 
