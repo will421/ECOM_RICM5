@@ -21,8 +21,13 @@ public class UserAccount implements Serializable{
 	private String cellPhone;
 	private String fixPhone;
 	
-	public UserAccount(String mailU){
+	public UserAccount(String mailU, String mdpU, String shippingAddress, String billingAddress, String cellPhone, String fixPhone){
 		this.mailU = mailU;
+		this.shippingAddress = shippingAddress;
+		this.billingAddress = billingAddress;
+		this.mdpU = mdpU;
+		this.cellPhone = cellPhone;
+		this.fixPhone = fixPhone;
 	}
 
 	public UserAccount(){
