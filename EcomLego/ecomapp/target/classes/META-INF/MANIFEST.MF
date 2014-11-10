@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Built-By: PolytechRICM
+Build-Jdk: 1.8.0_25
+Main-Class: ecom.ejb.client.Main
+Created-By: Maven Integration for Eclipse
+
