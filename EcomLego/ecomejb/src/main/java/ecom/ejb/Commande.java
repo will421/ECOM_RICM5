@@ -47,4 +47,8 @@ public class Commande implements Serializable{
 	public String getDate() {
 		return date;
 	}
+	
+	public long getId(){
+		return this.idCom;
+	}
 }

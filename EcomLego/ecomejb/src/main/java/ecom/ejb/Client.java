@@ -40,5 +40,9 @@ public class Client implements Serializable{
 	public void setPrenomC(String prenomC) {
 		this.prenomC = prenomC;
 	}
+	
+	public long getId(){
+		return this.idC;
+	}
 
 }

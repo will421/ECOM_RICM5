@@ -42,14 +42,6 @@ public class Validator implements Serializable{
 	}
 
 	public long getIdV() {
-		return idV;
+		return this.idV;
 	}
-
-	public void setIdV(int idV) {
-		this.idV = idV;
-	}
-	
-	
-	
-	
 }

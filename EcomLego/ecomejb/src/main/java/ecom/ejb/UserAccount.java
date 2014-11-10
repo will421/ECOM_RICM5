@@ -3,6 +3,8 @@ package ecom.ejb;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -13,7 +15,7 @@ import javax.validation.constraints.Pattern;
 public class UserAccount implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	@Id private int idU;
+	@Id@GeneratedValue(strategy = GenerationType.AUTO) private long idU;
 	@NotNull@Pattern(regexp = ".+@.+\\..+", message = "wrong email format") private String mailU;
 	@NotNull private String mdpU;
 	@NotNull private String shippingAddress; //adresse de livraison
@@ -74,15 +76,7 @@ public class UserAccount implements Serializable{
 		this.fixPhone = fixPhone;
 	}
 
-	public int getIdU() {
-		return idU;
-	}
-
-	public void setIdU(int idU) {
-		this.idU = idU;
-	}
-	
-	
-	
-	
+	public long getIdU() {
+		return this.idU;
+	}	
 }

@@ -40,4 +40,8 @@ public class Administrator implements Serializable{
 	public void setNameA(String nameA) {
 		this.nameA = nameA;
 	}
+	
+	public long getId(){
+		return this.idA;
+	}
 }
