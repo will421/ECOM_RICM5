@@ -1,10 +1,12 @@
 package ecom.ejb;
 import java.io.Serializable;
+import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +17,8 @@ public class Model3D implements Serializable{
 	@Id@GeneratedValue(strategy = GenerationType.AUTO) private long idM;
 	private String nameM;
 	//sourceM
+	@OneToMany(mappedBy="model3D") private Collection<Commande> commande;
+
 	
 	public Model3D(String nameM){
 		this.nameM=nameM;

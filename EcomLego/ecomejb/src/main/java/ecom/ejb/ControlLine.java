@@ -1,11 +1,14 @@
 package ecom.ejb;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,6 +21,10 @@ public class ControlLine implements Serializable{
 	private String colorLC;
 	private String theme;
 	@Id@GeneratedValue(strategy = GenerationType.AUTO) private long idCom;
+	@OneToMany(mappedBy="controlLine") private Collection<Commande> commande;
+	@ManyToMany private Collection<CreatePiece> createPiece;
+	@ManyToMany private Collection<OriginalPiece> originalPiece;	
+
 	
 	public ControlLine(String nomLC, BigDecimal priceLC, String colorLC, String theme){
 		this.nomLC=nomLC;

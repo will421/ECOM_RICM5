@@ -6,5 +6,6 @@ ecom\ejb\Administrator.class
 ecom\ejb\Client.class
 ecom\ejb\CreatePiece.class
 ecom\ejb\OriginalPiece.class
+ecom\ejb\Catalogue.class
 ecom\ejb\Validator.class
 ecom\ejb\Commande.class

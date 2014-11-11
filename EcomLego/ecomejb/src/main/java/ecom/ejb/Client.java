@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +17,8 @@ public class Client implements Serializable{
 	private String nameC;
 	private String prenomC;
 	@Id@GeneratedValue(strategy = GenerationType.AUTO) private long idC;
+	@OneToOne(mappedBy="client")private UserAccount useraccount;
+	@ManyToOne private Commande commande;
 	
 	public Client(String nameC, String prenomC){
 		this.setNameC(nameC);

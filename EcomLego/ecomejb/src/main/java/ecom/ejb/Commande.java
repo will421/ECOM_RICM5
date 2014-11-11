@@ -1,10 +1,13 @@
 package ecom.ejb;
 import java.io.Serializable;
+import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -17,6 +20,9 @@ public class Commande implements Serializable{
 	@NotNull private float price;
 	@NotNull private String date;
 	@Id@GeneratedValue(strategy = GenerationType.AUTO) private long idCom;
+	@OneToMany(mappedBy="commande") private Collection<Client> client;
+	@ManyToOne private ControlLine controlLine;
+	@ManyToOne private Model3D model3D;
 	
 	public Commande(float price, boolean isPaid, String date){
 		this.price=price;

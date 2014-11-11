@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -22,6 +23,10 @@ public class UserAccount implements Serializable{
 	@NotNull private String billingAddress; //adresse de facturation
 	private String cellPhone;
 	private String fixPhone;
+	@OneToOne private Validator validator;
+	@OneToOne private Administrator administrator;
+	@OneToOne private Client client;
+	
 	
 	public UserAccount(String mailU, String mdpU, String shippingAddress, String billingAddress, String cellPhone, String fixPhone){
 		this.mailU = mailU;

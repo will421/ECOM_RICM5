@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +16,7 @@ public class Validator implements Serializable{
 	private String nameV;
 	private String prenomV;
 	@Id@GeneratedValue(strategy = GenerationType.AUTO) private long idV;
+	@OneToOne(mappedBy="validator")private UserAccount useraccount;
 	
 	public Validator(String nameV, String prenomV){
 		this.nameV = nameV;

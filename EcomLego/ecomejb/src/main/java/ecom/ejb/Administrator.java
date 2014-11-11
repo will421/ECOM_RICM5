@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +16,7 @@ public class Administrator implements Serializable{
 	private String nameA;
 	private String prenomA;
 	@Id@GeneratedValue(strategy = GenerationType.AUTO) private long idA;
+	@OneToOne(mappedBy="administrator") private UserAccount useraccount;
 	
 	public Administrator(String nameA, String prenomA){
 		this.nameA = nameA;
