@@ -10,7 +10,7 @@ package ecom.converter.web;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
-import ecom.converter.ejb.ConverterBean;
+import ecom.converter.ejb2.ConverterBean;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
