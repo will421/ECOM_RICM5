@@ -19,6 +19,7 @@
   		<artifactId>ecomConverterEJB</artifactId>
   		<version>0.1.0-SNAPSHOT</version>
   		<type>ejb</type>
+  		<scope>provided</scope>
   	</dependency>
   </dependencies>
 </project>
