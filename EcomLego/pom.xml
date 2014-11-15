@@ -7,10 +7,10 @@
     <artifactId>ecom</artifactId>
     <version>0.1.0</version>
     <modules>
+   	 	<module>ecomejb</module>
         <module>ecomapp</module>
-        <module>ecomear</module>
-        <module>ecomejb</module>
         <module>ecomweb</module>
+        <module>ecomear</module>
     </modules>
     <packaging>pom</packaging>
 
