@@ -5,12 +5,13 @@
 
     <groupId>fr.polytech.grenoble.ricm5.ecom</groupId>
     <artifactId>ecom</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.0-SNAPSHOT</version>
     <modules>
    	 	<module>ecomejb</module>
         <module>ecomapp</module>
         <module>ecomweb</module>
         <module>ecomear</module>
+        <module>ecomSuperConverter</module>
     </modules>
     <packaging>pom</packaging>
 
