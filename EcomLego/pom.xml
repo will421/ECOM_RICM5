@@ -12,6 +12,7 @@
         <module>ecomweb</module>
         <module>ecomear</module>
         <module>ecomSuperConverter</module>
+		<module>ecomSuperCart</module>
     </modules>
     <packaging>pom</packaging>
 

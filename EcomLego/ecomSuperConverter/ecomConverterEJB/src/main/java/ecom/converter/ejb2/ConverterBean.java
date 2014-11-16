@@ -15,7 +15,7 @@ import javax.ejb.Stateless;
  * @author ian
  */
 @Stateless
-public class ConverterBean {
+public class ConverterBean implements ConverterBeanR {
     private final BigDecimal yenRate = new BigDecimal("104.34");
     private final BigDecimal euroRate = new BigDecimal("0.007");
     

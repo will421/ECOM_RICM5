@@ -5,12 +5,16 @@
  * compliance with  the terms of the License at:
  * http://java.net/projects/javaeetutorial/pages/BerkeleyLicense
  */
-package ecom.converter.web;
+package ecom.cart.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
-import ecom.converter.ejb2.ConverterBeanR;
+import java.util.List;
+
+import ecom.cart.ejb.Cart;
+import ecom.cart.util.BookException;
+
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,12 +22,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns="/")
-public class ConverterServlet extends HttpServlet {
+@WebServlet("/")
+public class CartServlet extends HttpServlet {
     private static final long serialVersionUID = -8312407323476917087L;
     @EJB
-    ConverterBeanR converter;
+    private Cart cart;
+    
+    @Override
+    public void init() throws ServletException {
+    	super.init();
+    	try {
+			cart.initialize("Duke d'Url", "123");
+            cart.addBook("Infinite Jest");
+            cart.addBook("Bel Canto");
+            cart.addBook("Kafka on the Shore");
+		} catch (BookException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
 
+    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -38,32 +57,29 @@ public class ConverterServlet extends HttpServlet {
         // Output the results
         out.println("<html lang=\"en\">");
         out.println("<head>");
-        out.println("<title>Servlet ConverterServlet</title>");
+        out.println("<title>Servlet CartServlet</title>");
         out.println("</head>");
         out.println("<body>");
-        out.println("<h1>Servlet ConverterServlet at " +
+        out.println("<h1>Servlet CartServlet at " +
                 request.getContextPath() + "</h1>");
         try {
-            String amount = request.getParameter("amount");
-            if (amount != null && amount.length() > 0) {
-                // convert the amount to a BigDecimal from the request parameter
-                BigDecimal d = new BigDecimal(amount);
-                // call the ConverterBean.dollarToYen() method to get the amount
-                // in Yen
-                BigDecimal yenAmount = converter.dollarToYen(d);
-
-                // call the ConverterBean.yenToEuro() method to get the amount
-                // in Euros
-                BigDecimal euroAmount = converter.yenToEuro(yenAmount);
-
-                out.println("<p>" + amount + " dollars are " +
-                        yenAmount.toPlainString() + " yen.</p>");
-                out.println("<p>" + yenAmount.toPlainString() + " yen are " +
-                        euroAmount.toPlainString() + " Euro.</p>");
+            String title = request.getParameter("titleB");
+            if (title != null && title.length() > 0) {
+                
+            	if(cart!=null)
+            	{
+            		cart.addBook(title);
+            		out.println("<p> Book " + title + " added </p>" );	
+            	}
+            	else
+            	{	
+            		out.println("CART NULL");
+            	}
+               
             } else {
-                out.println("<p>Enter a dollar amount to convert:</p>");
+                out.println("<p>Enter a book name :</p>");
                 out.println("<form method=\"get\">");
-                out.println("<p>$ <input title=\"Amount\" type=\"text\" name=\"amount\" size=\"25\"></p>");
+                out.println("<p>$ <input title=\"titleB\" type=\"text\" name=\"titleB\" size=\"25\"></p>");
                 out.println("<br/>");
                 out.println("<input type=\"submit\" value=\"Submit\">" +
                         "<input type=\"reset\" value=\"Reset\">");
@@ -71,6 +87,18 @@ public class ConverterServlet extends HttpServlet {
             }
 
         } finally {
+        	out.println(cart);
+        	
+        	List<String> content =  cart.getContents();
+        	if(content != null)
+        	{
+        		out.println("Content: "+content);
+        	}
+        	else
+        	{
+        		out.println("Content NULL");
+        	}
+        	
             out.println("</body>");
             out.println("</html>");
             out.close();
