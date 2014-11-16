@@ -11,5 +11,8 @@
       <context-root>/ecom</context-root>
     </web>
   </module>
+  <module>
+    <java>ecomapp-0.1.0-SNAPSHOT.jar</java>
+  </module>
   <library-directory>lib</library-directory>
 </application>
