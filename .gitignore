@@ -14,3 +14,7 @@ rootkey.csv
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/menus/HTML5Application/nbproject/private/
+/menus/menus/nbproject/private/
+/menus/menus_ecom/nbproject/private/
+/menus_ecom/nbproject/private/
