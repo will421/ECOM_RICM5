@@ -7,12 +7,11 @@ angular.module('ui.bootstrap.demo').controller('DropdownCtrl', function ($scope,
     ];
 
     $scope.status = {
-        isopena: false,
+        isopen: false,
         isopenb: false,
         isopenc: false,
         isopend: false
     };
-
     $scope.toggled = function (open) {
         $log.log('Dropdown is now: ', open);
     };
