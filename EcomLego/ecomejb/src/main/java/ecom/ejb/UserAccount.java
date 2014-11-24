@@ -18,8 +18,8 @@ public class UserAccount implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	@Id@GeneratedValue(strategy = GenerationType.AUTO) private long idU;
-	@NotNull@Pattern(regexp = ".+@.+\\..+", message = "wrong email format") private String mailU;
-	@Column(name="USER_MAIL", unique=true)@NotNull private String mdpU;
+	@Column(name="USER_MAIL", unique=true)@NotNull@Pattern(regexp = ".+@.+\\..+", message = "wrong email format") private String mailU;
+	@NotNull private String mdpU;
 	@NotNull private String shippingAddress; //adresse de livraison
 	@NotNull private String billingAddress; //adresse de facturation
 	private String cellPhone;
