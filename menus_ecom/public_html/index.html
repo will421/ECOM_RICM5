@@ -1,0 +1,108 @@
+<html ng-app="appMain">
+    <head>
+        <script src="js/angular.js"></script>
+        <script src="js/ui-bootstrap-tpls-0.12.0.js"></script>
+        <script src="js/index.js"></script>
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    </head>
+    <body>
+
+        <div ng-controller="DropdownCtrl" style="width:100%;">
+            <!-- 1st lego logo-->
+            <img src="img/poring.png" style="width:152px;height:114px">
+
+            <!-- Bouton accueil -->
+            <div class="btn-group btn-group-lg" dropdown is-open="status.isopena">
+                <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+                    Accueil
+                </button>
+            </div>
+
+            <!-- Bouton produits --->
+            <div class="btn-group btn-group-lg" dropdown is-open="status.isopenb">
+                <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+                    Produits
+                </button>
+            </div>
+
+            <!-- Bouton imprimer --->
+            <div class="btn-group btn-group-lg" dropdown is-open="status.isopenc">
+                <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+                    Imprimer
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Commander un devis</a></li>
+                    <li><a href="#">Creer un modele 3D</a></li>
+                    <li><a href="#">Exporter votre modele</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Autres</a></li>
+                </ul>
+            </div>
+
+            <!-- Bouton catalogue --->
+            <div class="btn-group btn-group-lg" dropdown is-open="status.isopend">
+                <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+                    Catalogue
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Serie 2012/2013</a></li>
+                    <li><a href="#">Serie 2013/2014</a></li>
+                    <li><a href="#">Serie 2014/2015</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Autres</a></li>
+                </ul>
+            </div>
+
+            <!-- Bouton de recherche --->
+            <div class="btn-group btn-group-lg">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Split button pour rechercher par critères  -->
+            <div class="btn-group btn-group-lg" dropdown>
+                <button type="button" class="btn btn-danger">Option de recherche</button>
+                <button type="button" class="btn btn-danger dropdown-toggle" dropdown-toggle>
+                    <span class="caret"></span>
+                    <span class="sr-only">Option de recherche</span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Par date</a></li>
+                    <li><a href="#">Par prix</a></li>
+                    <li><a href="#">Par catalogue</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Visiter la FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        
+                <div ng-controller="CarouselDemoCtrl">
+            <div style="height: 305px">
+                <carousel interval="myInterval">
+                    <slide ng-repeat="slide in slides" active="slide.active">
+                        <img ng-src="{{slide.image}}" style="margin:auto;">
+                        <div class="carousel-caption">
+                            <h4>Slide {{$index}}</h4>
+                            <p>{{slide.text}}</p>
+                        </div>
+                    </slide>
+                </carousel>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-info" ng-click="addSlide()">Add Slide</button>
+                </div>
+                <div class="col-md-6">
+                    Interval, in milliseconds: <input type="number" class="form-control" ng-model="myInterval">
+                    <br />Enter a negative number or 0 to stop the interval.
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
