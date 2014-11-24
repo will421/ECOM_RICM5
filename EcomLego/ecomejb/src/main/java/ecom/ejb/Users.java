@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Client")
-public class Client implements Serializable{
+public class Users implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private String nameC;
@@ -20,12 +20,12 @@ public class Client implements Serializable{
 	@OneToOne(mappedBy="client")private UserAccount useraccount;
 	@ManyToOne private Commande commande;
 	
-	public Client(String nameC, String prenomC){
+	public Users(String nameC, String prenomC){
 		this.setNameC(nameC);
 		this.setPrenomC(prenomC);
 	}
 
-	public Client(){
+	public Users(){
 		
 	}
 

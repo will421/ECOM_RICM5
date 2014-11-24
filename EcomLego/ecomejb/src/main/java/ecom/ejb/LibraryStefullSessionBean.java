@@ -17,7 +17,7 @@ public class LibraryStefullSessionBean implements LibraryStatefullSessionBeanRem
     }
  
     public void addUser(String name, String prenom, int id) {
-        Client client = new Client();
+        Users client = new Users();
         client.setNameC(name);
         client.setPrenomC(prenom); 
 		EntityManager em = emf.createEntityManager();
@@ -26,11 +26,11 @@ public class LibraryStefullSessionBean implements LibraryStatefullSessionBeanRem
     }
 
 	@Override
-	public Client getUser() {
+	public Users getUser() {
 		// TODO Auto-generated method stub
 		EntityManager em = emf.createEntityManager();
 		 
-        Client client = (Client)em.find(Client.class, this);
+        Users client = (Users)em.find(Users.class, this);
  
         em.close();
  

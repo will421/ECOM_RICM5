@@ -26,7 +26,7 @@ public class UserAccount implements Serializable{
 	private String fixPhone;
 	@OneToOne private Validator validator;
 	@OneToOne private Administrator administrator;
-	@OneToOne private Client client;
+	@OneToOne private Users client;
 	
 	
 	public UserAccount(String mailU, String mdpU, String shippingAddress, String billingAddress, String cellPhone, String fixPhone){

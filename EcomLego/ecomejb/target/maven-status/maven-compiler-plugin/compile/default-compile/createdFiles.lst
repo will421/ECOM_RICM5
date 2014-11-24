@@ -1,13 +1,15 @@
 ecom\ejb\ControlLine.class
+ecom\ejb\ManageUsers.class
 ecom\ejb\UserAccount.class
 ecom\ejb\Administrator.class
 ecom\ejb\LibraryStefullSessionBean.class
 ecom\ejb\OriginalPiece.class
 ecom\ejb\LibraryStatefullSessionBeanRemote.class
+ecom\ejb\ManageUsersRemote.class
 ecom\ejb\NewSessionBean.class
 ecom\ejb\Model3D.class
-ecom\ejb\Client.class
 ecom\ejb\CreatePiece.class
+ecom\ejb\Users.class
 ecom\ejb\Catalogue.class
 ecom\ejb\Validator.class
 ecom\ejb\Commande.class

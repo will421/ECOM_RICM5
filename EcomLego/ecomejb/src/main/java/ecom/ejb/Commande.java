@@ -21,7 +21,7 @@ public class Commande implements Serializable{
 	@NotNull private float price;
 	@NotNull private Date date;
 	@Id@GeneratedValue(strategy = GenerationType.AUTO) private long idCom;
-	@OneToMany(mappedBy="commande") private Collection<Client> client;
+	@OneToMany(mappedBy="commande") private Collection<Users> client;
 	@ManyToOne private ControlLine controlLine;
 	@ManyToOne private Model3D model3D;
 	
