@@ -24,12 +24,12 @@
                     <defaultLibBundleDir>lib</defaultLibBundleDir>
                     <modules>
                         <ejbModule>
-	<groupId>fr.polytech.grenoble.ricm5.ecom</groupId>
+	                       <groupId>fr.polytech.grenoble.ricm5.ecom</groupId>
                             <artifactId>cart-ejb</artifactId>
                             <bundleFileName>cart-ejb.jar</bundleFileName>
                         </ejbModule>
                         <appClientModule>
-	<groupId>fr.polytech.grenoble.ricm5.ecom</groupId>
+	                       <groupId>fr.polytech.grenoble.ricm5.ecom</groupId>
                             <artifactId>cart-appclient</artifactId>
                         </appClientModule>
                     </modules>
