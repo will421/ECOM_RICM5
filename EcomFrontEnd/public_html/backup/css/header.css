@@ -1,0 +1,19 @@
+#hcorner-right{
+    display: inline-block;
+    width: 800px;
+    background-image: url(../img/banniere.png);
+    height: 150px;
+    opacity: 0.8;	
+    z-index: 1;
+}
+#header{
+    width: 1000px;
+    background-image: url(../img/banniere-lego-batman-2.jpg);
+    height: 150px;
+    opacity: 0.9;
+    z-index: -1;
+    margin: 0 auto; /*stretch banner*/
+}
+.header:hover { 
+    background-position: left bottom; 
+}
