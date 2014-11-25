@@ -4,7 +4,12 @@
     background-image: url(../img/banniere.png);
     height: 150px;
     opacity: 0.8;	
-    z-index: 1;
+    z-index: -1;
+}
+#body{
+    
+    margin-left: 100px;
+    margin-right: 100px;
 }
 #header{
     width: 1000px;
@@ -16,4 +21,13 @@
 }
 .header:hover { 
     background-position: left bottom; 
+}
+#container5{
+        display: inline-block;
+        margin-top: 150 px;
+    width: 800px;
+    height: 150px;
+
+        background-position: left bottom; 
+
 }
