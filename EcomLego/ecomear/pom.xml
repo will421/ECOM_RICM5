@@ -35,9 +35,9 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>fr.polytech-grenoble.ricm.ecom</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>ecomapp</artifactId>
-			<version>0.1.0-SNAPSHOT</version>
+			<version>${project.version}</version>
 			<type>app-client</type>
 			</dependency>
 		</dependencies>

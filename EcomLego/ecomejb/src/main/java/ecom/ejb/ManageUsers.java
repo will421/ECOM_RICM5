@@ -25,7 +25,7 @@ public class ManageUsers implements ManageUsersRemote, Serializable {
 
 		EntityManager ema = em.createEntityManager();
 
-		Query query =  ema.createQuery("select u from Users u where u.nomU = :nom AND u.prenomU = :prenom");
+		Query query =  ema.createQuery("select u from Users u where u.nameC = :nom AND u.prenomC = :prenom");
 		query.setParameter("nom", nomC);
 		query.setParameter("prenom", prenomC);
 
@@ -47,7 +47,7 @@ public class ManageUsers implements ManageUsersRemote, Serializable {
 		boolean exist = false;
 		EntityManager ema = em.createEntityManager();
 
-		Query query =  ema.createQuery("select u from Users u where u.nomU = :nom AND u.prenomU = :prenom");
+		Query query =  ema.createQuery("select u from Users u where u.nameC = :nom AND u.prenomC = :prenom");
 		query.setParameter("nom", nomC);
 		query.setParameter("prenom", prenomC);
 

@@ -27,5 +27,12 @@ public class Database {
 		recup = userService.addUser(nom, prenom);
 		return recup;
 	}
+	
+	public boolean doCheckusers(String nom, String prenom){
+		boolean isAvailable;
+		isAvailable = userService.checkUser(nom, prenom);
+		return isAvailable;
+
+	}
 
 }

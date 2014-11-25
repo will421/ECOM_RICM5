@@ -6,7 +6,6 @@ ecom\ejb\LibraryStefullSessionBean.class
 ecom\ejb\OriginalPiece.class
 ecom\ejb\LibraryStatefullSessionBeanRemote.class
 ecom\ejb\ManageUsersRemote.class
-ecom\ejb\NewSessionBean.class
 ecom\ejb\Model3D.class
 ecom\ejb\CreatePiece.class
 ecom\ejb\Users.class

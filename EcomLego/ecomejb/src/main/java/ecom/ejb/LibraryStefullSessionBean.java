@@ -9,7 +9,7 @@ import javax.persistence.PersistenceUnit;
 public class LibraryStefullSessionBean implements LibraryStatefullSessionBeanRemote{
 
 
-    @PersistenceUnit(unitName="User")
+    @PersistenceUnit(unitName="MyFactory")
     protected EntityManagerFactory emf;
  
     public LibraryStefullSessionBean() {
