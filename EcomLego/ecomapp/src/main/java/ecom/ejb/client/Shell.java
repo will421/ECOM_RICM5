@@ -41,10 +41,10 @@ public class Shell {
 				System.out.print("\n Enter the user fix Phone:\n > ");
 				int fixPhone = sc.nextInt();
 				sc.nextLine();
-				
+
 				if(dbq.doAddUserAccount(mail, password, shippingAddress, billingAddress, cellPhone, fixPhone)) {
-					user = dbq.doAddUser(firstname,lastname);
-					System.out.println("User "+ firstname + " "+ lastname+" create with id : "+user.getId());
+					int value = dbq.doAddUser(lastname,firstname, mail);
+					System.out.println("User "+ firstname + " "+ lastname + " create");
 				} else {
 					System.out.println("User "+ firstname + " "+ lastname+" already existe");
 				}
@@ -54,7 +54,7 @@ public class Shell {
 				System.out.print("\n Enter the user mail:\n > ");
 				String checkMail = sc.nextLine();
 				UserAccount u = dbq.doCheckusers(checkMail);
-				
+
 				if(u!=null){
 					System.out.println("User exist : "+u);
 					sc.nextLine();
@@ -62,11 +62,21 @@ public class Shell {
 					System.out.println("this user do not exist");
 					sc.nextLine();
 				}
-				
-				/*if(dbq.doCheckusers(checkMail)) {
-					System.out.println("User exist");
-				}
-				else System.out.println("User "+ firstname2 + " "+ lastname2+" do not exist");*/
+				break;
+			case "/modifUser":
+				System.out.print("\n Enter the user mail:\n > ");
+				String mailC = sc.nextLine();
+				System.out.println("Set lastname : ");
+				String newLastName = sc.nextLine();
+				Users myU = dbq.doModifUsers(mailC, newLastName);
+				System.out.println("user prenom : "+myU.getPrenomC());
+				System.out.println("user nom : "+myU.getNameC());
+				break;
+			case "/checkInfoUser":
+				System.out.print("\n Enter the user mail:\n > ");
+				String mailIU = sc.nextLine();
+				UserAccount myIU = dbq.doCheckInfoUsers(mailIU);
+				System.out.println("Info user : "+myIU);
 				break;
 			default :
 				System.out.print("\n\n ##### Commande inconnu : tapez /help pour plus d'information \n > ");
@@ -84,10 +94,7 @@ public class Shell {
 
 		System.out.println("\n ---> /addUser : permet d'ajouter un User");
 		System.out.println("\n ---> /checkUser : permet d'ajouter un User");
-
-
-
-
-
+		System.out.println("\n ---> /modifUser : permet de modifier un User");
+		System.out.println("\n ---> /checkInfoUser : permet de connaitre toutes les informations d'un User");
 	}
 }

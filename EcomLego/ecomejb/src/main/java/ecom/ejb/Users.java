@@ -29,6 +29,14 @@ public class Users implements Serializable{
 		
 	}
 	
+	public void setUserAccount(UserAccount ua){
+		this.useraccount=ua;
+	}
+	
+	public UserAccount getUserAccount(){
+		return useraccount;
+	}
+	
 	public String getNameC() {
 		return nameC;
 	}

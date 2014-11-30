@@ -37,6 +37,14 @@ public class UserAccount implements Serializable{
 		this.cellPhone = cellPhone;
 		this.fixPhone = fixPhone;
 	}
+	
+	public void setClient(Users user){
+		this.client=user;
+	}
+	
+	public Users getClient(){
+		return client;
+	}
 
 	public UserAccount(){
 		
