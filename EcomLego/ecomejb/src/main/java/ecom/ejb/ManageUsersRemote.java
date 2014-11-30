@@ -6,7 +6,10 @@ import javax.ejb.Remote;
 public interface ManageUsersRemote {
 	boolean rightLogin(String email, String password);
 
-	boolean checkUser(String nomC, String prenomC);
+	UserAccount checkUser(String nomC);
 
 	Users addUser(String nom, String prenom);
+
+	boolean addUserAccount(String mailU, String mdpU, String shippingAddress,
+			String billingAddress, int cellPhone, int fixPhone);
 }

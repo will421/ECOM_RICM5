@@ -17,7 +17,7 @@ public class Users implements Serializable{
 	private String nameC;
 	private String prenomC;
 	@Id@GeneratedValue(strategy = GenerationType.AUTO) private long idC;
-	@OneToOne(mappedBy="client")private UserAccount useraccount;
+	@OneToOne private UserAccount useraccount;
 	@ManyToOne private Commande commande;
 	
 	public Users(String nameC, String prenomC){
@@ -28,7 +28,7 @@ public class Users implements Serializable{
 	public Users(){
 		
 	}
-
+	
 	public String getNameC() {
 		return nameC;
 	}

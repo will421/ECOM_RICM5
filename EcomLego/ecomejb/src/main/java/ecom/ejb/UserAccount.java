@@ -22,14 +22,14 @@ public class UserAccount implements Serializable{
 	@NotNull private String mdpU;
 	@NotNull private String shippingAddress; //adresse de livraison
 	@NotNull private String billingAddress; //adresse de facturation
-	private String cellPhone;
-	private String fixPhone;
+	private int cellPhone;
+	private int fixPhone;
 	@OneToOne private Validator validator;
-	@OneToOne private Administrator administrator;
+    @OneToOne private Administrator administrator;
 	@OneToOne private Users client;
 	
 	
-	public UserAccount(String mailU, String mdpU, String shippingAddress, String billingAddress, String cellPhone, String fixPhone){
+	public UserAccount(String mailU, String mdpU, String shippingAddress, String billingAddress, int cellPhone, int fixPhone){
 		this.mailU = mailU;
 		this.shippingAddress = shippingAddress;
 		this.billingAddress = billingAddress;
@@ -49,7 +49,15 @@ public class UserAccount implements Serializable{
 	public void setMdpU(String mdpU) {
 		this.mdpU = mdpU;
 	}
-
+	
+	public void setMailU(String mailU) {
+		this.mailU = mailU;
+	}
+	
+	public String getMailU(){
+		return mailU;
+	}
+	
 	public String getShippingAddress() {
 		return shippingAddress;
 	}
@@ -66,23 +74,29 @@ public class UserAccount implements Serializable{
 		this.billingAddress = billingAddress;
 	}
 
-	public String getCellPhone() {
+	public int getCellPhone() {
 		return cellPhone;
 	}
 
-	public void setCellPhone(String cellPhone) {
-		this.cellPhone = cellPhone;
+	public void setCellPhone(int cellPhone2) {
+		this.cellPhone = cellPhone2;
 	}
 
-	public String getFixPhone() {
+	public int getFixPhone() {
 		return fixPhone;
 	}
 
-	public void setFixPhone(String fixPhone) {
-		this.fixPhone = fixPhone;
+	public void setFixPhone(int fixPhone2) {
+		this.fixPhone = fixPhone2;
 	}
 
 	public long getIdU() {
 		return this.idU;
+	}
+
+	public String toString(){
+		if(client==null) return "No user create";
+		else return client.getNameC()+" "+client.getPrenomC()+" "+client.getId()+" "+billingAddress+" "+shippingAddress
+				+" "+cellPhone+" "+fixPhone+" "+mailU+" "+mdpU;
 	}	
 }

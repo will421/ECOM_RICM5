@@ -4,12 +4,14 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import ecom.ejb.ManageUsersRemote;
+import ecom.ejb.UserAccount;
 import ecom.ejb.Users;
 
 
 public class Database {
 	
 	ManageUsersRemote userService;
+	
 	
 	public Database(){
 
@@ -28,11 +30,14 @@ public class Database {
 		return recup;
 	}
 	
-	public boolean doCheckusers(String nom, String prenom){
-		boolean isAvailable;
-		isAvailable = userService.checkUser(nom, prenom);
-		return isAvailable;
+	public UserAccount doCheckusers(String mail){
 
+		return userService.checkUser(mail);
+
+	}
+	
+	public boolean doAddUserAccount(String mailU, String mdpU, String shippingAddress, String billingAddress, int cellPhone, int fixPhone){
+		return userService.addUserAccount(mailU, mdpU, shippingAddress, billingAddress, cellPhone, fixPhone);
 	}
 
 }

@@ -25,43 +25,33 @@ public class ManageUsers implements ManageUsersRemote, Serializable {
 
 		EntityManager ema = em.createEntityManager();
 
-		Query query =  ema.createQuery("select u from Users u where u.nameC = :nom AND u.prenomC = :prenom");
-		query.setParameter("nom", nomC);
-		query.setParameter("prenom", prenomC);
-
 		Users u = null;
-		try{
-			query.getSingleResult();
-		}catch(NoResultException e){
-			u = new Users();
-			u.setNameC(nomC);
-			u.setPrenomC(prenomC);
-			ema.persist(u);
-		}
+		u = new Users();
+		u.setNameC(nomC);
+		u.setPrenomC(prenomC);
+		
+		
+		ema.persist(u);
+
 		ema.close();
 		return u;
 	}
 
 	@Override
-	public boolean checkUser(String nomC, String prenomC) {
-		boolean exist = false;
+	public UserAccount checkUser(String mailU) {
 		EntityManager ema = em.createEntityManager();
 
-		Query query =  ema.createQuery("select u from Users u where u.nameC = :nom AND u.prenomC = :prenom");
-		query.setParameter("nom", nomC);
-		query.setParameter("prenom", prenomC);
+		Query query =  ema.createQuery("select u from UserAccount u where u.mailU = :mail");
+		query.setParameter("mail",mailU);
 
-		Users u = null;
+		UserAccount ua = null;
 		try{
-			u = (Users) query.getSingleResult();
+			ua = (UserAccount) query.getSingleResult();
 		}catch(NoResultException e){
 
 		}
-		if(u != null){
-			exist = true;
-		}
 		ema.close();
-		return exist;
+		return ua;
 	}    
 
 	@SuppressWarnings("unchecked")
@@ -108,6 +98,40 @@ public class ManageUsers implements ManageUsersRemote, Serializable {
 	public boolean rightLogin(String email, String password) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public boolean addUserAccount(String mailU, String mdpU,
+			String shippingAddress, String billingAddress, int cellPhone,
+			int fixPhone) {
+		// TODO Auto-generated method stub
+		
+		boolean isCreate = false;
+		
+		EntityManager ema = em.createEntityManager();
+
+		Query query =  ema.createQuery("select ua from UserAccount ua where ua.mailU = :mail");
+		query.setParameter("mail", mailU);
+
+		UserAccount ua = null;
+		try{
+			ua = (UserAccount) query.getSingleResult();
+		}catch(NoResultException e){
+			isCreate = true;
+			ua = new UserAccount();
+			ua.setBillingAddress(billingAddress);
+			ua.setCellPhone(cellPhone);
+			ua.setFixPhone(fixPhone);
+			ua.setMdpU(mdpU);
+			ua.setShippingAddress(shippingAddress);
+			ua.setMailU(mailU);
+			
+			ema.persist(ua);
+		}
+		ema.close();
+		return isCreate;
+
+
 	}
 
 }

@@ -2,6 +2,7 @@ package ecom.ejb.client;
 
 import java.util.Scanner;
 
+import ecom.ejb.UserAccount;
 import ecom.ejb.Users;
 
 public class Shell {
@@ -23,10 +24,10 @@ public class Shell {
 			case "/addUser":
 				Users user = null;
 				System.out.print("\n Enter the user Firstname :\n > ");
-				String firstname = sc.nextLine();
+				String firstname = sc.nextLine().toLowerCase(); //tout en minuscule
 				System.out.print("\n Enter the user Lasttname :\n > ");
-				String lastname = sc.nextLine();
-				System.out.print("\n Enter the user mail address :\n > ");
+				String lastname = sc.nextLine().toLowerCase();
+				System.out.print("\n Enter the user mail address with this format XXX@YYY.ZZZ :\n > ");
 				String mail= sc.nextLine();
 				System.out.print("\n Enter the user password :\n > ");
 				String password= sc.nextLine();
@@ -34,21 +35,38 @@ public class Shell {
 				String shippingAddress= sc.nextLine();
 				System.out.print("\n Enter the user billing address:\n > "); //facturation
 				String billingAddress= sc.nextLine();
-				System.out.print("\n Enter the user billing address:\n > ");
-				String cellPhone = sc.nextLine();
-				System.out.print("\n Enter the user fixPhone:\n > ");
-				String fixPhone = sc.nextLine();
-				user = dbq.doAddUser(firstname,lastname);
-				//UserAccount(String mailU, String mdpU, String shippingAddress, String billingAddress, String cellPhone, String fixPhone){
+				System.out.print("\n Enter the user cell Phone:\n > ");
+				int cellPhone = sc.nextInt();
+				sc.nextLine();
+				System.out.print("\n Enter the user fix Phone:\n > ");
+				int fixPhone = sc.nextInt();
+				sc.nextLine();
+				
+				if(dbq.doAddUserAccount(mail, password, shippingAddress, billingAddress, cellPhone, fixPhone)) {
+					user = dbq.doAddUser(firstname,lastname);
+					System.out.println("User "+ firstname + " "+ lastname+" create with id : "+user.getId());
+				} else {
+					System.out.println("User "+ firstname + " "+ lastname+" already existe");
+				}
 
 				break;
 			case "/checkUser":
-				System.out.print("\n Enter the user Firstname :\n > ");
-				String firstname2 = sc.nextLine();
-				System.out.print("\n Enter the user Lasttname :\n > ");
-				String lastname2 = sc.nextLine();
-				if(dbq.doCheckusers(firstname2, lastname2)) System.out.println("User exist");
-				else System.out.println("User "+ firstname2 + " "+ lastname2+" do not exist");
+				System.out.print("\n Enter the user mail:\n > ");
+				String checkMail = sc.nextLine();
+				UserAccount u = dbq.doCheckusers(checkMail);
+				
+				if(u!=null){
+					System.out.println("User exist : "+u);
+					sc.nextLine();
+				} else {
+					System.out.println("this user do not exist");
+					sc.nextLine();
+				}
+				
+				/*if(dbq.doCheckusers(checkMail)) {
+					System.out.println("User exist");
+				}
+				else System.out.println("User "+ firstname2 + " "+ lastname2+" do not exist");*/
 				break;
 			default :
 				System.out.print("\n\n ##### Commande inconnu : tapez /help pour plus d'information \n > ");
