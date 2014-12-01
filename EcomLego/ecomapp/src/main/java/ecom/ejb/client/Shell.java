@@ -40,7 +40,6 @@ public class Shell {
 				sc.nextLine();
 				System.out.print("\n Enter the user fix Phone:\n > ");
 				int fixPhone = sc.nextInt();
-				sc.nextLine();
 
 				if(dbq.doAddUserAccount(mail, password, shippingAddress, billingAddress, cellPhone, fixPhone)) {
 					int value = dbq.doAddUser(lastname,firstname, mail);
@@ -48,7 +47,6 @@ public class Shell {
 				} else {
 					System.out.println("User "+ firstname + " "+ lastname+" already existe");
 				}
-
 				break;
 			case "/checkUser":
 				System.out.print("\n Enter the user mail:\n > ");
@@ -57,11 +55,10 @@ public class Shell {
 
 				if(u!=null){
 					System.out.println("User exist : "+u);
-					sc.nextLine();
 				} else {
 					System.out.println("this user do not exist");
-					sc.nextLine();
 				}
+				sc.nextLine();
 				break;
 			case "/modifUser":
 				System.out.print("\n Enter the user mail:\n > ");

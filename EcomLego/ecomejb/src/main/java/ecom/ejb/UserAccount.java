@@ -45,6 +45,22 @@ public class UserAccount implements Serializable{
 	public Users getClient(){
 		return client;
 	}
+	
+	public void setAdministrator(Administrator admin){
+		this.administrator=admin;
+	}
+	
+	public Administrator getAdministrator(){
+		return administrator;
+	}
+	
+	public void setValidator(Validator val){
+		this.validator=val;
+	}
+	
+	public Validator getValidator(){
+		return validator;
+	}
 
 	public UserAccount(){
 		

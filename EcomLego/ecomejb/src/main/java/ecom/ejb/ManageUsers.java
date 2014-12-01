@@ -166,6 +166,7 @@ public class ManageUsers implements ManageUsersRemote, Serializable {
 		}catch(NoResultException e){
 			System.out.println("modif user fail");
 		}
+		ema.merge(ua.getClient());
 		ema.close();
 		return ua.getClient();
 	}
