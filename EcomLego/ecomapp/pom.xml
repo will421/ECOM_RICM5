@@ -21,6 +21,13 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>ecomejb</artifactId>
+			<version>${project.version}</version>
+			<type>ejb</type>
+		</dependency>
+		
     </dependencies>
 
     <build>
@@ -38,18 +45,19 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-acr-plugin</artifactId>
-                <version>1.0</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <archive>
-                        <manifest>                            
-                            <mainClass>ecom.ejb.client.Main</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-acr-plugin</artifactId>
+				<version>1.0</version>
+				<extensions>true</extensions>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<mainClass>ecom.ejb.client.Main</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>

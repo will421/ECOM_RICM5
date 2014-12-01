@@ -2,6 +2,7 @@ package ecom.ejb;
 import java.io.Serializable;
 import java.util.Collection;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -13,8 +14,8 @@ public class Catalogue implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private String dateCat;
-	@Id private int refCat;
-	@ManyToMany(mappedBy="originalPiece") private Collection<OriginalPiece> originalPieces ;
+	@Column(name="IDCAT")@Id private int idCat;
+	@ManyToMany(mappedBy="catalogue") private Collection<OriginalPiece> originalPieces ;
 	
 	public Catalogue(String dateCat, int refCat){
 		this.setDateCat(dateCat);
@@ -34,11 +35,11 @@ public class Catalogue implements Serializable{
 	}
 
 	public int getRefCat() {
-		return refCat;
+		return idCat;
 	}
 
 	public void setRefCat(int refCat) {
-		this.refCat = refCat;
+		this.idCat = refCat;
 	}
 	
 }
