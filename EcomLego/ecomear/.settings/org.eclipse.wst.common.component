@@ -8,6 +8,9 @@
         <dependent-module archiveName="ecomweb-0.1.0-SNAPSHOT.war" deploy-path="/" handle="module:/resource/ecomweb/ecomweb">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="ecomcommon-0.1.0-SNAPSHOT.jar" deploy-path="/lib" handle="module:/resource/ecomcommon/ecomcommon">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <dependent-module archiveName="ecomapp-0.1.0-SNAPSHOT.jar" deploy-path="/" handle="module:/resource/ecomapp/ecomapp">
             <dependency-type>uses</dependency-type>
         </dependent-module>

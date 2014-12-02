@@ -20,10 +20,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>7.0</version>
-            <scope>provided</scope>
+        	<groupId>fr.polytech.grenoble.ricm5.ecom</groupId>
+        	<artifactId>ecomcommon</artifactId>
+        	<version>0.1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
