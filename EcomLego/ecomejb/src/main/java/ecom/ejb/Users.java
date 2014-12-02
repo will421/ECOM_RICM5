@@ -16,7 +16,7 @@ public class Users implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String nameC;
 	private String prenomC;
-	@Id@GeneratedValue(strategy = GenerationType.AUTO) private long idC;
+	@Id@GeneratedValue(strategy = GenerationType.SEQUENCE) private long idC;
 	@OneToOne private UserAccount useraccount;
 	@ManyToOne private Commande commande;
 	

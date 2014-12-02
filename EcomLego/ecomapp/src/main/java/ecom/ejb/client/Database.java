@@ -34,7 +34,7 @@ public class Database {
 
 	}
 	
-	public boolean doAddUserAccount(String mailU, String mdpU, String shippingAddress, String billingAddress, int cellPhone, int fixPhone){
+	public boolean doAddUserAccount(String mailU, String mdpU, String shippingAddress, String billingAddress, String cellPhone, String fixPhone){
 		return userService.addUserAccount(mailU, mdpU, shippingAddress, billingAddress, cellPhone, fixPhone);
 	}
 	

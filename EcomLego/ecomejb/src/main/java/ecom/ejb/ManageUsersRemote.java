@@ -11,7 +11,7 @@ public interface ManageUsersRemote {
 	//int addUser(String nom, String prenom);
 
 	boolean addUserAccount(String mailU, String mdpU, String shippingAddress,
-			String billingAddress, int cellPhone, int fixPhone);
+			String billingAddress, String cellPhone, String fixPhone);
 	
 	Users modifUser(String mail, String nom);
 

@@ -115,8 +115,8 @@ public class ManageUsers implements ManageUsersRemote, Serializable {
 
 	@Override
 	public boolean addUserAccount(String mailU, String mdpU,
-			String shippingAddress, String billingAddress, int cellPhone,
-			int fixPhone) {
+			String shippingAddress, String billingAddress, String cellPhone,
+			String fixPhone) {
 		// TODO Auto-generated method stub
 
 		boolean isCreate = false;

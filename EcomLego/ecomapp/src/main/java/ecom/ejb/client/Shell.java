@@ -67,22 +67,22 @@ public class Shell {
 				System.out.print("\n Enter the user billing address:\n > "); //facturation
 				String billingAddress= sc.nextLine();
 				System.out.print("\n Enter the user cell Phone:\n > ");
-				int cellPhone = 0; 
+				String cellPhone = null; 
 				verify = true;
 				while(verify){
 					try {
-						cellPhone = Integer.parseInt(sc.nextLine());
+						cellPhone = sc.nextLine();
 						verify = false;
 					} catch (NumberFormatException e) {
 						System.out.println("Give the mobile phone :");
 					}
 				}
 				verify=true;
-				int fixPhone = 0;
+				String fixPhone = null;
 				System.out.print("\n Enter the user fixe Phone:\n > ");
 				while(verify){
 					try {
-						fixPhone = Integer.parseInt(sc.nextLine());
+						fixPhone = sc.nextLine();
 						verify = false;
 					} catch (NumberFormatException e) {
 						System.out.println("Give the fixe phone :");
@@ -142,8 +142,8 @@ public class Shell {
 					String userPassword= RandomStringUtils.random(5,true,false);
 					String userShippingAddress= RandomStringUtils.random(5,true,false);
 					String userBillingAddress= RandomStringUtils.random(5,true,false);
-					int userCellPhone = 1 + (int)(Math.random() * ((999999999 - 1) + 1));
-					int userFixePhone = 1 + (int)(Math.random() * ((999999999 - 1) + 1));
+					String userCellPhone = RandomStringUtils.random(10,false,true);
+					String userFixePhone = RandomStringUtils.random(10,false,true);
 					if(dbq.doAddUserAccount(mail, userPassword, userShippingAddress, userBillingAddress, userCellPhone, userFixePhone)) {
 						int value = dbq.doAddUser(userLastName,userFirstName, mail);
 						System.out.println("User "+ userFirstName + " "+ userLastName + " create with mail address : "+mail);
@@ -168,8 +168,8 @@ public class Shell {
 					System.out.println("this user do not exist");
 				}
 			case "/exit" :
-				System.exit(0);
 				System.out.println(" #### Thanks and Bye!");
+				System.exit(0);
 				break;
 			default :
 				System.out.print("\n\n ##### Commande inconnu : tapez /help pour plus d'information \n > ");
