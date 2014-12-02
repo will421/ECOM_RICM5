@@ -3,6 +3,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,10 +21,10 @@ public class ControlLine implements Serializable{
 	private BigDecimal priceLC;//BigDecimal
 	private String colorLC;
 	private String theme;
-	@Id@GeneratedValue(strategy = GenerationType.AUTO) private long idCom;
+	@Column(name="IDCL")@Id@GeneratedValue(strategy = GenerationType.AUTO) private long idCL;
 	@OneToMany(mappedBy="controlLine") private Collection<Commande> commande;
-	@ManyToMany private Collection<CreatePiece> createPiece;
-	@ManyToMany private Collection<OriginalPiece> originalPiece;	
+	@ManyToMany(mappedBy="controlLines") private Collection<CreatePiece> createPieces ;
+	@ManyToMany(mappedBy="controlLines") private Collection<OriginalPiece> originalPieces ;
 
 	
 	public ControlLine(String nomLC, BigDecimal priceLC, String colorLC, String theme){

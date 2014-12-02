@@ -46,4 +46,12 @@ public class Validator implements Serializable{
 	public long getIdV() {
 		return this.idV;
 	}
+	
+	public void setUserAccount(UserAccount ua){
+		this.useraccount=ua;
+	}
+	
+	public UserAccount getUserAccount(){
+		return useraccount;
+	}
 }

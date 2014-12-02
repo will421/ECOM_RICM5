@@ -10,25 +10,41 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Client")
-public class Client implements Serializable{
+@Table(name = "Users")
+public class Users implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private String nameC;
 	private String prenomC;
-	@Id@GeneratedValue(strategy = GenerationType.AUTO) private long idC;
-	@OneToOne(mappedBy="client")private UserAccount useraccount;
+	@Id@GeneratedValue(strategy = GenerationType.SEQUENCE) private long idC;
+	@OneToOne private UserAccount useraccount;
 	@ManyToOne private Commande commande;
 	
-	public Client(String nameC, String prenomC){
+	public Users(String nameC, String prenomC){
 		this.setNameC(nameC);
 		this.setPrenomC(prenomC);
 	}
 
-	public Client(){
+	public Users(){
 		
 	}
-
+	
+	public void setCommande(Commande commande){
+		this.commande=commande;
+	}
+	
+	public Commande getCommande(){
+		return this.commande;
+	}
+	
+	public void setUserAccount(UserAccount ua){
+		this.useraccount=ua;
+	}
+	
+	public UserAccount getUserAccount(){
+		return useraccount;
+	}
+	
 	public String getNameC() {
 		return nameC;
 	}

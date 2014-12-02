@@ -2,23 +2,36 @@ package ecom.ejb;
 import java.io.Serializable;
 import java.util.Collection;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "OriginalPiece")
 public class OriginalPiece implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	@Id@GeneratedValue(strategy = GenerationType.AUTO) private long idPO;
-	@ManyToMany(mappedBy="originalPiece") private Collection<ControlLine> controlLines;
-	@ManyToMany private Collection<Catalogue> catalogue ;
+	@Column(name="IDPO")@Id@GeneratedValue(strategy = GenerationType.AUTO) private long idPO;
+	
+	@NotNull@ManyToMany
+	@JoinTable(name = "ORIGINALPIECE_CATALOGUE", joinColumns=@JoinColumn(name="IDPO") , inverseJoinColumns=@JoinColumn(name="IDCAT"))
+	private Collection<Catalogue> catalogue ;
+	
+	@NotNull@ManyToMany
+	@JoinTable(name = "ORIGINALPIECE_CONTROLLINES", joinColumns=@JoinColumn(name="IDPO") , inverseJoinColumns=@JoinColumn(name="IDCL"))
+	private Collection<ControlLine> controlLines;
 	
 	private String namePO;
+	
+	
+	
 	
 	public OriginalPiece(String namePO){
 		this.namePO=namePO;
