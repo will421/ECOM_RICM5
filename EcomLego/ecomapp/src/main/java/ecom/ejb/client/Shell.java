@@ -66,15 +66,23 @@ public class Shell {
 				String shippingAddress= sc.nextLine();
 				System.out.print("\n Enter the user billing address:\n > "); //facturation
 				String billingAddress= sc.nextLine();
-				System.out.print("\n Enter the user cell Phone:\n > ");
+				System.out.print("\n Enter the user cell Phone with the syntaxe : XXXXXXXXXX (10 numbers):\n > ");
 				String cellPhone = null; 
 				verify = true;
 				while(verify){
 					try {
-						cellPhone = sc.nextLine();
-						verify = false;
+						cellPhone= sc.nextLine().toLowerCase();
+						Pattern patternMail = Pattern.compile("\\d{10}");
+						Matcher matcher = patternMail.matcher (cellPhone);
+						if(matcher.matches()) {
+							System.out.println("\n cellPhone correct");
+							verify=false;
+						}
+						else {
+							System.out.print("\n Enter the user cell Phone with the syntaxe : XXXXXXXXXX (10 numbers):\n > ");
+						}
 					} catch (NumberFormatException e) {
-						System.out.println("Give the mobile phone :");
+						System.out.println("Give a correct cellPhone address :");
 					}
 				}
 				verify=true;
@@ -82,10 +90,18 @@ public class Shell {
 				System.out.print("\n Enter the user fixe Phone:\n > ");
 				while(verify){
 					try {
-						fixPhone = sc.nextLine();
-						verify = false;
+						fixPhone= sc.nextLine().toLowerCase();
+						Pattern patternMail = Pattern.compile("\\d{10}");
+						Matcher matcher = patternMail.matcher (fixPhone);
+						if(matcher.matches()) {
+							System.out.println("\n fixPhone correct");
+							verify=false;
+						}
+						else {
+							System.out.print("\n Enter the user fixe Phone with the syntaxe : XXXXXXXXXX (10 numbers):\n > ");
+						}
 					} catch (NumberFormatException e) {
-						System.out.println("Give the fixe phone :");
+						System.out.println("Give a correct fixe Phone address :");
 					}
 				}
 				if(dbq.doAddUserAccount(mail, password, shippingAddress, billingAddress, cellPhone, fixPhone)) {
