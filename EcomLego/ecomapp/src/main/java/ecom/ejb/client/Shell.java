@@ -105,7 +105,7 @@ public class Shell {
 					}
 				}
 				if(dbq.doAddUserAccount(mail, password, shippingAddress, billingAddress, cellPhone, fixPhone)) {
-					int value = dbq.doAddUser(lastname,firstname, mail);
+					dbq.doAddUser(lastname,firstname, mail);
 					System.out.println("User "+ firstname + " "+ lastname + " create with mail address : "+mail);
 				} else {
 					System.out.println("User "+ firstname + " "+ lastname+" already existe");
@@ -161,7 +161,7 @@ public class Shell {
 					String userCellPhone = RandomStringUtils.random(10,false,true);
 					String userFixePhone = RandomStringUtils.random(10,false,true);
 					if(dbq.doAddUserAccount(mail, userPassword, userShippingAddress, userBillingAddress, userCellPhone, userFixePhone)) {
-						int value = dbq.doAddUser(userLastName,userFirstName, mail);
+						dbq.doAddUser(userLastName,userFirstName, mail);
 						System.out.println("User "+ userFirstName + " "+ userLastName + " create with mail address : "+mail);
 					} else {
 						System.out.println("User "+ userFirstName + " "+ userLastName+" already existe");
@@ -170,7 +170,21 @@ public class Shell {
 
 				System.out.println("\n/*******************************************/");
 				System.out.println("\nCreate Administrator account");
-				System.out.println("\nPAS ENCORE FAITTTTTTTTTTTTTTTTTTT");
+				if(dbq.doAddUserAccount("admin@byl.com", "Pocsbla43", "admin address", "admin address", "0000000000", "0000000000")) {
+					dbq.doAddAdministrator("admin","admin", "admin@byl.com");
+					System.out.println("Admin create : admin@byl.com");
+				} else {
+					System.out.println("Admin already existe");
+				}
+				
+				System.out.println("\n/*******************************************/");
+				System.out.println("\nCreate Validator account");
+				if(dbq.doAddUserAccount("validator@byl.com", "valid38", "val address", "val address", "1111111111", "1111111111")) {
+					dbq.doAddValidator("val","val", "validator@byl.com");
+					System.out.println("Validator create : validator@byl.com");
+				} else {
+					System.out.println("Validator already existe");
+				}
 
 				break;
 			case "/removeUser" :
@@ -188,7 +202,7 @@ public class Shell {
 				System.exit(0);
 				break;
 			default :
-				System.out.print("\n\n ##### Commande inconnu : tapez /help pour plus d'information \n > ");
+				System.out.print("\n\n ##### Commande inconnu : tapez /help pour plus d'information");
 			}
 		}
 	}

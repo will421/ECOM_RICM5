@@ -24,8 +24,8 @@ public class Database {
 		}
 	}
 	
-	public int doAddUser(String nom, String prenom, String mail){
-		return userService.addUser(nom, prenom, mail);
+	public void doAddUser(String nom, String prenom, String mail){
+		userService.addUser(nom, prenom, mail);
 	}
 	
 	public UserAccount doCheckusers(String mail){
@@ -50,6 +50,16 @@ public class Database {
 	public void doRemoveUser(String checkMail) {
 		// TODO Auto-generated method stub
 		userService.removeUser(checkMail);
+	}
+
+	public void doAddAdministrator(String nom, String prenom, String mail) {
+		// TODO Auto-generated method stub
+		userService.addAdministrator(nom, prenom, mail);
+	}
+
+	public void doAddValidator(String nom, String prenom, String mail) { 
+		// TODO Auto-generated method stub
+		userService.addValidator(nom, prenom, mail);
 	}
 
 }

@@ -25,15 +25,8 @@ public class ManageUsers implements ManageUsersRemote, Serializable {
 
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public int addUser(String nomC, String prenomC, String mailU){
+	public void addUser(String nomC, String prenomC, String mailU){
 		EntityManager ema = em.createEntityManager();
-		/*Users u = null;
-		u = new Users();
-		u.setNameC(nomC);
-		u.setPrenomC(prenomC);		
-		ema.persist(u);
-		ema.close();
-		return u;*/
 
 		Query query =  ema.createQuery("select u from UserAccount u where u.mailU = :mail");
 		query.setParameter("mail",mailU);
@@ -41,7 +34,7 @@ public class ManageUsers implements ManageUsersRemote, Serializable {
 		try{
 			a = (UserAccount) query.getSingleResult();
 		}catch(NoResultException e){
-			return 2;
+
 		}
 		Users u = new Users();
 		u.setNameC(nomC);
@@ -50,7 +43,6 @@ public class ManageUsers implements ManageUsersRemote, Serializable {
 		a.setClient(u);
 		ema.persist(u);
 		ema.close();
-		return 0;
 	}
 
 	@Override
@@ -184,6 +176,52 @@ public class ManageUsers implements ManageUsersRemote, Serializable {
 		}
 		ema.close();
 		return ua;
+	}
+
+	@Override
+	public void addAdministrator(String nom, String prenom, String mail) {
+		// TODO Auto-generated method stub
+		EntityManager ema = em.createEntityManager();
+
+		Query query =  ema.createQuery("select u from UserAccount u where u.mailU = :mail");
+		query.setParameter("mail",mail);
+		UserAccount a = null;
+		try{
+			a = (UserAccount) query.getSingleResult();
+		}catch(NoResultException e){
+			
+		}
+		Administrator ad = new Administrator();
+		ad.setNameA(nom);
+		ad.setPrenomA(prenom);		
+		ad.setUserAccount(a);
+		a.setAdministrator(ad);
+		ema.persist(ad);
+		ema.close();
+	}
+
+	@Override
+	public void addValidator(String nom, String prenom, String mail) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+		EntityManager ema = em.createEntityManager();
+
+		Query query =  ema.createQuery("select u from UserAccount u where u.mailU = :mail");
+		query.setParameter("mail",mail);
+		UserAccount a = null;
+		try{
+			a = (UserAccount) query.getSingleResult();
+		}catch(NoResultException e){
+
+		}
+		Validator val = new Validator();
+		val.setNameV(nom);
+		val.setPrenomV(prenom);		
+		val.setUserAccount(a);
+		a.setValidator(val);
+		ema.persist(val);
+		ema.close();
+
 	}
 
 

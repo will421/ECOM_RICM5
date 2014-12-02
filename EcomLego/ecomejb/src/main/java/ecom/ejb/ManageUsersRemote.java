@@ -15,9 +15,13 @@ public interface ManageUsersRemote {
 	
 	Users modifUser(String mail, String nom);
 
-	int addUser(String nomC, String prenomC, String mailU);
+	void addUser(String nomC, String prenomC, String mailU);
 
 	UserAccount checkInfoUser(String mailIU);
 
 	void removeUser(String checkMail);
+
+	void addAdministrator(String nom, String prenom, String mail);
+
+	void addValidator(String nom, String prenom, String mail);
 }
