@@ -1,6 +1,8 @@
 package ecom.ejb.client;
 
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.lang.RandomStringUtils;
 
@@ -15,12 +17,13 @@ public class Shell {
 		System.out.println("\n/*******************************************/");
 		System.out.println("\n/********* WELCOME TO SHELL PROMPT *********/");
 		System.out.println("\n/*******************************************/");
+		System.out.println("\n\n Thanks to use /createBDD to create admin account");
+		System.out.println("\n/*******************************************/");
 		System.out.print("\nAdmin mode : Type your command : ");
 
 		/*
 		 * gerer le multicompte acces shell
-		 * remove user
-		 * creation au debut de la bdd
+		 * 
 		 * */
 
 		while(true){
@@ -32,12 +35,31 @@ public class Shell {
 				break; 
 			case "/addUser":
 				Users user = null;
+				boolean verify = true;
 				System.out.print("\n Enter the user Firstname :\n > ");
 				String firstname = sc.nextLine().toLowerCase(); //tout en minuscule
 				System.out.print("\n Enter the user Lasttname :\n > ");
 				String lastname = sc.nextLine().toLowerCase();
 				System.out.print("\n Enter the user mail address with this format XXX@YYY.ZZZ :\n > ");
-				String mail= sc.nextLine().toLowerCase();
+				String mail = null;
+				while(verify){
+					try {
+						mail= sc.nextLine().toLowerCase();
+						Pattern patternMail = Pattern.compile("^\\w+@[a-z]+\\.[a-z]{2,4}$");
+						Matcher matcher = patternMail.matcher (mail);
+						if(matcher.matches()) {
+							System.out.print("\n mail correct");
+							verify=false;
+						}
+						else {
+							System.out.println("\n Enter the user mail address with this format XXX@YYY.ZZZ :\n > ");
+						}
+					} catch (NumberFormatException e) {
+						System.out.println("Give a correct mail address :");
+					}
+				}
+
+
 				System.out.print("\n Enter the user password :\n > ");
 				String password= sc.nextLine();
 				System.out.print("\n Enter the user shipping address:\n > "); //livraison
@@ -46,7 +68,7 @@ public class Shell {
 				String billingAddress= sc.nextLine();
 				System.out.print("\n Enter the user cell Phone:\n > ");
 				int cellPhone = 0; 
-				boolean verify = true;
+				verify = true;
 				while(verify){
 					try {
 						cellPhone = Integer.parseInt(sc.nextLine());
@@ -129,17 +151,26 @@ public class Shell {
 						System.out.println("User "+ userFirstName + " "+ userLastName+" already existe");
 					}
 				}
+
+				System.out.println("\n/*******************************************/");
+				System.out.println("\nCreate Administrator account");
+				System.out.println("\nPAS ENCORE FAITTTTTTTTTTTTTTTTTTT");
+
 				break;
 			case "/removeUser" :
 				System.out.print("\n Enter the user mail:\n > ");
 				checkMail = sc.nextLine();
 				UserAccount ua = dbq.doCheckusers(checkMail);
-				
+
 				if(ua!=null){
 					dbq.doRemoveUser(checkMail);
 				} else {
 					System.out.println("this user do not exist");
 				}
+			case "/exit" :
+				System.exit(0);
+				System.out.println(" #### Thanks and Bye!");
+				break;
 			default :
 				System.out.print("\n\n ##### Commande inconnu : tapez /help pour plus d'information \n > ");
 			}
@@ -153,11 +184,12 @@ public class Shell {
 		System.out.println("\n/*******************************************/");
 		System.out.println("\n Liste commandes possible :");
 
-		System.out.println("\n---> /addUser : permet d'ajouter un User");
-		System.out.println("---> /checkUser : permet d'ajouter un User");
-		System.out.println("---> /modifUser : permet de modifier un User");
-		System.out.println("---> /checkInfoUser : permet de connaitre toutes les informations d'un User");
-		System.out.println("---> /removeUser : permet de supprimer toutes les informations d'un User");
-		System.out.println("---> /createBDD : permet de creer des users avec userAccount associe");
+		System.out.println("\n---> /addUser : add one User");
+		System.out.println("---> /checkUser : check if a User exist");
+		System.out.println("---> /modifUser : modif one User");
+		System.out.println("---> /checkInfoUser : show all information for one user");
+		System.out.println("---> /removeUser : remove one user");
+		System.out.println("---> /createBDD : add X user/userAccount, 1 admin and 1 validator");
+		System.out.println("---> /exit : exit the shell");
 	}
 }
