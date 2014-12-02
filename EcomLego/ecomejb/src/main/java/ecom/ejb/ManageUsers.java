@@ -85,29 +85,26 @@ public class ManageUsers implements ManageUsersRemote, Serializable {
 		return usersList;
 	}
 
-	public int removeUser(String mail){
+	public void removeUser(String mail){
 		EntityManager ema = em.createEntityManager();
 
-		int result = 1;
-
-		Query query =  ema.createQuery("select u from Users u where u.mailU = :mail");
+		Query query =  ema.createQuery("select ua from UserAccount ua where ua.mailU = :mail");
 		query.setParameter("mail", mail);
 
-		Users u = null;
+		UserAccount u = null;
 		try{
-			u = (Users) query.getSingleResult();
+			u = (UserAccount) query.getSingleResult();
 		}catch(NoResultException e){
 
 		}
 		if(u != null){
+			if(u.getClient().getCommande()!=null){
+				ema.remove(u.getClient().getCommande());
+			}
+			ema.remove(u.getClient());
 			ema.remove(u);
-			result = 0;
-		}else{
-			result = 1;
 		}
 		ema.close();
-
-		return result;
 	}
 
 	@Override

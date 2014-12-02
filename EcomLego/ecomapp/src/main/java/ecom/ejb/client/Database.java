@@ -47,4 +47,9 @@ public class Database {
 		return userService.checkInfoUser(mailIU);
 	}
 
+	public void doRemoveUser(String checkMail) {
+		// TODO Auto-generated method stub
+		userService.removeUser(checkMail);
+	}
+
 }

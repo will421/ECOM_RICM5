@@ -10,7 +10,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Client")
+@Table(name = "Users")
 public class Users implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -27,6 +27,14 @@ public class Users implements Serializable{
 
 	public Users(){
 		
+	}
+	
+	public void setCommande(Commande commande){
+		this.commande=commande;
+	}
+	
+	public Commande getCommande(){
+		return this.commande;
 	}
 	
 	public void setUserAccount(UserAccount ua){
