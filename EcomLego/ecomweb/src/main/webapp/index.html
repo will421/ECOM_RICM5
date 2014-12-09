@@ -1,10 +1,200 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html ng-app="appMain">
     <head>
-        <title>Start Page</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+        <script src="js/angular.js"></script>
+        <script src="js/ui-bootstrap-tpls-0.12.0.min.js"></script>
+        <script src="js/index.js"></script>
+        <link href="css/index.css" rel="stylesheet"/>
+        <link href="css/bootstrap.css" rel="stylesheet"/>
+        <script src="js/angular-resource.js"></script>
+        <script src="js/angular-ui-router.js"></script>
+        <script src="js/ngCart.js"></script>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <div id="header">
+            <div id="hcorner-right"></div>
+            <div id="hcorner-left">
+                <!--insert login here-->
+                <a ui-sref="panier"><ngcart-summary></ngcart-summary></a>
+            </div>
+        </div>
+        <!--Menu de navigation principal-->
+        <div ng-controller="DropdownCtrl" >
+            <!---
+            <h1>HELLO je faire une GET sur un serveur de REST :  {{items[0].task}}</h1>
+           <h2>GET après POST : {{items[0].msg}}</h2>
+           --->
+            <!-- 1st lego logo-->
+            <a ui-sref="#"><img src="img/logo.png" style="width:20%;"></a>
+            <!-- Bouton accueil -->
+            <div class="btn-group btn-group-lg" dropdown is-open="status.isopena">
+                <a ui-sref="#"><button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+                        Accueil
+                    </button></a>
+            </div>
+            <!-- Bouton produits --->
+            <div class="btn-group btn-group-lg" dropdown is-open="status.isopenb">
+                <a ui-sref="produits"><button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+                        Produits
+                    </button></a>
+            </div>
+            <!-- Bouton imprimer --->
+            <div class="btn-group btn-group-lg" dropdown is-open="status.isopenc">
+                <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+                    Imprimer
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a ui-sref="imprimer-commanderundevis">Commander un devis</a>
+                    </li>
+                    <li>
+                        <a ui-sref="imprimer-creerunmodele">Creer un modele 3D</a>
+                    </li>
+                    <li>
+                        <a ui-sref="imprimer-exportervotremodele">Exporter votre modele</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a ui-sref="imprimer-autres">Autres</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="btn-group btn-group-lg" dropdown is-open="status.isopend">
+                <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+                    Catalogue
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a href="#">Serie 2012/2013</a>
+                    </li>
+                    <li>
+                        <a href="#">Serie 2013/2014</a>
+                    </li>
+                    <li>
+                        <a href="#">Serie 2014/2015</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">Autres</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="btn-group">
+                <form>
+                    <input type="text" placeholder="Search..." required>
+                    <input type="button" value="Search">
+                </form>
+            </div>
+            <div class="btn-group" dropdown>
+                <button type="button" class="btn btn-danger">Option de recherche</button>
+                <button type="button" class="btn btn-danger dropdown-toggle" dropdown-toggle>
+                    <span class="caret"></span>
+                    <span class="sr-only">Option de recherche</span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a href="#">Par date</a>
+                    </li>
+                    <li>
+                        <a href="#">Par prix</a>
+                    </li>
+                    <li>
+                        <a href="#">Par catalogue</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">Visiter la FAQ</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Corps de page -->
+
+        <div class="container">
+            <!-- THIS IS WHERE WE WILL INJECT OUR CONTENT ============================== -->
+            <div ui-view></div>
+        </div>
+
+
+
+        <!--Menu navigation du bas-->
+        <hr>
+        <div id="container5">
+            <div id="container4">
+                <div id="container3">
+                    <div id="container2">
+                        <div id="container1">
+                            <div id="col1">
+                                <!-- Column one start -->
+                                <div>
+                                    <img src="img/lego_client_service.png" alt="lego_client_service" style="max-width:100%;"/>
+                                </div>
+                                <!-- Column one end -->
+                            </div>
+                            <div id="col2">
+                                <!-- Column two start -->
+                                <b>SERVICE CLIENTELE</b>
+                                <ul>
+                                    <li>
+                                        <a href="url">Service</a>
+                                    </li>
+                                    <li>
+                                        <a href="url">Contactez-nous</a>
+                                    </li>
+                                    <li>
+                                        <a href="url">Plan du site</a>
+                                    </li>
+                                </ul>
+                                <!-- Column two end -->
+                            </div>
+                            <div id="col3">
+                                <!-- Column three start -->
+                                <b>ACHATS</b>
+                                <ul>
+                                    <li>
+                                        <a href="url">xxxxxxx</a>
+                                    </li>
+                                    <li>
+                                        <a href="url">yyyy</a>
+                                    </li>
+                                    <li>
+                                        <a href="url">zzzzzzzzzz</a>
+                                    </li>
+                                </ul>
+                                <!-- Column three end -->
+                            </div>
+                            <div id="col4">
+                                <!-- Column four start -->
+                                <b>LIENS</b>
+                                <ul>
+                                    <li>
+                                        <a href="url">aaaaaa</a>
+                                    </li>
+                                    <li>
+                                        <a href="url">bbbbb</a>
+                                    </li>
+                                    <li>
+                                        <a href="url">cccccccccc</a>
+                                    </li>
+                                    <li>
+                                        <a href="url">ddd</a>
+                                    </li>
+                                </ul>
+                                <!-- Column four end -->
+                            </div>
+                            <div id="col5">
+                                <!-- Column five start -->
+                                <img src="img/lego_vip.png" alt="lego_vip" style="max-width:100%;"/>
+                                <!-- Column five end -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </hr>
     </body>
 </html>
