@@ -247,6 +247,12 @@ a {
     z-index: -1;
     margin: 0 auto; /*stretch banner*/
 }
+
+#hcorner-left{
+    display: inline-block;
+    width: 100px;
+    height: 150px;
+}
 .header:hover { 
     background-position: left bottom; 
 }

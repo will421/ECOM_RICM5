@@ -1,8 +1,0 @@
-C'est juste un serveur web de REST simple qui utilise Flask by poco....
-
-Avant tout: 
-	sudo apt-get install python-dev
-	sudo pip install psutil
-	sudo pip install flask-restful
-	sudo pip install -U flask-cors
-		-- usefull to manipulate CORS options on server side
