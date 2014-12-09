@@ -1,5 +1,6 @@
 package ecom.ejb.client;
 
+import java.io.Console;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,13 +28,15 @@ public class Shell {
 		 * */
 
 		while(true){
-			System.out.println("\n\n\n/*******************************************/");
-			System.out.println("\n/********** WELCOME TO USER MODE ***********/");
-			System.out.println("\n/*******************************************/");
 
 			if(!isAdmin){
+
+				System.out.println("\n\n\n/*******************************************/");
+				System.out.println("\n/********** WELCOME TO USER MODE ***********/");
+				System.out.println("\n/*******************************************/");
 				System.out.print("\n user> ");
 				String command = sc.nextLine();
+				Console console = System.console();
 				switch(command){
 				case "/help":
 					helpCommandUser();
@@ -43,8 +46,7 @@ public class Shell {
 					String checkMail = sc.nextLine();
 					UserAccount u = dbq.doCheckusers(checkMail);
 					if(u!=null){
-						System.out.println(" user> Enter a password : ");
-						String adminpwd = sc.nextLine();
+						String adminpwd = new String (console.readPassword(" user> Enter a password : "));
 						if(u.getMdpU().equals(adminpwd)){
 							isAdmin=true;
 						}
@@ -250,7 +252,7 @@ public class Shell {
 					System.out.println(" #### Thanks and Bye!");
 					System.exit(0);
 					break;
-				case "userMode" :
+				case "/userMode" :
 					System.out.println(" #### Thanks and Bye!");
 					isAdmin=false;
 					break;
