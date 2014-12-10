@@ -20,5 +20,8 @@
         <dependent-module archiveName="commons-lang-2.3.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/commons-lang/commons-lang/2.3/commons-lang-2.3.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="genson-1.1.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/com/owlike/genson/1.1/genson-1.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
     </wb-module>
 </project-modules>

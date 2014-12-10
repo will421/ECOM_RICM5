@@ -10,7 +10,7 @@ import javax.ejb.Stateless;
  * Session Bean implementation class Service
  */
 @Stateless(mappedName="Service")
-public class Service implements Serializable ,ServiceLocal {
+public class Service implements Serializable ,ServiceRemote {
 
     public Date getCurrentDate(){
         return new Date();
