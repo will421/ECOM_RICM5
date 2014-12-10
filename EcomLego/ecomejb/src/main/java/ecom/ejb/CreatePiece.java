@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -23,6 +24,8 @@ public class CreatePiece implements Serializable{
 	@NotNull@ManyToMany
 	@JoinTable(name = "CREATEPIECE_CONTROLLINES", joinColumns=@JoinColumn(name="IDCP") , inverseJoinColumns=@JoinColumn(name="IDCL"))
 	private Collection<ControlLine> controlLines;
+	@OneToOne private Picture picture;
+
 	
 	private String nameCP;
 	

@@ -3,7 +3,7 @@ package ecom.ejb.client;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import ecom.ejb.ManageUsersRemote;
+import manage.ManageUsersRemote;
 import ecom.ejb.UserAccount;
 import ecom.ejb.Users;
 

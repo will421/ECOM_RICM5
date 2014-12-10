@@ -5,6 +5,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.RandomStringUtils;
 
 import ecom.ejb.UserAccount;
@@ -30,10 +31,6 @@ public class Shell {
 		while(true){
 
 			if(!isAdmin){
-
-				System.out.println("\n\n\n/*******************************************/");
-				System.out.println("\n/********** WELCOME TO USER MODE ***********/");
-				System.out.println("\n/*******************************************/");
 				System.out.print("\n user> ");
 				String command = sc.nextLine();
 				Console console = System.console();
@@ -45,10 +42,13 @@ public class Shell {
 					System.out.print("\n Enter the admin mail:\n > ");
 					String checkMail = sc.nextLine();
 					UserAccount u = dbq.doCheckusers(checkMail);
-					if(u!=null){
+					if(u!=null && u.getAdministrator()!=null){
 						String adminpwd = new String (console.readPassword(" user> Enter a password : "));
-						if(u.getMdpU().equals(adminpwd)){
+						if(u.getMdpU().equals(DigestUtils.sha1Hex(adminpwd))){
 							isAdmin=true;
+							System.out.println("\n\n\n/*******************************************/");
+							System.out.println("\n/********* WELCOME TO ADMIN PROMPT *********/");
+							System.out.println("\n/*******************************************/");
 						}
 						else {
 							System.out.print(" Wrong password");
@@ -61,12 +61,35 @@ public class Shell {
 					System.out.println(" #### Thanks and Bye!");
 					System.exit(0);
 					break;
+				case "/checkUser":
+					System.out.print("\n Enter the user mail:\n > ");
+					String checkMailnoAdmin = sc.nextLine();
+					UserAccount uNoAdmin = dbq.doCheckusers(checkMailnoAdmin);
+
+					if(uNoAdmin!=null){
+						System.out.println("User exist : "+uNoAdmin);
+					} else {
+						System.out.println("this user do not exist");
+					}
+					break;
+				case "/modifUser":
+					System.out.print("\n Enter the user mail:\n > ");
+					String mailC = sc.nextLine();
+					System.out.println("Set lastname : ");
+					String newLastName = sc.nextLine();
+					Users myU = dbq.doModifUsers(mailC, newLastName);
+					System.out.println("user prenom : "+myU.getPrenomC());
+					System.out.println("user nom : "+myU.getNameC());
+					break;
+				case "/checkInfoUser":
+					System.out.print("\n Enter the user mail:\n > ");
+					String mailIU = sc.nextLine();
+					UserAccount myIU = dbq.doCheckInfoUsers(mailIU);
+					System.out.println("Info user : "+myIU);
+					break;
 				}
 			}
 			else {
-				System.out.println("\n/*******************************************/");
-				System.out.println("\n/********** WELCOME TO ADMIN MODE **********/");
-				System.out.println("\n/*******************************************/");
 				System.out.print("\n admin> ");
 				String command = sc.nextLine();
 				switch(command){
@@ -206,37 +229,6 @@ public class Shell {
 							System.out.println("User "+ userFirstName + " "+ userLastName+" already existe");
 						}
 					}
-
-					System.out.println("\n/*******************************************/");
-					System.out.println("\nCreate Administrator account");
-					String adminName = "admin"+RandomStringUtils.random(5,true,false).toLowerCase();
-					if(dbq.doAddUserAccount(adminName+"@byl.com", 
-							"admin"+RandomStringUtils.random(5,true,false).toLowerCase(), 
-							"admin"+RandomStringUtils.random(5,true,false).toLowerCase()+"address", 
-							"admin"+RandomStringUtils.random(5,true,false).toLowerCase()+"address", 
-							RandomStringUtils.random(10,false,true), 
-							RandomStringUtils.random(10,false,true))) {
-						dbq.doAddAdministrator(adminName,adminName, adminName+"@byl.com");
-						System.out.println("Admin create : "+adminName+"@byl.com");
-					} else {
-						System.out.println("Admin already existe");
-					}
-
-					System.out.println("\n/*******************************************/");
-					System.out.println("\nCreate Validator account");
-					String validName = "valid"+RandomStringUtils.random(5,true,false).toLowerCase();
-					if(dbq.doAddUserAccount(validName+"@byl.com", 
-							"valid"+RandomStringUtils.random(5,true,false).toLowerCase(), 
-							"valid"+RandomStringUtils.random(5,true,false).toLowerCase()+"address", 
-							"valid"+RandomStringUtils.random(5,true,false).toLowerCase()+"address", 
-							RandomStringUtils.random(10,false,true), 
-							RandomStringUtils.random(10,false,true))) {
-						dbq.doAddValidator(validName, validName, validName+"@byl.com");
-						System.out.println("Validator create : "+validName+"@byl.com");
-					} else {
-						System.out.println("Validator already existe");
-					}
-
 					break;
 				case "/removeUser" :
 					System.out.print("\n Enter the user mail:\n > ");
@@ -256,6 +248,38 @@ public class Shell {
 					System.out.println(" #### Thanks and Bye!");
 					isAdmin=false;
 					break;
+				case "/addValidator":
+					System.out.println("\n/*******************************************/");
+					System.out.println("\nCreate Validator account");
+					String validName = "valid"+RandomStringUtils.random(5,true,false).toLowerCase();
+					if(dbq.doAddUserAccount(validName+"@byl.com", 
+							"valid"+RandomStringUtils.random(5,true,false).toLowerCase(), 
+							"valid"+RandomStringUtils.random(5,true,false).toLowerCase()+"address", 
+							"valid"+RandomStringUtils.random(5,true,false).toLowerCase()+"address", 
+							RandomStringUtils.random(10,false,true), 
+							RandomStringUtils.random(10,false,true))) {
+						dbq.doAddValidator(validName, validName, validName+"@byl.com");
+						System.out.println("Validator create : "+validName+"@byl.com");
+					} else {
+						System.out.println("Validator already existe");
+					}
+					break;
+				case "/addAdministrator":
+					System.out.println("\n/*******************************************/");
+					System.out.println("\nCreate Administrator account");
+					String adminName = "admin"+RandomStringUtils.random(5,true,false).toLowerCase();
+					if(dbq.doAddUserAccount(adminName+"@byl.com", 
+							"admin"+RandomStringUtils.random(5,true,false).toLowerCase(), 
+							"admin"+RandomStringUtils.random(5,true,false).toLowerCase()+"address", 
+							"admin"+RandomStringUtils.random(5,true,false).toLowerCase()+"address", 
+							RandomStringUtils.random(10,false,true), 
+							RandomStringUtils.random(10,false,true))) {
+						dbq.doAddAdministrator(adminName,adminName, adminName+"@byl.com");
+						System.out.println("Admin create : "+adminName+"@byl.com");
+					} else {
+						System.out.println("Admin already existe");
+					}
+					break;
 				default :
 					System.out.print("\n\n ##### Commande inconnu : tapez /help pour plus d'information");
 				}
@@ -271,6 +295,8 @@ public class Shell {
 		System.out.println("\n Liste commandes possible :");
 
 		System.out.println("\n---> /addUser : add one User");
+		System.out.println("\n---> /addValidator : add one Admin");
+		System.out.println("\n---> /addAdministrator : add one Valid");
 		System.out.println("---> /checkUser : check if a User exist");
 		System.out.println("---> /modifUser : modif one User");
 		System.out.println("---> /checkInfoUser : show all information for one user");
@@ -279,7 +305,7 @@ public class Shell {
 		System.out.println("---> /userMode : return to user mode");
 		System.out.println("---> /exit : exit the shell");
 	}
-	
+
 	private void helpCommandUser() {
 		// TODO Auto-generated method stub
 		System.out.println("\n/*******************************************/");
@@ -288,7 +314,8 @@ public class Shell {
 		System.out.println("\n Liste commandes possible :");
 
 		System.out.println("---> /adminMode : go to admin mode");
+		System.out.println("---> /checkInfoUser : show all information for one user");
+		System.out.println("---> /checkUser : check if a User exist");
 		System.out.println("---> /exit : exit the shell");
-
 	}
 }

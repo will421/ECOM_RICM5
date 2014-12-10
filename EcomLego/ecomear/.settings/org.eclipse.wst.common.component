@@ -8,6 +8,12 @@
         <dependent-module archiveName="ecomweb-0.1.0-SNAPSHOT.war" deploy-path="/" handle="module:/classpath/var/M2_REPO/fr/polytech-grenoble/ricm/ecom/ecomweb/0.1.0-SNAPSHOT/ecomweb-0.1.0-SNAPSHOT.war">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="commons-codec-1.10.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/commons-codec/commons-codec/1.10/commons-codec-1.10.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-lang-2.3.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/commons-lang/commons-lang/2.3/commons-lang-2.3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <dependent-module archiveName="ecomapp-0.1.0-SNAPSHOT.jar" deploy-path="/" handle="module:/resource/ecomapp/ecomapp">
             <dependency-type>uses</dependency-type>
         </dependent-module>
@@ -15,12 +21,6 @@
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="activation-1.1.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/javax/activation/activation/1.1/activation-1.1.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="commons-codec-1.10.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/commons-codec/commons-codec/1.10/commons-codec-1.10.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="commons-lang-2.3.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/commons-lang/commons-lang/2.3/commons-lang-2.3.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
     </wb-module>

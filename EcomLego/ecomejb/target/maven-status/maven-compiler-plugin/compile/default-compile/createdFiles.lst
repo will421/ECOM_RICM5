@@ -1,11 +1,11 @@
 ecom\ejb\ControlLine.class
-ecom\ejb\ManageUsers.class
 ecom\ejb\UserAccount.class
 ecom\ejb\Administrator.class
 ecom\ejb\LibraryStefullSessionBean.class
 ecom\ejb\OriginalPiece.class
+manage\ManageUsersRemote.class
 ecom\ejb\LibraryStatefullSessionBeanRemote.class
-ecom\ejb\ManageUsersRemote.class
+manage\ManageUsers.class
 ecom\ejb\Model3D.class
 ecom\ejb\CreatePiece.class
 ecom\ejb\Users.class
