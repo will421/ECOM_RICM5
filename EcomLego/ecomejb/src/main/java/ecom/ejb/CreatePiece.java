@@ -25,8 +25,6 @@ public class CreatePiece implements Serializable{
 	@JoinTable(name = "CREATEPIECE_CONTROLLINES", joinColumns=@JoinColumn(name="IDCP") , inverseJoinColumns=@JoinColumn(name="IDCL"))
 	private Collection<ControlLine> controlLines;
 	@OneToOne private Picture picture;
-
-	
 	private String nameCP;
 	
 	public CreatePiece(String nameCP){
@@ -37,6 +35,14 @@ public class CreatePiece implements Serializable{
 		
 	}
 
+	public void setCollection(ControlLine c){
+		this.controlLines.add(c);
+	}
+	
+	public Collection<ControlLine> getControlLine(){
+		return controlLines;
+	}
+	
 	public String getNameCP() {
 		return nameCP;
 	}
@@ -47,6 +53,15 @@ public class CreatePiece implements Serializable{
 	
 	public long getId(){
 		return this.idCP;
+	}
+
+	public void setPicture(Picture p) {
+		// TODO Auto-generated method stub
+		this.picture=p;
+	}
+	
+	public Picture getPicture(){
+		return picture;
 	}
 
 }

@@ -3,12 +3,19 @@ package ecom.ejb.client;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import manage.ManageModel3D;
+import manage.ManageModel3DRemote;
 import manage.ManageUsersRemote;
+import ecom.ejb.Model3D;
 import ecom.ejb.UserAccount;
 import ecom.ejb.Users;
 
 
 public class Database {
+	
+	/*******************************************
+	 * 	USER METHODS
+	 ******************************************/
 	
 	ManageUsersRemote userService;
 	
@@ -60,6 +67,19 @@ public class Database {
 	public void doAddValidator(String nom, String prenom, String mail) { 
 		// TODO Auto-generated method stub
 		userService.addValidator(nom, prenom, mail);
+	}
+	
+	
+	/*******************************************
+	 * 	MODEL3D METHODS
+	 ******************************************/
+	ManageModel3D model;
+
+
+	public Model3D doCheckInfoModel3D(String nameModel) {
+		// TODO Auto-generated method stub
+		return model.checkInfoModel(nameModel);
+
 	}
 
 }

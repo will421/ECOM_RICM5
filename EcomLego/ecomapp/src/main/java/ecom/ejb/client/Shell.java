@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.RandomStringUtils;
 
+import ecom.ejb.Model3D;
 import ecom.ejb.UserAccount;
 import ecom.ejb.Users;
 
@@ -86,6 +87,12 @@ public class Shell {
 					String mailIU = sc.nextLine();
 					UserAccount myIU = dbq.doCheckInfoUsers(mailIU);
 					System.out.println("Info user : "+myIU);
+					break;
+				case "/checkInfoModel":
+					System.out.print("\n Enter the Model3D name:\n > ");
+					String nameModel = sc.nextLine();
+					Model3D m = dbq.doCheckInfoModel3D(nameModel);
+					System.out.println("Info model : "+nameModel);
 					break;
 				}
 			}
@@ -280,6 +287,12 @@ public class Shell {
 						System.out.println("Admin already existe");
 					}
 					break;
+				case "/checkInfoModel":
+					System.out.print("\n Enter the Model3D name:\n > ");
+					String nameModel = sc.nextLine();
+					Model3D m = dbq.doCheckInfoModel3D(nameModel);
+					System.out.println("Info model : "+nameModel);
+					break;
 				default :
 					System.out.print("\n\n ##### Commande inconnu : tapez /help pour plus d'information");
 				}
@@ -294,14 +307,17 @@ public class Shell {
 		System.out.println("\n/*******************************************/");
 		System.out.println("\n Liste commandes possible :");
 
-		System.out.println("\n---> /addUser : add one User");
-		System.out.println("\n---> /addValidator : add one Admin");
-		System.out.println("\n---> /addAdministrator : add one Valid");
+		System.out.println("---> /addUser : add one User");
+		System.out.println("---> /addValidator : add one Admin");
+		System.out.println("---> /addAdministrator : add one Valid");
+		
 		System.out.println("---> /checkUser : check if a User exist");
-		System.out.println("---> /modifUser : modif one User");
 		System.out.println("---> /checkInfoUser : show all information for one user");
-		System.out.println("---> /removeUser : remove one user");
+		System.out.println("---> /checkInfoModel : show all information for one Model3D");
 		System.out.println("---> /createBDD : add X user/userAccount, 1 admin and 1 validator");
+		
+		System.out.println("---> /modifUser : modif one User");
+		System.out.println("---> /removeUser : remove one user");
 		System.out.println("---> /userMode : return to user mode");
 		System.out.println("---> /exit : exit the shell");
 	}
@@ -315,6 +331,7 @@ public class Shell {
 
 		System.out.println("---> /adminMode : go to admin mode");
 		System.out.println("---> /checkInfoUser : show all information for one user");
+		System.out.println("---> /checkInfoModel : show all information for one Model3D");
 		System.out.println("---> /checkUser : check if a User exist");
 		System.out.println("---> /exit : exit the shell");
 	}
