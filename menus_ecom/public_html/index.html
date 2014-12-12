@@ -1,4 +1,4 @@
-<html ng-app="appMain">
+    <html ng-app="appMain">
     <head>
         <script src="js/angular.js"></script>
         <script src="js/ui-bootstrap-tpls-0.12.0.js"></script>
@@ -6,13 +6,17 @@
         <link href="css/bootstrap.min.css" rel="stylesheet"/>
         <link href="css/header.css" rel="stylesheet"/>
         <link rel="stylesheet" type="text/css" href="css/menu_navi_bas.css">
-        </head>
-        <body>
-            <div id="header">
+        </head>s
+        <!--Id body  contient le background -->
+        <body id ="body">
+            <div id="banniere-lateral">
+                                </div>
+
+          <div id="header">
                 <div id="hcorner-right"></div>
             </div>
             <!--Menu de navigation principal-->
-            <div ng-controller="DropdownCtrl" >
+            <div id ="sous_banniere" ng-controller="DropdownCtrl"  >
                 <!-- 1st lego logo-->
                 <img src="img/logo.png" style="width:20%;margin:2px 5px 2em 100; padding:2px 5px;">
                     <!-- Bouton accueil -->
@@ -189,5 +193,5 @@
                                 </div>
                             </div>
                         </div>
-                    </body>
-                </html>
+                </body>
+            </html>
