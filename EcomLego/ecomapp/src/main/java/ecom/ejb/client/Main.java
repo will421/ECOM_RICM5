@@ -7,6 +7,9 @@ package ecom.ejb.client;
 public class Main {
     
     public static void main( String[] args ) {
-        System.out.println( "Hello World Enterprise Application Client!" );
+        System.out.println( "Lancement en cours..." );
+        
+        @SuppressWarnings("unused")
+		Shell shell = new Shell();
     }
 }

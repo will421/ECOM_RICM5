@@ -1,6 +1,7 @@
 package ecom.ejb;
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,8 +14,8 @@ import javax.persistence.Table;
 public class Administrator implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	private String nameA;
-	private String prenomA;
+	@Column(name="NAMEA") private String nameA;
+	@Column(name="PRENOMA") private String prenomA;
 	@Id@GeneratedValue(strategy = GenerationType.AUTO) private long idA;
 	@OneToOne(mappedBy="administrator") private UserAccount useraccount;
 	
@@ -45,5 +46,10 @@ public class Administrator implements Serializable{
 	
 	public long getId(){
 		return this.idA;
+	}
+
+	public void setUserAccount(UserAccount a) {
+		// TODO Auto-generated method stub
+		this.useraccount=a;
 	}
 }

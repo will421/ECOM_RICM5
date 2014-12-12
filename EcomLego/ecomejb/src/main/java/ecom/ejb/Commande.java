@@ -1,5 +1,6 @@
 package ecom.ejb;
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -18,13 +19,13 @@ public class Commande implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@NotNull private boolean isPaid;
 	@NotNull private float price;
-	@NotNull private String date;
+	@NotNull private Date date;
 	@Id@GeneratedValue(strategy = GenerationType.AUTO) private long idCom;
-	@OneToMany(mappedBy="commande") private Collection<Client> client;
+	@OneToMany(mappedBy="commande") private Collection<Users> client;
 	@ManyToOne private ControlLine controlLine;
 	@ManyToOne private Model3D model3D;
 	
-	public Commande(float price, boolean isPaid, String date){
+	public Commande(float price, boolean isPaid, Date date){
 		this.price=price;
 		this.isPaid=isPaid;
 		this.date=date;
@@ -50,7 +51,7 @@ public class Commande implements Serializable{
 		this.price = price;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 	
