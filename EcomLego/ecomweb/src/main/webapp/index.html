@@ -4,9 +4,10 @@
         <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
         <meta content="utf-8" http-equiv="encoding">
         <script src="js/angular.js"></script>
-        <script src="js/ui-bootstrap-tpls-0.12.0.min.js"></script>
+        <script src="js/ui-bootstrap-custom-tpls-0.12.0.js"></script>
         <script src="js/index.js"></script>
         <link href="css/index.css" rel="stylesheet"/>
+        <link href="css/produits.css" rel="stylesheet">
         <link href="css/bootstrap.css" rel="stylesheet"/>
         <script src="js/angular-resource.js"></script>
         <script src="js/angular-ui-router.js"></script>
@@ -21,94 +22,73 @@
             </div>
         </div>
         <!--Menu de navigation principal-->
-        <div ng-controller="DropdownCtrl" >
-            <!---
-            <h1>HELLO je faire une GET sur un serveur de REST :  {{items[0].task}}</h1>
-           <h2>GET après POST : {{items[0].msg}}</h2>
-           --->
-            <!-- 1st lego logo-->
-            <a ui-sref="#"><img src="img/logo.png" style="width:20%;"></a>
-            <!-- Bouton accueil -->
-            <div class="btn-group btn-group-lg" dropdown is-open="status.isopena">
-                <a ui-sref="#"><button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-                        Accueil
-                    </button></a>
-            </div>
-            <!-- Bouton produits --->
-            <div class="btn-group btn-group-lg" dropdown is-open="status.isopenb">
-                <a ui-sref="produits"><button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-                        Produits
-                    </button></a>
-            </div>
-            <!-- Bouton imprimer --->
-            <div class="btn-group btn-group-lg" dropdown is-open="status.isopenc">
-                <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-                    Imprimer
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                    <li>
-                        <a ui-sref="imprimer-commanderundevis">Commander un devis</a>
-                    </li>
-                    <li>
-                        <a ui-sref="imprimer-creerunmodele">Creer un modele 3D</a>
-                    </li>
-                    <li>
-                        <a ui-sref="imprimer-exportervotremodele">Exporter votre modele</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a ui-sref="imprimer-autres">Autres</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="btn-group btn-group-lg" dropdown is-open="status.isopend">
-                <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-                    Catalogue
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                    <li>
-                        <a href="#">Serie 2012/2013</a>
-                    </li>
-                    <li>
-                        <a href="#">Serie 2013/2014</a>
-                    </li>
-                    <li>
-                        <a href="#">Serie 2014/2015</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">Autres</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="btn-group">
-                <form>
-                    <input type="text" placeholder="Search..." required>
-                    <input type="button" value="Search">
-                </form>
-            </div>
-            <div class="btn-group" dropdown>
-                <button type="button" class="btn btn-danger">Option de recherche</button>
-                <button type="button" class="btn btn-danger dropdown-toggle" dropdown-toggle>
-                    <span class="caret"></span>
-                    <span class="sr-only">Option de recherche</span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                    <li>
-                        <a href="#">Par date</a>
-                    </li>
-                    <li>
-                        <a href="#">Par prix</a>
-                    </li>
-                    <li>
-                        <a href="#">Par catalogue</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">Visiter la FAQ</a>
-                    </li>
-                </ul>
-            </div>
+        <div class="container">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" ui-sref="#">Accueil</a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li><a ui-sref="produits">Produits</a></li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Imprimer en 3D<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a ui-sref="imprimer-commanderundevis">Commander un devis</a></li>
+                                    <li><a ui-sref="imprimer-creerunmodele">Creer un modèle 3D</a></li>
+                                    <li><a ui-sref="imprimer-exportervotremodele">Exporter votre modèle</a></li>
+                                    <li class="divider"></li>
+                                    <li><a ui-sref="#">Autres</a></li>
+                                    <li class="divider"></li>
+                                    <li><a ui-sref="#">Un autre autres</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Consulter les catalogues<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a ui-sref="#">Série 2012/2013</a></li>
+                                    <li><a ui-sref="#">Série 2013/2014</a></li>
+                                    <li><a ui-sref="#">Série 2014/2015</a></li>
+                                    <li class="divider"></li>
+                                    <li><a ui-sref="#">Autres</a></li>
+                                    <li class="divider"></li>
+                                    <li><a ui-sref="#">Fin de série</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <form class="navbar-form navbar-right" role="search">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Rechercher...">
+                            </div>
+                            <button type="submit" class="btn btn-default"><i  class="glyphicon glyphicon-search" aria-hidden="true"></i></button>
+                        </form>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a ui-sref="inscription">S'incrire</a></li>
+                            <li class="dropdown" id="menuLogin">
+                                <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">Connexion</a>
+                                <div class="dropdown-menu" style="padding:17px;">
+                                    <form class="form" id="formLogin"> 
+                                        <input name="username" id="username" placeholder="Username" type="text"> 
+                                        <input name="password" id="password" placeholder="Password" type="password"><br>
+                                        <button type="button" id="btnLogin" class="btn">Connexion</button>
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
         </div>
 
         <!-- Corps de page -->
@@ -196,5 +176,13 @@
             </div>
         </div>
         </hr>
+        <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script>
+            $("#menu-toggle").click(function (e) {
+                e.preventDefault();
+                $("#wrapper").toggleClass("toggled");
+            });
+        </script>
     </body>
 </html>

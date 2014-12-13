@@ -46,42 +46,25 @@ var app = angular.module('appMain', ['ui.bootstrap', 'ngResource', 'ui.router', 
 /**
  * Controller menu navigation principal (Dropdown)
  */
-app.controller('DropdownCtrl', function ($scope, $log, $http) {
-    $scope.items = [
-        'The first choice!',
-        'And another choice for you.',
-        'but wait! A third!'
-    ];
-    /*
-     $http.get('http://127.0.0.1:5000/todos/todo1').
-     success(function (data, status, headers, config) {
-     $scope.items[0] = data;
-     }).error(function (data, status, headers, config) {
-     console.log("GET FAILED");
-     });
-     
-     var req = {
-     method: 'POST',
-     url: 'http://127.0.0.1:5000/todos',
-     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-     data: {msg: "SWAGGER"}.toJSON
-     }
-     
-     $http(req).success(function (data, status, headers, config) {
-     console.log('POST OK !!');
-     console.log(data);
-     }).error(function (data, status, headers, config) {
-     });
-     
-     */
-    $scope.status = {
-        isopen: false
-    };
 
-    $scope.toggled = function (open) {
-        $log.log('Dropdown is now: ', open);
-    };
-});
+
+
+/*
+ app.controller('DropdownCtrl', function ($scope, $log, $http) {
+ $scope.items = [
+ 'The first choice!',
+ 'And another choice for you.',
+ 'but wait! A third!'
+ ];
+ $scope.status = {
+ isopen: false
+ };
+ 
+ $scope.toggled = function (open) {
+ $log.log('Dropdown is now: ', open);
+ };
+ });
+ */
 
 
 /**
@@ -150,6 +133,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 templateUrl: 'panier.html'
             })
 
+            .state('inscription', {
+                url: 'inscription',
+                templateUrl: 'partial-inscription.html'
+            })
+
 
 
             // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
@@ -162,9 +150,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 /**
  * Controller panier d'achat
  */
-app.controller("PanierCtrl", function($scope){
+app.controller("PanierCtrl", function ($scope) {
     console.log("CHECKING OUT");
-    $scope.showCart = function(){
+    $scope.showCart = function () {
         console.log("CHECKED OUT");
     }
 });
