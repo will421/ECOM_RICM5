@@ -20,9 +20,7 @@ public class Main {
 			System.out.println("Admin already existe");
 		}
 		
-		JamesMail jm = new JamesMail();
-        
-        @SuppressWarnings("unused")
-		Shell shell = new Shell();
+		new JamesMail();
+        new Shell();
     }
 }

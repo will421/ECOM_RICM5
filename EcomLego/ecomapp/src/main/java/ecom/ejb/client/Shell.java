@@ -1,6 +1,7 @@
 package ecom.ejb.client;
 
 import java.io.Console;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,7 +15,7 @@ import ecom.ejb.Users;
 
 public class Shell {
 
-	@SuppressWarnings("resource")
+	@SuppressWarnings({ "resource", "unused" })
 	public Shell(){
 		Database dbq = new Database();
 		boolean isAdmin =false;
@@ -287,14 +288,39 @@ public class Shell {
 						System.out.println("Admin already existe");
 					}
 					break;
-				case "/checkInfoModel":
+				case "/checkInfoModel3D":
 					System.out.print("\n Enter the Model3D name:\n > ");
 					String nameModel = sc.nextLine();
 					Model3D m = dbq.doCheckInfoModel3D(nameModel);
-					System.out.println("Info model : "+nameModel);
+					System.out.println("Info model : "+m);
+					break;
+				case "/addModel3D":
+					System.out.print("\n Enter the Model3D name:\n >");
+					nameModel = sc.nextLine();
+					System.out.print("\n Enter the Model3D theme:\n >");
+					String themeModel = sc.nextLine();
+					System.out.print("\n Enter the Model3D user:\n >");
+					String userModel = sc.nextLine();
+					System.out.print("\n Enter the Model3D picture (in byte):\n >");
+					byte pictureModel = sc.nextByte();
+					//la photo est creer en meme temps que le model3D : il ne peut pas y avoir de photos volatille
+					m = dbq.doAddModel3D(nameModel, themeModel, userModel, pictureModel);
+					break;
+				case "/checkModel3D" :
+					System.out.print("\n Enter the Model3D name:\n >");
+					nameModel = sc.nextLine();
+					List<Model3D> lm = dbq.doCheckModel3D(nameModel);
+					for(Model3D lm2 : lm){
+						System.out.println("Info model : "+lm2);
+					}
+					break;
+				case "/removeModel3D":
+					System.out.print("\n Enter the Model3D name:\n >");
+					nameModel = sc.nextLine();
+					dbq.doRemoveModel3D(nameModel);
 					break;
 				default :
-					System.out.print("\n\n ##### Commande inconnu : tapez /help pour plus d'information");
+					System.out.print("\n\n ##### Unknow command : please see /help for more information");
 				}
 			}
 		}
@@ -305,19 +331,24 @@ public class Shell {
 		System.out.println("\n/*******************************************/");
 		System.out.println("\n/************** HELP GUIDE *****************/");
 		System.out.println("\n/*******************************************/");
-		System.out.println("\n Liste commandes possible :");
+		System.out.println("\n Commands list available :");
 
 		System.out.println("---> /addUser : add one User");
 		System.out.println("---> /addValidator : add one Admin");
 		System.out.println("---> /addAdministrator : add one Valid");
+		System.out.println("---> /addModel3D : add one model3D with picture");
 		
 		System.out.println("---> /checkUser : check if a User exist");
 		System.out.println("---> /checkInfoUser : show all information for one user");
-		System.out.println("---> /checkInfoModel : show all information for one Model3D");
+		System.out.println("---> /checkInfoModel3D : show all information for one Model3D");
+		System.out.println("---> /checkModel3D : show all Model3D with the same name");
 		System.out.println("---> /createBDD : add X user/userAccount, 1 admin and 1 validator");
 		
 		System.out.println("---> /modifUser : modif one User");
+		
 		System.out.println("---> /removeUser : remove one user");
+		System.out.println("---> /removeModel3D : remove one Model3D");		
+		
 		System.out.println("---> /userMode : return to user mode");
 		System.out.println("---> /exit : exit the shell");
 	}
