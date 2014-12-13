@@ -9,13 +9,13 @@ import java.util.regex.Pattern;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.RandomStringUtils;
 
+import ecom.ejb.CreatePiece;
 import ecom.ejb.Model3D;
 import ecom.ejb.UserAccount;
 import ecom.ejb.Users;
 
 public class Shell {
 
-	@SuppressWarnings({ "resource", "unused" })
 	public Shell(){
 		Database dbq = new Database();
 		boolean isAdmin =false;
@@ -89,13 +89,18 @@ public class Shell {
 					UserAccount myIU = dbq.doCheckInfoUsers(mailIU);
 					System.out.println("Info user : "+myIU);
 					break;
-				case "/checkInfoModel":
+				case "/checkInfoModel3D":
 					System.out.print("\n Enter the Model3D name:\n > ");
 					String nameModel = sc.nextLine();
-					Model3D m = dbq.doCheckInfoModel3D(nameModel);
-					System.out.println("Info model : "+nameModel);
+					System.out.print("\n Enter the Model3D id:\n > ");
+					String nameID = sc.nextLine();
+					Model3D m = dbq.doCheckInfoModel3D(nameModel,nameID );
+					if(m!=null) System.out.println("Info model : "+m);
+					else System.out.println("this model dosn't exist");					
 					break;
-				}
+				default :
+					System.out.print("\n\n ##### Unknow command : please see /help for more information");
+				}	
 			}
 			else {
 				System.out.print("\n admin> ");
@@ -291,8 +296,11 @@ public class Shell {
 				case "/checkInfoModel3D":
 					System.out.print("\n Enter the Model3D name:\n > ");
 					String nameModel = sc.nextLine();
-					Model3D m = dbq.doCheckInfoModel3D(nameModel);
-					System.out.println("Info model : "+m);
+					System.out.print("\n Enter the Model3D id:\n > ");
+					String nameID = sc.nextLine();
+					Model3D m = dbq.doCheckInfoModel3D(nameModel,nameID );
+					if(m!=null) System.out.println("Info model : "+m);
+					else System.out.println("this model dosn't exist");					
 					break;
 				case "/addModel3D":
 					System.out.print("\n Enter the Model3D name:\n >");
@@ -305,20 +313,66 @@ public class Shell {
 					byte pictureModel = sc.nextByte();
 					//la photo est creer en meme temps que le model3D : il ne peut pas y avoir de photos volatille
 					m = dbq.doAddModel3D(nameModel, themeModel, userModel, pictureModel);
+					System.out.print("\n the model3D : "+m+" success");
 					break;
 				case "/checkModel3D" :
 					System.out.print("\n Enter the Model3D name:\n >");
 					nameModel = sc.nextLine();
 					List<Model3D> lm = dbq.doCheckModel3D(nameModel);
-					for(Model3D lm2 : lm){
-						System.out.println("Info model : "+lm2);
+					if(lm!=null){
+						for(Model3D lm2 : lm){
+							System.out.println("Info model : "+lm2);
+						}
 					}
+					else System.out.println("Model3D with name "+nameModel +" doesn't exist.");
+					
 					break;
 				case "/removeModel3D":
 					System.out.print("\n Enter the Model3D name:\n >");
 					nameModel = sc.nextLine();
 					dbq.doRemoveModel3D(nameModel);
-					
+					break;
+				case "/addCreatePiece":
+					System.out.print("\n Enter the piece name:\n >");
+					String namePiece = sc.nextLine();
+					System.out.print("\n Enter the piece theme:\n >");
+					String themePiece = sc.nextLine();
+					System.out.print("\n Enter the piece user:\n >");
+					String userPiece = sc.nextLine();
+					System.out.print("\n Enter the piece picture (in byte):\n >");
+					byte picturePiece = sc.nextByte();
+					CreatePiece p= dbq.doAddCreatePiece(namePiece, themePiece, userPiece, picturePiece);
+					if(p!=null) System.out.println(" New Piece create");
+					else System.out.println(" Fail during the creation of your new piece");
+					break;
+				case "/checkCreatePiece":
+					System.out.print("\n Enter the piece name:\n >");
+					namePiece = sc.nextLine();
+					List<CreatePiece> lcp=dbq.doCheckCreatePiece(namePiece);
+					System.out.println("taille liste :"+lcp.size());
+					if(!lcp.isEmpty()){
+						for(CreatePiece cp : lcp){
+							System.out.println("Info piece : "+cp);
+						}
+					}
+					else System.out.println("No Piece with this name exist");
+					break;
+				case "/checkInfoCreatePiece":
+					System.out.print("\n Enter the piece name:\n >");
+					namePiece = sc.nextLine();
+					System.out.print("\n Enter the piece id:\n >");
+					nameID = sc.nextLine();
+					CreatePiece cp = dbq.doCheckInfoPiece(namePiece, nameID);
+					if(cp!= null){
+						System.out.println(" Info piece : "+cp);
+					} else System.out.println(" The piece name with the name "+namePiece+" doesn't exist.");
+					break;
+				case "/removeCreatePiece":
+					System.out.print("\n Enter the Model3D name:\n >");
+					namePiece = sc.nextLine();
+					System.out.print("\n Enter the piece id:\n >");
+					nameID = sc.nextLine();
+					dbq.doRemoveCreatePiece(namePiece,nameID);
 					break;
 				default :
 					System.out.print("\n\n ##### Unknow command : please see /help for more information");
@@ -334,22 +388,36 @@ public class Shell {
 		System.out.println("\n/*******************************************/");
 		System.out.println("\n Commands list available :");
 
+		System.out.println("\n");
+
 		System.out.println("---> /addUser : add one User");
 		System.out.println("---> /addValidator : add one Admin");
 		System.out.println("---> /addAdministrator : add one Valid");
 		System.out.println("---> /addModel3D : add one model3D with picture");
-		
+		System.out.println("---> /addCreatePiece : add one new piece with picture");
+
+		System.out.println("\n");
+
 		System.out.println("---> /checkUser : check if a User exist");
 		System.out.println("---> /checkInfoUser : show all information for one user");
-		System.out.println("---> /checkInfoModel3D : show all information for one Model3D");
 		System.out.println("---> /checkModel3D : show all Model3D with the same name");
+		System.out.println("---> /checkInfoModel3D : show all information for one Model3D");
+		System.out.println("---> /checkCreatePiece : show all piece with the same name");
+		System.out.println("---> /checkInfoCreatePiece : show all information for one piece");
 		System.out.println("---> /createBDD : add X user/userAccount, 1 admin and 1 validator");
-		
+
+		System.out.println("\n");
+
 		System.out.println("---> /modifUser : modif one User");
-		
+
+		System.out.println("\n");
+
 		System.out.println("---> /removeUser : remove one user");
 		System.out.println("---> /removeModel3D : remove one Model3D");		
-		
+		System.out.println("---> /removeCreatePiece : remove one piece created");		
+
+		System.out.println("\n");
+
 		System.out.println("---> /userMode : return to user mode");
 		System.out.println("---> /exit : exit the shell");
 	}
@@ -362,9 +430,11 @@ public class Shell {
 		System.out.println("\n Liste commandes possible :");
 
 		System.out.println("---> /adminMode : go to admin mode");
-		System.out.println("---> /checkInfoUser : show all information for one user");
-		System.out.println("---> /checkInfoModel : show all information for one Model3D");
 		System.out.println("---> /checkUser : check if a User exist");
+		System.out.println("---> /checkInfoUser : show all information for one user");
+		System.out.println("---> /checkModel3D : show all Model3D with the same name");
+		System.out.println("---> /checkInfoModel3D : show all information for one Model3D");
+		System.out.println("---> /checkCreatePiece : show all piece with the same name");
 		System.out.println("---> /exit : exit the shell");
 	}
 }

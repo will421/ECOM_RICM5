@@ -5,8 +5,8 @@ import java.util.List;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import manage.ManageCreatePiece;
-import manage.ManageModel3D;
+import manage.ManageCreatePieceRemote;
+import manage.ManageModel3DRemote;
 import manage.ManageUsersRemote;
 import ecom.ejb.CreatePiece;
 import ecom.ejb.Model3D;
@@ -18,8 +18,8 @@ public class Database {
 		
 
 	ManageUsersRemote userService;
-	ManageModel3D model;
-	ManageCreatePiece createPiece;
+	ManageModel3DRemote model;
+	ManageCreatePieceRemote createPiece;
 	
 	public Database(){
 
@@ -27,7 +27,8 @@ public class Database {
 		try {
 			ctx = new InitialContext();
 			userService = (ManageUsersRemote) ctx.lookup("ManageUser");
-			model = (ManageModel3D) ctx.lookup("Model3D");
+			model = (ManageModel3DRemote) ctx.lookup("ManageModel3D");
+			createPiece = (ManageCreatePieceRemote) ctx.lookup("ManageCreatePiece");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
@@ -77,11 +78,12 @@ public class Database {
 	
 	/*******************************************
 	 * 	MODEL3D METHODS
+	 * @param sc 
 	 ******************************************/
 
-	public Model3D doCheckInfoModel3D(String nameModel) {
+	public Model3D doCheckInfoModel3D(String nameModel, String id) {
 		// TODO Auto-generated method stub
-		return model.checkInfoModel(nameModel);
+		return model.checkInfoModel(nameModel, id);
 	}
 	
 	public Model3D doAddModel3D(String nomM, String theme, String user, byte picture){
@@ -113,16 +115,16 @@ public class Database {
 		return createPiece.modifCreatePiece(nomCP);
 	}
 
-	public void doAddCreatePiece(String nomCP, String theme, String user, byte picture){
-		createPiece.addCreatePiece(nomCP, theme, user, picture);
+	public CreatePiece doAddCreatePiece(String nomCP, String theme, String user, byte picture){
+		return createPiece.addCreatePiece(nomCP, theme, user, picture);
 	}
 
-	public CreatePiece doCheckInfoModel(String nomCP){
-		return createPiece.checkInfoModel(nomCP);
+	public CreatePiece doCheckInfoPiece(String nomCP, String id){
+		return createPiece.checkInfoCreatePiece(nomCP, id);
 	}
 
-	public void doRemoveCreatePiece(String nomM){
-		createPiece.removeCreatePiece(nomM);
+	public void doRemoveCreatePiece(String nomM, String id){
+		createPiece.removeCreatePiece(nomM,id);
 	}
 	
 }
