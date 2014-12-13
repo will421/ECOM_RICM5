@@ -318,6 +318,7 @@ public class Shell {
 					System.out.print("\n Enter the Model3D name:\n >");
 					nameModel = sc.nextLine();
 					dbq.doRemoveModel3D(nameModel);
+					
 					break;
 				default :
 					System.out.print("\n\n ##### Unknow command : please see /help for more information");

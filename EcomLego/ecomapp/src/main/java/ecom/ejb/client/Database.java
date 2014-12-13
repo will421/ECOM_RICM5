@@ -8,6 +8,7 @@ import javax.naming.NamingException;
 import manage.ManageCreatePiece;
 import manage.ManageModel3D;
 import manage.ManageUsersRemote;
+import ecom.ejb.CreatePiece;
 import ecom.ejb.Model3D;
 import ecom.ejb.UserAccount;
 import ecom.ejb.Users;
@@ -104,5 +105,24 @@ public class Database {
 	 * 	CREATEPIECE METHODS
 	 ******************************************/
 	
+	public List<CreatePiece> doCheckCreatePiece(String nomCP){
+		return createPiece.checkCreatePiece(nomCP);
+	}
+
+	public CreatePiece doModifCreatePiece(String nomCP){
+		return createPiece.modifCreatePiece(nomCP);
+	}
+
+	public void doAddCreatePiece(String nomCP, String theme, String user, byte picture){
+		createPiece.addCreatePiece(nomCP, theme, user, picture);
+	}
+
+	public CreatePiece doCheckInfoModel(String nomCP){
+		return createPiece.checkInfoModel(nomCP);
+	}
+
+	public void doRemoveCreatePiece(String nomM){
+		createPiece.removeCreatePiece(nomM);
+	}
 	
 }
