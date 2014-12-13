@@ -98,6 +98,40 @@ public class Shell {
 					if(m!=null) System.out.println("Info model : "+m);
 					else System.out.println("this model dosn't exist");					
 					break;
+				case "/checkCreatePiece":
+					System.out.print("\n Enter the piece name:\n >");
+					String namePiece = sc.nextLine();
+					List<CreatePiece> lcp=dbq.doCheckCreatePiece(namePiece);
+					System.out.println("taille liste :"+lcp.size());
+					if(!lcp.isEmpty()){
+						for(CreatePiece cp : lcp){
+							System.out.println("Info piece : "+cp);
+						}
+					}
+					else System.out.println("No Piece with this name exist");
+					break;
+				case "/checkInfoCreatePiece":
+					System.out.print("\n Enter the piece name:\n >");
+					namePiece = sc.nextLine();
+					System.out.print("\n Enter the piece id:\n >");
+					nameID = sc.nextLine();
+					CreatePiece cp = dbq.doCheckInfoPiece(namePiece, nameID);
+					if(cp!= null){
+						System.out.println(" Info piece : "+cp);
+					} else System.out.println(" The piece name with the name "+namePiece+" doesn't exist.");
+					break;
+				case "/checkModel3D" :
+					System.out.print("\n Enter the Model3D name:\n >");
+					nameModel = sc.nextLine();
+					List<Model3D> lm = dbq.doCheckModel3D(nameModel);
+					if(lm!=null){
+						for(Model3D lm2 : lm){
+							System.out.println("Info model : "+lm2);
+						}
+					}
+					else System.out.println("Model3D with name "+nameModel +" doesn't exist.");
+					
+					break;
 				default :
 					System.out.print("\n\n ##### Unknow command : please see /help for more information");
 				}	
@@ -435,6 +469,7 @@ public class Shell {
 		System.out.println("---> /checkModel3D : show all Model3D with the same name");
 		System.out.println("---> /checkInfoModel3D : show all information for one Model3D");
 		System.out.println("---> /checkCreatePiece : show all piece with the same name");
+		System.out.println("---> /checkInfoCreatePiece : show all information for one piece");
 		System.out.println("---> /exit : exit the shell");
 	}
 }
