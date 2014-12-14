@@ -175,20 +175,28 @@ body {
     position:relative;
     left:82%;
     overflow:hidden;
+    text-align:center;
+
 }
 #col2 {
+    display:block; margin: auto;
     float:left;
     width:16%;
     position:relative;
     left:86%;
     overflow:hidden;
+    text-align:center;
+
 }
 #col3 {
+    display:block; margin: auto;
     float:left;
     width:16%;
     position:relative;
     left:90%;
     overflow:hidden;
+    text-align:center;
+
 }
 #col4 {
     float:left;
@@ -196,6 +204,8 @@ body {
     position:relative;
     left:94%;
     overflow:hidden;
+    text-align:center;
+
 }
 #col5 {
     float:left;
@@ -203,6 +213,9 @@ body {
     position:relative;
     left:98%;
     overflow:hidden;
+    text-align:center;
+    display:block; margin: auto;
+
 }
 ul {
     list-style-type: none;
@@ -262,7 +275,11 @@ a {
     height: 150px;
 
 }
-
+/* Menu principal */
+#Menu_navig{
+    
+    padding-top : 15px;
+}
 /* END HEADER BANNER
 -------------------------------------------------------------------------------------------------------------------------- */
 
