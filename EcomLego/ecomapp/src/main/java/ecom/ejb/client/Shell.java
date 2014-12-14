@@ -182,7 +182,8 @@ public class Shell {
 					while(verify){
 						try {
 							mail= sc.nextLine().toLowerCase();
-							Pattern patternMail = Pattern.compile("^\\w+@[a-z]+\\.[a-z]{2,4}$");
+							Pattern patternMail = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+									+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
 							Matcher matcher = patternMail.matcher (mail);
 							if(matcher.matches()) {
 								System.out.print("\n mail correct");
@@ -244,6 +245,7 @@ public class Shell {
 					if(dbq.doAddUserAccount(mail, password, shippingAddress, billingAddress, cellPhone, fixPhone)) {
 						dbq.doAddUser(lastname,firstname, mail);
 						System.out.println("User "+ firstname + " "+ lastname + " create with mail address : "+mail);
+						new JamesMail(firstname, lastname, mail);
 					} else {
 						System.out.println("User "+ firstname + " "+ lastname+" already existe");
 					}

@@ -11,13 +11,13 @@ import javax.mail.internet.MimeMessage;
   
 public class JamesMail {  
       
-    public JamesMail(){  
+    public JamesMail(String fn, String ln, String mail){  
         /***** CHANGE THESE FOUR VARIABLE VALUES TO REFLECT YOUR ENVIRONMENT ******/  
         String user = "user";  // Newly created user on JAMES  
         String password = "mpduser"; // user password  
           
-        String fromAddress = "service-client@byl.com"; // newlycreateduser@localhost   
-        String toAddress = "jerome.barbier26@gmail.com";  
+        String fromAddress = "service-client@byl.com"; 
+        String toAddress = mail;  
            
           
         // Create a mail session  
@@ -34,11 +34,18 @@ public class JamesMail {
             message.setFrom(new InternetAddress(fromAddress));  
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toAddress));  
               
-            message.setSubject("Email from our JAMES Server");  
-            message.setText("Luke, I'm your father!!");  
+            message.setSubject("Thank you for register on our website");  
+            message.setText("Hi,\n\n\n"
+            		+ "Thank you for register on ByYourLego.com"
+            		+ "\n\n"
+            		+ "Any usefull information :\n"
+            		+ "login : "+mail
+            		+ "\n password : keep it secret"
+            		+ "\n Have fun on our website \n\n"
+            		+ "---------- BYL team");  
             Transport.send(message);  
               
-            System.out.println("Email sent successfully");  
+            System.out.println("Email sent successfully to : "+mail);  
         }  
         catch (MessagingException e)   
         {  
