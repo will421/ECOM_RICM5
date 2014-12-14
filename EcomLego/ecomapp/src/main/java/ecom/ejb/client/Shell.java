@@ -9,8 +9,10 @@ import java.util.regex.Pattern;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.RandomStringUtils;
 
+import ecom.ejb.Catalogue;
 import ecom.ejb.CreatePiece;
 import ecom.ejb.Model3D;
+import ecom.ejb.OriginalPiece;
 import ecom.ejb.UserAccount;
 import ecom.ejb.Users;
 
@@ -130,7 +132,33 @@ public class Shell {
 						}
 					}
 					else System.out.println("Model3D with name "+nameModel +" doesn't exist.");
-					
+
+					break;
+				case "/checkInfoOriginalPiece":
+					System.out.println("\n Enter the piece name :\n >");
+					namePiece = sc.nextLine();
+					OriginalPiece op=dbq.doCheckInfoOriginalPiece(namePiece);
+					if(op!= null) {
+						System.out.println(" Piece with name"+op);
+						boolean searchCata = false;
+						Catalogue currentC=null;
+						//on recupere le catalogue associe
+						for(Catalogue c : op.getCatalogue()){
+							for(OriginalPiece op2 : c.getOriginalPiece()){
+								if(namePiece==op2.getNameCP()) {
+									searchCata=true;
+									break;		
+								}						
+							}
+							if(searchCata) {
+								currentC=c;
+								break;
+							}
+						}
+						if(searchCata) System.out.println(" Catalogue ref :"+currentC.getRefCat()+"   catalogue date :"+currentC.getDateCat());
+						else System.out.println("no catalogue exist"); //ne doit jamais arriver normalement
+					}
+					else System.out.println("Piece "+namePiece+" doesn't exist");
 					break;
 				default :
 					System.out.print("\n\n ##### Unknow command : please see /help for more information");
@@ -359,7 +387,7 @@ public class Shell {
 						}
 					}
 					else System.out.println("Model3D with name "+nameModel +" doesn't exist.");
-					
+
 					break;
 				case "/removeModel3D":
 					System.out.print("\n Enter the Model3D name:\n >");
@@ -408,6 +436,46 @@ public class Shell {
 					nameID = sc.nextLine();
 					dbq.doRemoveCreatePiece(namePiece,nameID);
 					break;
+				case "/addOriginalPiece":
+					System.out.println("\n Enter the piece name :\n >");
+					namePiece = sc.nextLine();
+					System.out.println("\n Enter the date of the catalogue :\n >");
+					String datePiece = sc.nextLine();
+					OriginalPiece op = dbq.doAddOriginalPiece(namePiece, datePiece);
+					if(op!= null) System.out.println(" Piece "+op+" created");
+					else System.out.println("Piece creation fail");
+					break;
+				case "/checkInfoOriginalPiece":
+					System.out.println("\n Enter the piece name :\n >");
+					namePiece = sc.nextLine();
+					op=dbq.doCheckInfoOriginalPiece(namePiece);
+					if(op!= null) {
+						System.out.println(" Piece with name"+op);
+						boolean searchCata = false;
+						Catalogue currentC=null;
+						//on recupere le catalogue associe
+						for(Catalogue c : op.getCatalogue()){
+							for(OriginalPiece op2 : c.getOriginalPiece()){
+								if(namePiece==op2.getNameCP()) {
+									searchCata=true;
+									break;
+								}						
+							}
+							if(searchCata) {
+								currentC=c;
+								break;
+							}
+						}
+						if(searchCata) System.out.println(" Catalogue ref :"+currentC.getRefCat()+"   catalogue date :"+currentC.getDateCat());
+						else System.out.println("no catalogue exist"); //ne doit jamais arriver normalement
+					}
+					else System.out.println("Piece "+namePiece+" doesn't exist");
+					break;
+				case "/removeOriginalPiece":
+					System.out.println("\n Enter the piece name :\n >");
+					namePiece = sc.nextLine();
+					dbq.doRemoveOriginalPiece(namePiece);
+					break;
 				default :
 					System.out.print("\n\n ##### Unknow command : please see /help for more information");
 				}
@@ -429,6 +497,7 @@ public class Shell {
 		System.out.println("---> /addAdministrator : add one Valid");
 		System.out.println("---> /addModel3D : add one model3D with picture");
 		System.out.println("---> /addCreatePiece : add one new piece with picture");
+		System.out.println("---> /addOriginalPiece : add one Piece");
 
 		System.out.println("\n");
 
@@ -438,6 +507,7 @@ public class Shell {
 		System.out.println("---> /checkInfoModel3D : show all information for one Model3D");
 		System.out.println("---> /checkCreatePiece : show all piece with the same name");
 		System.out.println("---> /checkInfoCreatePiece : show all information for one piece");
+		System.out.println("---> /checkInfoOriginalPiece : show all information for one piece");
 		System.out.println("---> /createBDD : add X user/userAccount, 1 admin and 1 validator");
 
 		System.out.println("\n");
@@ -449,7 +519,8 @@ public class Shell {
 		System.out.println("---> /removeUser : remove one user");
 		System.out.println("---> /removeModel3D : remove one Model3D");		
 		System.out.println("---> /removeCreatePiece : remove one piece created");		
-
+		System.out.println("---> /removeOriginalPiece : remove one piece created");		
+		
 		System.out.println("\n");
 
 		System.out.println("---> /userMode : return to user mode");
