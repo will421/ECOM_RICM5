@@ -10,6 +10,8 @@ ecom\ejb\LibraryStatefullSessionBeanRemote.class
 ecom\ejb\Picture.class
 manage\ManageUsers.class
 ecom\ejb\Model3D.class
+manage\ManageOriginalPieceRemote.class
+manage\ManageOriginalPiece.class
 ecom\ejb\CreatePiece.class
 ecom\ejb\Users.class
 manage\ManageModel3D.class

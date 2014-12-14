@@ -139,8 +139,37 @@ public class ManageUsers implements ManageUsersRemote, Serializable {
 		}
 		ema.close();
 		return isCreate;
+	}
+	
+	@Override
+	public boolean addUserAccountFirstAdmin(String mailU, String mdpU,
+			String shippingAddress, String billingAddress, String cellPhone,
+			String fixPhone) {
+		// TODO Auto-generated method stub
 
+		boolean isCreate = false;
 
+		EntityManager ema = em.createEntityManager();
+
+		Query query =  ema.createQuery("select ua from UserAccount ua where ua.mailU = :mail");
+		query.setParameter("mail", mailU);
+
+		UserAccount ua = null;
+		try{
+			ua = (UserAccount) query.getSingleResult();
+		}catch(NoResultException e){
+			isCreate = true;
+			ua = new UserAccount();
+			ua.setBillingAddress(billingAddress);
+			ua.setCellPhone(cellPhone);
+			ua.setFixPhone(fixPhone);
+			ua.setMdpU(mdpU);
+			ua.setShippingAddress(shippingAddress);
+			ua.setMailU(mailU);
+			ema.persist(ua);
+		}
+		ema.close();
+		return isCreate;
 	}
 
 	@Override

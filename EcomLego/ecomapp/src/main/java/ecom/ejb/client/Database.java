@@ -54,6 +54,11 @@ public class Database {
 	public boolean doAddUserAccount(String mailU, String mdpU, String shippingAddress, String billingAddress, String cellPhone, String fixPhone){
 		return userService.addUserAccount(mailU, mdpU, shippingAddress, billingAddress, cellPhone, fixPhone);
 	}
+	
+
+	public boolean doAddUserAccountFirstAdmin(String mailU, String mdpU, String shippingAddress, String billingAddress, String cellPhone, String fixPhone){
+		return userService.addUserAccountFirstAdmin(mailU, mdpU, shippingAddress, billingAddress, cellPhone, fixPhone);
+	}
 
 	public Users doModifUsers(String mail, String nom){
 		return userService.modifUser(mail, nom);
@@ -82,7 +87,6 @@ public class Database {
 
 	/*******************************************
 	 * 	MODEL3D METHODS
-	 * @param sc 
 	 ******************************************/
 
 	public Model3D doCheckInfoModel3D(String nameModel, String id) {
@@ -152,5 +156,6 @@ public class Database {
 	public void doRemoveOriginalPiece(String nomOP){
 		originalPiece.removeOriginalPiece(nomOP);
 	}
+
 
 }

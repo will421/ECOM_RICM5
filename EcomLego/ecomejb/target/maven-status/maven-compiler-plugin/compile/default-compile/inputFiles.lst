@@ -1,5 +1,6 @@
 C:\Users\PolytechRICM\git\ECOM_RICM5\EcomLego\ecomejb\src\main\java\manage\ManageCreatePiece.java
 C:\Users\PolytechRICM\git\ECOM_RICM5\EcomLego\ecomejb\src\main\java\ecom\ejb\Validator.java
+C:\Users\PolytechRICM\git\ECOM_RICM5\EcomLego\ecomejb\src\main\java\manage\ManageOriginalPieceRemote.java
 C:\Users\PolytechRICM\git\ECOM_RICM5\EcomLego\ecomejb\src\main\java\ecom\ejb\Administrator.java
 C:\Users\PolytechRICM\git\ECOM_RICM5\EcomLego\ecomejb\src\main\java\ecom\ejb\OriginalPiece.java
 C:\Users\PolytechRICM\git\ECOM_RICM5\EcomLego\ecomejb\src\main\java\ecom\ejb\Catalogue.java
@@ -10,6 +11,7 @@ C:\Users\PolytechRICM\git\ECOM_RICM5\EcomLego\ecomejb\src\main\java\ecom\ejb\Lib
 C:\Users\PolytechRICM\git\ECOM_RICM5\EcomLego\ecomejb\src\main\java\ecom\ejb\LibraryStefullSessionBean.java
 C:\Users\PolytechRICM\git\ECOM_RICM5\EcomLego\ecomejb\src\main\java\manage\ManageModel3D.java
 C:\Users\PolytechRICM\git\ECOM_RICM5\EcomLego\ecomejb\src\main\java\ecom\ejb\UserAccount.java
+C:\Users\PolytechRICM\git\ECOM_RICM5\EcomLego\ecomejb\src\main\java\manage\ManageOriginalPiece.java
 C:\Users\PolytechRICM\git\ECOM_RICM5\EcomLego\ecomejb\src\main\java\manage\ManageUsers.java
 C:\Users\PolytechRICM\git\ECOM_RICM5\EcomLego\ecomejb\src\main\java\ecom\ejb\Model3D.java
 C:\Users\PolytechRICM\git\ECOM_RICM5\EcomLego\ecomejb\src\main\java\manage\ManageUsersRemote.java
