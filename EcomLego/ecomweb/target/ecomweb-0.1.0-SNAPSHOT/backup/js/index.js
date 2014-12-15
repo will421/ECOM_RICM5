@@ -16,7 +16,7 @@ app.controller('DropdownCtrl', function ($scope, $log) {
 });
 
 app.controller('CarouselDemoCtrl', function ($scope) {
-    $scope.myInterval = 5000;
+    $scope.myInterval = 4000;
     $scope.slides = [
         {
             image: 'img/lego_sample_project_1.jpg'

@@ -1,4 +1,36 @@
-<div class="jumbotron text-center">
-    <h1>Page de produits</h1>
-    <ngcart-addtocart id="jailbait" name="feg" price="50" data="item">test</ngcart-addtocart>    
+<div class="row">
+    <div class="col-sm-4 col-md-3 sidebar">
+        <div class="mini-submenu">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </div>
+        <div class="list-group">
+            <span href="#" class="list-group-item active">
+                <b>Trier les produits</b>
+                <span class="pull-right" id="slide-submenu">
+                    <i class="fa fa-times"></i>
+                </span>
+            </span>
+            <a class="list-group-item">
+                <i class="fa fa-comment-o"></i> Par prix croissant
+            </a>
+            <a class="list-group-item">
+                <i class="fa fa-search"></i> Par prix décroissant
+            </a>
+            <a class="list-group-item">
+                <i class="fa fa-user"></i> Par thème<span class="badge">5</span>
+            </a>
+            <a class="list-group-item">
+                <i class="fa fa-folder-open-o"></i> Par couleur <span class="badge">14</span>
+            </a>
+            <a class="list-group-item">
+                <i class="fa fa-bar-chart-o"></i> Par nom
+                <form role="search">
+                    <input type="text" placeholder="Rechercher...">
+                    <button type="submit"><i  class="glyphicon glyphicon-search" aria-hidden="false"></i></button>
+                </form>
+            </a>
+        </div>        
+    </div>
 </div>
