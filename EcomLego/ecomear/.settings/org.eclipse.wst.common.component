@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="ecom-0.1.0-SNAPSHOT">
+    <wb-module deploy-name="ecomear-0.1.0-SNAPSHOT">
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/ear-resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/application" tag="defaultRootSource"/>
         <dependent-module archiveName="ecomejb-0.1.0-SNAPSHOT.jar" deploy-path="/" handle="module:/resource/ecomejb/ecomejb">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="ecomweb-0.1.0-SNAPSHOT.war" deploy-path="/" handle="module:/classpath/var/M2_REPO/fr/polytech-grenoble/ricm/ecom/ecomweb/0.1.0-SNAPSHOT/ecomweb-0.1.0-SNAPSHOT.war">
+        <dependent-module archiveName="ecomweb-0.1.0-SNAPSHOT.war" deploy-path="/" handle="module:/resource/ecomweb/ecomweb">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="commons-codec-1.10.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/commons-codec/commons-codec/1.10/commons-codec-1.10.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="commons-lang-2.3.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/commons-lang/commons-lang/2.3/commons-lang-2.3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ecomcommon-0.1.0-SNAPSHOT.jar" deploy-path="/lib" handle="module:/resource/ecomcommon/ecomcommon">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="ecomapp-0.1.0-SNAPSHOT.jar" deploy-path="/" handle="module:/resource/ecomapp/ecomapp">
@@ -21,6 +24,9 @@
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="activation-1.1.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/javax/activation/activation/1.1/activation-1.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="genson-1.1.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/com/owlike/genson/1.1/genson-1.1.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
     </wb-module>
