@@ -4,6 +4,8 @@ out
 .idea
 .metadata
 target
-.settings
+*/target/**
 .classpath
 .project
+.settings/
+target/
