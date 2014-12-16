@@ -11,7 +11,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
-import javax.transaction.Transactional;
 
 import ecom.ejb.Catalogue;
 import ecom.ejb.OriginalPiece;
@@ -97,6 +96,7 @@ public class ManageOriginalPiece implements ManageOriginalPieceRemote, Serializa
 		}
 		ema.close();
 	}
+	
 	//
 	//	@Override
 	//	public OriginalPiece addOriginalPiece2(String namePiece) {

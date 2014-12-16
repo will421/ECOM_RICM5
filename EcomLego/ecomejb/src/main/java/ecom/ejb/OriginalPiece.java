@@ -2,7 +2,6 @@ package ecom.ejb;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +21,7 @@ public class OriginalPiece implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Column(name="IDPO")@Id@GeneratedValue(strategy = GenerationType.AUTO) private long idPO;
 	
-	//@NotNull
+	@NotNull
 	@ManyToMany
 	@JoinTable(name = "ORIGINALPIECE_CATALOGUE", joinColumns=@JoinColumn(name="IDPO") , inverseJoinColumns=@JoinColumn(name="IDCAT"))
 	private Collection<Catalogue> catalogue ;
@@ -33,6 +32,7 @@ public class OriginalPiece implements Serializable{
 	
 	private String namePO;
 	private float pricePO;
+	private String couleurOP;
 	
 	
 	public Collection<Catalogue> getCatalogue(){
@@ -77,6 +77,14 @@ public class OriginalPiece implements Serializable{
 
 	public void setPricePO(float pricePO) {
 		this.pricePO = pricePO;
+	}
+
+	public String getCouleurOP() {
+		return couleurOP;
+	}
+
+	public void setCouleurOP(String couleurOP) {
+		this.couleurOP = couleurOP;
 	}
 
 }

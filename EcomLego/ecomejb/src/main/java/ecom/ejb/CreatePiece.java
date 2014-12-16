@@ -27,6 +27,7 @@ public class CreatePiece implements Serializable{
 	@OneToOne private Picture picture;
 	private String nameCP;
 	private float priceCP;
+	private String couleurCP;
 	
 	public CreatePiece(String nameCP){
 		this.nameCP=nameCP;
@@ -71,6 +72,14 @@ public class CreatePiece implements Serializable{
 
 	public void setPriceCP(float priceCP) {
 		this.priceCP = priceCP;
+	}
+
+	public String getCouleurCP() {
+		return couleurCP;
+	}
+
+	public void setCouleurCP(String couleurCP) {
+		this.couleurCP = couleurCP;
 	}
 
 }

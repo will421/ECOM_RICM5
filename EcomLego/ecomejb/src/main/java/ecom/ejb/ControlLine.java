@@ -1,6 +1,5 @@
 package ecom.ejb;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Collection;
 
 import javax.persistence.Column;
@@ -18,8 +17,7 @@ public class ControlLine implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private String nomLC;
-	private BigDecimal priceLC;//BigDecimal
-	private String colorLC;
+	private float priceLC;// mbBigDecimal
 	private String theme;
 	@Column(name="IDCL")@Id@GeneratedValue(strategy = GenerationType.AUTO) private long idCL;
 	@OneToMany(mappedBy="controlLine") private Collection<Commande> commande;
@@ -27,10 +25,9 @@ public class ControlLine implements Serializable{
 	@ManyToMany(mappedBy="controlLines") private Collection<OriginalPiece> originalPieces ;
 
 	
-	public ControlLine(String nomLC, BigDecimal priceLC, String colorLC, String theme){
+	public ControlLine(String nomLC, float priceLC, String theme){
 		this.nomLC=nomLC;
 		this.priceLC=priceLC;
-		this.colorLC=colorLC;
 		this.theme=theme;
 	}
 
@@ -46,20 +43,12 @@ public class ControlLine implements Serializable{
 		this.nomLC = nomLC;
 	}
 
-	public BigDecimal getPriceLC() {
+	public float getPriceLC() {
 		return priceLC;
 	}
 
-	public void setPriceLC(BigDecimal priceLC) {
+	public void setPriceLC(float priceLC) {
 		this.priceLC = priceLC;
-	}
-
-	public String getColorLC() {
-		return colorLC;
-	}
-
-	public void setColorLC(String colorLC) {
-		this.colorLC = colorLC;
 	}
 
 	public String getTheme() {

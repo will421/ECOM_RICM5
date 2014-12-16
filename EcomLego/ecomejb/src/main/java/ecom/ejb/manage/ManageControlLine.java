@@ -35,6 +35,7 @@ public class ManageControlLine implements ManageControlLineRemote, Serializable{
 		ControlLine cl = new ControlLine();
 		cl.setNomLC(nomM);
 		cl.setTheme(theme);
+		//cl.se
 		
 		
 		
