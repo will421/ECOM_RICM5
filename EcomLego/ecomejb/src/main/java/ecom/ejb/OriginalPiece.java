@@ -33,6 +33,7 @@ public class OriginalPiece implements Serializable{
 	private String namePO;
 	private float pricePO;
 	private String couleurOP;
+	private String themeOP;
 	
 	
 	public Collection<Catalogue> getCatalogue(){
@@ -85,6 +86,14 @@ public class OriginalPiece implements Serializable{
 
 	public void setCouleurOP(String couleurOP) {
 		this.couleurOP = couleurOP;
+	}
+
+	public String getThemeOP() {
+		return themeOP;
+	}
+
+	public void setThemeOP(String themeOP) {
+		this.themeOP = themeOP;
 	}
 
 }

@@ -476,8 +476,13 @@ public class Shell {
 					String dateCat = sc.nextLine();
 					System.out.print("\n Enter the reference of the catalogue :\n > ");
 					String referenceCat = sc.nextLine();
-					OriginalPiece op = dbq.doAddOriginalPiece(namePiece,dateCat, referenceCat);
-					
+					System.out.print("\n Enter the color of the piece :\n > ");
+					String colorPiece = sc.nextLine();
+					System.out.print("\n Enter the theme of the piece :\n > ");
+					themePiece = sc.nextLine();
+					System.out.print("\n Enter the price of the piece :\n > ");
+					pricePiece = sc.nextFloat();
+					OriginalPiece op = dbq.doAddOriginalPiece(namePiece, dateCat, referenceCat, colorPiece, themePiece, pricePiece);
 					break;
 				case "/checkInfoOriginalPiece":
 					System.out.print("\n Enter the piece name :\n >");

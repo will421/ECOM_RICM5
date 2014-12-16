@@ -13,7 +13,7 @@ public interface ManageOriginalPieceRemote {
 
 	OriginalPiece modifOriginalPiece(String nomOP, String idOP);
 
-	OriginalPiece addOriginalPiece(String nomOP, String dateC, String refC);
+	OriginalPiece addOriginalPiece(String nomOP, String dateC, String refC, String colorPiece, String themePiece, float pricePiece);
 
 	OriginalPiece checkInfoOriginalPiece(String nomOP);
 	
@@ -23,4 +23,6 @@ public interface ManageOriginalPieceRemote {
 			String referenceCat);
 	
 	List<OriginalPiece> getAllOriginalPiece();
+	List<OriginalPiece> getAllOriginalPieceByTheme(String theme);
+	
 }

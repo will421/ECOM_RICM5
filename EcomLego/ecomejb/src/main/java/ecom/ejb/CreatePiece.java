@@ -28,6 +28,7 @@ public class CreatePiece implements Serializable{
 	private String nameCP;
 	private float priceCP;
 	private String couleurCP;
+	private String themeCP;
 	
 	public CreatePiece(String nameCP){
 		this.nameCP=nameCP;
@@ -80,6 +81,14 @@ public class CreatePiece implements Serializable{
 
 	public void setCouleurCP(String couleurCP) {
 		this.couleurCP = couleurCP;
+	}
+
+	public String getThemeCP() {
+		return themeCP;
+	}
+
+	public void setThemeCP(String themeCP) {
+		this.themeCP = themeCP;
 	}
 
 }

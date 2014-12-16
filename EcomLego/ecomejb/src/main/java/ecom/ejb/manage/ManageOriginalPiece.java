@@ -33,37 +33,6 @@ public class ManageOriginalPiece implements ManageOriginalPieceRemote, Serializa
 		return null;
 	}
 
-	@Override
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public OriginalPiece addOriginalPiece(String nomOP, String dateC, String refC) {
-		// TODO Auto-generated method stub
-		EntityManager ema = em.createEntityManager();
-
-		OriginalPiece op = new OriginalPiece();
-		op.setNameCP(nomOP);
-
-		Query query =  ema.createQuery("select c from Catalogue c where c.dateCat = :dateCat and c.idCat=:idCat");
-		query.setParameter("dateCat",dateC);
-		query.setParameter("idCat", refC);
-		Catalogue c = null;
-		try{
-			c = (Catalogue) query.getSingleResult();
-		}catch(NoResultException e){
-			ema.close();
-			return null;
-		}
-
-		if(c!=null){
-			op.setCatalogue(c);
-		 	c.setOriginalPiece(op);
-		}
-
-		ema.persist(op);
-		ema.merge(op);
-		ema.flush();
-		ema.close();
-		return op;
-	}
 
 	@Override
 	public OriginalPiece checkInfoOriginalPiece(String nomOP) {
@@ -96,7 +65,7 @@ public class ManageOriginalPiece implements ManageOriginalPieceRemote, Serializa
 		}
 		ema.close();
 	}
-	
+
 	//
 	//	@Override
 	//	public OriginalPiece addOriginalPiece2(String namePiece) {
@@ -135,5 +104,61 @@ public class ManageOriginalPiece implements ManageOriginalPieceRemote, Serializa
 		ema.close();
 		return op;
 	}
+
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	@Override
+	public OriginalPiece addOriginalPiece(String nomOP, String dateC,
+			String refC, String colorPiece, String themePiece, float pricePiece) {
+		// TODO Auto-generated method stub
+		EntityManager ema = em.createEntityManager();
+
+		OriginalPiece op = new OriginalPiece();
+		op.setNameCP(nomOP);
+		op.setThemeOP(themePiece);
+		op.setCouleurOP(colorPiece);
+		op.setPricePO(pricePiece);
+
+		Query query =  ema.createQuery("select c from Catalogue c where c.dateCat = :dateCat and c.idCat=:idCat");
+		query.setParameter("dateCat",dateC);
+		query.setParameter("idCat", refC);
+		Catalogue c = null;
+		try{
+			c = (Catalogue) query.getSingleResult();
+		}catch(NoResultException e){
+			ema.close();
+			return null;
+		}
+
+		if(c!=null){
+			op.setCatalogue(c);
+			c.setOriginalPiece(op);
+		}
+
+		ema.persist(op);
+		ema.merge(op);
+		ema.flush();
+		ema.close();
+		return op;
+	}
+
+
+	@Override
+	public List<OriginalPiece> getAllOriginalPieceByTheme(String theme) {
+		// TODO Auto-generated method stub
+		EntityManager ema = em.createEntityManager();
+
+		Query query =  ema.createQuery("select op from OriginalPiece op where op.themeOP = :themeOP");
+		query.setParameter("themeOP", theme);
+		List<OriginalPiece> op = null;
+		try{
+			op = query.getResultList();
+		}catch(NoResultException e){
+			ema.close();
+			return null;
+		}
+		ema.close();
+		return op;
+	}
+
 
 }

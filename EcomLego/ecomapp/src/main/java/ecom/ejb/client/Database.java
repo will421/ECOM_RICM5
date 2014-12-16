@@ -145,8 +145,8 @@ public class Database {
 		return originalPiece.modifOriginalPiece(nomOP, idOP);
 	}
 
-	public OriginalPiece doAddOriginalPiece(String nomOP, String dateC, String refC){
-		return originalPiece.addOriginalPiece(nomOP, dateC, refC);
+	public OriginalPiece doAddOriginalPiece(String nomOP, String dateC, String refC, String colorPiece, String themePiece, float pricePiece){
+		return originalPiece.addOriginalPiece(nomOP, dateC, refC, colorPiece, themePiece, pricePiece);
 	}
 	
 
