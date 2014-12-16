@@ -11,7 +11,7 @@ public interface ManageControlLineRemote {
 	
 	ControlLine modifControlLine(String nomM);
 
-	ControlLine addControlLine(String nomM, String theme, String user, byte picture);
+	ControlLine addControlLine(String nomM, String theme, String user);
 
 	List<ControlLine> getAllControlLine();
 	

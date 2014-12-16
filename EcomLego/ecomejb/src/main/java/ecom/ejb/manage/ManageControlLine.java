@@ -9,7 +9,6 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 
-import ecom.ejb.Catalogue;
 import ecom.ejb.ControlLine;
 import ecom.ejb.OriginalPiece;
 
@@ -27,26 +26,34 @@ public class ManageControlLine implements ManageControlLineRemote, Serializable{
 	}
 
 	@Override
-	public ControlLine addControlLine(String nomM, String theme, String user,
-			byte picture) {
+	public ControlLine addControlLine(String nomM, String theme, String user) {
 		// TODO Auto-generated method stub
 		EntityManager ema = em.createEntityManager();
 
 		ControlLine cl = new ControlLine();
 		cl.setNomLC(nomM);
 		cl.setTheme(theme);
-		//cl.se
-		
-		
-		
-		
-		return null;
+
+		ema.persist(cl);
+		ema.close();
+		return cl;
 	}
 
 	@Override
 	public List<ControlLine> getAllControlLine() {
 		// TODO Auto-generated method stub
-		return null;
+		EntityManager ema = em.createEntityManager();
+
+		Query query =  ema.createQuery("select cl from ControlLine cl");
+		List<ControlLine> cl = null;
+		try{
+			cl = query.getResultList();
+		}catch(NoResultException e){
+			ema.close();
+			return null;
+		}
+		ema.close();
+		return cl;
 	}
 
 	@Override
