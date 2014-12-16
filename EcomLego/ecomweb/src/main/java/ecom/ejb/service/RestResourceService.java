@@ -1,5 +1,8 @@
 package ecom.ejb.service;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.ws.rs.ApplicationPath;
@@ -36,16 +39,35 @@ public class RestResourceService extends Application {
    public String getDate(){ //http://localhost:8080/ecom/resources/rest
        return service.getCurrentDate().toString();
    }
-	
+
+
+   @POST
+   @Path("users")
+   public void createUser(UserJson user) 
+   {
+	   MessageDigest md = null;
+	   try {
+		   md = MessageDigest.getInstance("SHA-1");
+	   }
+	   catch(NoSuchAlgorithmException e) {
+		   throw new NullPointerException("NoSuchAlgorithm");
+	   } 
+	   user.mdp = bytesToHex(md.digest(user.mdp.getBytes()));
+	   manageUser.addUserAccount(user.mail, user.mdp, user.adrLivraison, user.adrFacturation, user.numTel, user.numFix,user.rib);
+	   manageUser.addUser(user.name, user.surname, user.mail);
+	   System.out.println("User added");
+   }
+
    
-  @POST
-  @Path("users")
-  public void createUser(UserJson user) 
-  {
-	  manageUser.addUserAccount(user.mail, user.mdp, user.adrLivraison, user.adrFacturation, user.numTel, user.numFix,user.rib);
-	  manageUser.addUser(user.name, user.surname, user.mail);
-	  System.out.println("User added");
-  }
-   
+   final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
+   public static String bytesToHex(byte[] bytes) {
+       char[] hexChars = new char[bytes.length * 2];
+       for ( int j = 0; j < bytes.length; j++ ) {
+           int v = bytes[j] & 0xFF;
+           hexChars[j * 2] = hexArray[v >>> 4];
+           hexChars[j * 2 + 1] = hexArray[v & 0x0F];
+       }
+       return new String(hexChars);
+   }
    
 }
