@@ -3,9 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>fr.polytech-grenoble.ricm.ecom</groupId>
-	<artifactId>ecom</artifactId>
-	<version>0.1.0-SNAPSHOT</version>
+	<artifactId>ecomear</artifactId>
 	<packaging>ear</packaging>
 
 	<name>ecomear</name>
@@ -22,14 +20,14 @@
 	<dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>${project.artifactId}ejb</artifactId>
+			<artifactId>${project.parent.artifactId}ejb</artifactId>
 			<version>${project.version}</version>
 			<type>ejb</type>
 
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>${project.artifactId}web</artifactId>
+			<artifactId>${project.parent.artifactId}web</artifactId>
 			<version>${project.version}</version>
 			<type>war</type>
 		</dependency>
@@ -62,21 +60,21 @@
 					<version>6</version>
 					<defaultLibBundleDir>lib</defaultLibBundleDir>
 
-					<displayName>EAR for ${project.artifactId}</displayName>
-					<description>EAR for ${project.artifactId}</description>
+					<displayName>EAR for ${project.parent.artifactId}</displayName>
+					<description>EAR for ${project.parent.artifactId}</description>
 
 					<modules>
 						<ejbModule>
 							<groupId>${project.groupId}</groupId>
-							<artifactId>${project.artifactId}ejb</artifactId>
-							<bundleFileName>${project.artifactId}ejb-${project.version}.jar</bundleFileName>
+							<artifactId>${project.parent.artifactId}ejb</artifactId>
+							<bundleFileName>${project.parent.artifactId}ejb-${project.version}.jar</bundleFileName>
 						</ejbModule>
 
 						<webModule>
 							<groupId>${project.groupId}</groupId>
-							<artifactId>${project.artifactId}web</artifactId>
-							<contextRoot>/${project.artifactId}</contextRoot>
-							<bundleFileName>${project.artifactId}web-${project.version}.war</bundleFileName>
+							<artifactId>${project.parent.artifactId}web</artifactId>
+							<contextRoot>/${project.parent.artifactId}</contextRoot>
+							<bundleFileName>${project.parent.artifactId}web-${project.version}.war</bundleFileName>
 						</webModule>
 					</modules>
 					<resourcesDir>${project.build.outputDirectory}</resourcesDir>
@@ -120,4 +118,9 @@
 			</plugins>
 	</build>
 
+	<parent>
+		<groupId>fr.polytech.grenoble.ricm.ecom</groupId>
+		<artifactId>ecom</artifactId>
+		<version>0.1.0-SNAPSHOT</version>
+	</parent>
 </project>

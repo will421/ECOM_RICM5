@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "Catalogue")
@@ -14,12 +15,19 @@ public class Catalogue implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private String dateCat;
-	@Column(name="IDCAT")@Id private int idCat;
+	@NotNull@Column(name="IDCAT")@Id private int idCat;
 	@ManyToMany(mappedBy="catalogue") private Collection<OriginalPiece> originalPieces ;
 	
-	public Catalogue(String dateCat, int refCat){
+	public Catalogue(String dateCat){
 		this.setDateCat(dateCat);
-		this.setRefCat(refCat);
+	}
+	
+	public void setOriginalPiece(OriginalPiece op){
+		this.originalPieces.add(op);
+	}
+	
+	public Collection<OriginalPiece> getOriginalPiece(){
+		return originalPieces;
 	}
 	
 	public Catalogue(){

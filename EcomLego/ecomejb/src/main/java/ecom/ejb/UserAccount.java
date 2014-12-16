@@ -17,19 +17,19 @@ import javax.validation.constraints.Pattern;
 public class UserAccount implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	@Id@GeneratedValue(strategy = GenerationType.AUTO) private long idU;
+	@Id@GeneratedValue(strategy = GenerationType.SEQUENCE) private long idU;
 	@Column(name="USER_MAIL", unique=true)@NotNull@Pattern(regexp = ".+@.+\\..+", message = "wrong email format") private String mailU;
 	@NotNull private String mdpU;
 	@NotNull private String shippingAddress; //adresse de livraison
 	@NotNull private String billingAddress; //adresse de facturation
-	private int cellPhone;
-	private int fixPhone;
+	private String cellPhone;
+	private String fixPhone;
 	@OneToOne private Validator validator;
     @OneToOne private Administrator administrator;
 	@OneToOne private Users client;
 	
 	
-	public UserAccount(String mailU, String mdpU, String shippingAddress, String billingAddress, int cellPhone, int fixPhone){
+	public UserAccount(String mailU, String mdpU, String shippingAddress, String billingAddress, String cellPhone, String fixPhone){
 		this.mailU = mailU;
 		this.shippingAddress = shippingAddress;
 		this.billingAddress = billingAddress;
@@ -98,19 +98,19 @@ public class UserAccount implements Serializable{
 		this.billingAddress = billingAddress;
 	}
 
-	public int getCellPhone() {
+	public String getCellPhone() {
 		return cellPhone;
 	}
 
-	public void setCellPhone(int cellPhone2) {
+	public void setCellPhone(String cellPhone2) {
 		this.cellPhone = cellPhone2;
 	}
 
-	public int getFixPhone() {
+	public String getFixPhone() {
 		return fixPhone;
 	}
 
-	public void setFixPhone(int fixPhone2) {
+	public void setFixPhone(String fixPhone2) {
 		this.fixPhone = fixPhone2;
 	}
 

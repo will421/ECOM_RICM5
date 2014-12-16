@@ -24,14 +24,28 @@ public class OriginalPiece implements Serializable{
 	@JoinTable(name = "ORIGINALPIECE_CATALOGUE", joinColumns=@JoinColumn(name="IDPO") , inverseJoinColumns=@JoinColumn(name="IDCAT"))
 	private Collection<Catalogue> catalogue ;
 	
-	@NotNull@ManyToMany
+	@ManyToMany
 	@JoinTable(name = "ORIGINALPIECE_CONTROLLINES", joinColumns=@JoinColumn(name="IDPO") , inverseJoinColumns=@JoinColumn(name="IDCL"))
 	private Collection<ControlLine> controlLines;
 	
 	private String namePO;
 	
 	
+	public Collection<Catalogue> getCatalogue(){
+		return catalogue;
+	}
 	
+	public void setCatalogue(Catalogue catalogue){
+		this.catalogue.add(catalogue);
+	}
+	
+	public Collection<ControlLine> getControlLines(){
+		return controlLines;
+	}
+	
+	public void setControlLine(ControlLine controlLine){
+		this.controlLines.add(controlLine);
+	}
 	
 	public OriginalPiece(String namePO){
 		this.namePO=namePO;
