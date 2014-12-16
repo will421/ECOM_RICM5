@@ -113,7 +113,7 @@ public class ManageUsers implements ManageUsersRemote, Serializable {
 	@Override
 	public boolean addUserAccount(String mailU, String mdpU,
 			String shippingAddress, String billingAddress, String cellPhone,
-			String fixPhone) {
+			String fixPhone, String rib) {
 		// TODO Auto-generated method stub
 
 		boolean isCreate = false;
@@ -135,6 +135,7 @@ public class ManageUsers implements ManageUsersRemote, Serializable {
 			ua.setMdpU(DigestUtils.sha1Hex(mdpU));
 			ua.setShippingAddress(shippingAddress);
 			ua.setMailU(mailU);
+			ua.setRib(rib);
 			ema.persist(ua);
 		}
 		ema.close();

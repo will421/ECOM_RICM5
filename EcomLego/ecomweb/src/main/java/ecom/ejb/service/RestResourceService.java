@@ -42,7 +42,7 @@ public class RestResourceService extends Application {
   @Path("users")
   public void createUser(UserJson user) 
   {
-	  manageUser.addUserAccount(user.mail, user.mdp, user.adrLivraison, user.adrFacturation, user.numTel, user.numFix);
+	  manageUser.addUserAccount(user.mail, user.mdp, user.adrLivraison, user.adrFacturation, user.numTel, user.numFix,user.rib);
 	  manageUser.addUser(user.name, user.surname, user.mail);
 	  System.out.println("User added");
   }

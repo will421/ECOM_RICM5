@@ -11,10 +11,9 @@ public interface ManageUsersRemote {
 
 	UserAccount checkUser(String mailC);
 
-	//int addUser(String nom, String prenom);
 
 	boolean addUserAccount(String mailU, String mdpU, String shippingAddress,
-			String billingAddress, String cellPhone, String fixPhone);
+			String billingAddress, String cellPhone, String fixPhone, String rib);
 	
 	boolean addUserAccountFirstAdmin(String mailU, String mdpU, String shippingAddress,
 			String billingAddress, String cellPhone, String fixPhone);

@@ -33,6 +33,8 @@ public class UserJson implements Serializable {
 	String adrLivraison;
 	@XmlElement
 	String adrFacturation;
+	@XmlElement
+	String rib;
 	
 
 	

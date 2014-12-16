@@ -32,7 +32,6 @@ public class ManageCreatePiece implements ManageCreatePieceRemote, Serializable{
 		List<CreatePiece> m = null;
 		try{
 			m = query.getResultList();
-			if(m==null) System.out.println("la liste est null MOTHAFUCKER");
 		}catch(NoResultException e){
 
 		}
@@ -48,7 +47,7 @@ public class ManageCreatePiece implements ManageCreatePieceRemote, Serializable{
 
 	@Override
 	public CreatePiece addCreatePiece(String nomCP, String theme, String user,
-			byte picture) {
+			byte picture, float priceCP) {
 		// TODO Auto-generated method stub
 		EntityManager ema = em.createEntityManager();
 
@@ -60,6 +59,7 @@ public class ManageCreatePiece implements ManageCreatePieceRemote, Serializable{
 
 		CreatePiece cp = new CreatePiece();
 		cp.setNameCP(nomCP);
+		cp.setPriceCP(priceCP);
 
 		cp.setPicture(p);
 		p.setCreatePiece(cp);

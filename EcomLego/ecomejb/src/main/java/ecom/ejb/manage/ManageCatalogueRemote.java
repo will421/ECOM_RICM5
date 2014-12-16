@@ -1,4 +1,4 @@
-package manage;
+package ecom.ejb.manage;
 
 import java.util.Collection;
 import java.util.List;

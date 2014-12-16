@@ -11,7 +11,7 @@ public interface ManageCreatePieceRemote {
 	
 	CreatePiece modifCreatePiece(String nomCP);
 
-	CreatePiece addCreatePiece(String nomCP, String theme, String user, byte picture);
+	CreatePiece addCreatePiece(String nomCP, String theme, String user, byte picture, float priceCP);
 
 	CreatePiece checkInfoCreatePiece(String nomCP, String id);
 

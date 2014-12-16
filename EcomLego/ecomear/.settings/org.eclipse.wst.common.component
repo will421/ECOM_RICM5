@@ -14,9 +14,6 @@
         <dependent-module archiveName="commons-lang-2.3.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/commons-lang/commons-lang/2.3/commons-lang-2.3.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="ecomcommon-0.1.0-SNAPSHOT.jar" deploy-path="/lib" handle="module:/resource/ecomcommon/ecomcommon">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <dependent-module archiveName="ecomapp-0.1.0-SNAPSHOT.jar" deploy-path="/" handle="module:/resource/ecomapp/ecomapp">
             <dependency-type>uses</dependency-type>
         </dependent-module>

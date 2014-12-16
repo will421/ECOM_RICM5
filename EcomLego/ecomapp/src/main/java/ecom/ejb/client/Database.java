@@ -6,18 +6,13 @@ import java.util.List;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import manage.ManageCatalogueRemote;
-import manage.ManageCreatePieceRemote;
-import manage.ManageModel3DRemote;
-import manage.ManageOriginalPieceRemote;
-import manage.ManageUsersRemote;
 import ecom.ejb.Catalogue;
 import ecom.ejb.CreatePiece;
 import ecom.ejb.Model3D;
 import ecom.ejb.OriginalPiece;
 import ecom.ejb.UserAccount;
 import ecom.ejb.Users;
-
+import ecom.ejb.manage.*;
 
 public class Database {
 

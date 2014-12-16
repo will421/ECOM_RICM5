@@ -1,4 +1,4 @@
-package manage;
+package ecom.ejb.manage;
 
 import java.io.Serializable;
 import java.util.Collection;
