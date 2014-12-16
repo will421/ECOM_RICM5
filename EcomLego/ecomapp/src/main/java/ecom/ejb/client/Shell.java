@@ -48,7 +48,8 @@ public class Shell {
 					System.out.print("\n Enter the admin mail:\n > ");
 					String checkMail = sc.nextLine();
 					UserAccount u = dbq.doCheckusers(checkMail);
-					if(u!=null && u.getAdministrator()!=null){
+//					if(u!=null && u.getAdministrator()!=null){
+					if(u!=null){
 						String adminpwd = new String (console.readPassword(" > Enter a password : "));
 						if(u.getMdpU().equals(DigestUtils.sha1Hex(adminpwd))){
 							isAdmin=true;

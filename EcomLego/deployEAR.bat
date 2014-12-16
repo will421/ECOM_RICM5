@@ -15,6 +15,8 @@ echo " ------> asadmin deploy --name ecomear --contextroot "ecom" ecomear\target
 asadmin deploy --name ecomear --contextroot "ecom" ecomear\target\ecomear-0.1.0-SNAPSHOT.ear
 echo "------> asadmin get-client-stubs --appname ecomear ecomear\target\"
 asadmin get-client-stubs --appname ecomear ecomear\target\
-echo "------> appclient -jar ecomear\target\ecomearClient.jar"
+echo " ------> LANCEMENT DU SCRIT SQL"
+ij derbyinitadmin.sql
+echo " ------> appclient -jar ecomear\target\ecomearClient.jar"
 appclient -jar ecomear\target\ecomearClient.jar
 )
