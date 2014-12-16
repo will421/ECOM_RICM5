@@ -16,4 +16,9 @@ public interface ManageCreatePieceRemote {
 	CreatePiece checkInfoCreatePiece(String nomCP, String id);
 
 	void removeCreatePiece(String nomM, String id);
+	
+	List<CreatePiece> getAllCreatePieceByTheme(String theme);
+	List<CreatePiece> getAllCreatePieceByColor(String color);
+	List<CreatePiece> getAllCreatePieceByName(String name);
 }
+

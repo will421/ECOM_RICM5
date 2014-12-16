@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.ejb.Remote;
 
-import ecom.ejb.Catalogue;
 import ecom.ejb.OriginalPiece;
 
 

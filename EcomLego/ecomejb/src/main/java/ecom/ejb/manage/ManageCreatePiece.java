@@ -11,6 +11,7 @@ import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 
 import ecom.ejb.CreatePiece;
+import ecom.ejb.OriginalPiece;
 import ecom.ejb.Picture;
 
 @Stateless(mappedName="ManageCreatePiece") 
@@ -106,6 +107,60 @@ public class ManageCreatePiece implements ManageCreatePieceRemote, Serializable{
 			ema.remove(cp);
 		}
 		ema.close();
+	}
+
+	@Override
+	public List<CreatePiece> getAllCreatePieceByTheme(String theme) {
+		// TODO Auto-generated method stub
+		EntityManager ema = em.createEntityManager();
+
+		Query query =  ema.createQuery("select cp from CreatePiece cp where cp.themeCP = :cthemeCP");
+		query.setParameter("themeCP", theme);
+		List<CreatePiece> op = null;
+		try{
+			op = query.getResultList();
+		}catch(NoResultException e){
+			ema.close();
+			return null;
+		}
+		ema.close();
+		return op;
+	}
+
+	@Override
+	public List<CreatePiece> getAllCreatePieceByColor(String color) {
+		// TODO Auto-generated method stub
+		EntityManager ema = em.createEntityManager();
+
+		Query query =  ema.createQuery("select cp from CreatePiece cp where cp.colorCP = :colorCP");
+		query.setParameter("colorCP", color);
+		List<CreatePiece> op = null;
+		try{
+			op = query.getResultList();
+		}catch(NoResultException e){
+			ema.close();
+			return null;
+		}
+		ema.close();
+		return op;
+	}
+
+	@Override
+	public List<CreatePiece> getAllCreatePieceByName(String name) {
+		// TODO Auto-generated method stub
+		EntityManager ema = em.createEntityManager();
+
+		Query query =  ema.createQuery("select cp from CreatePiece cp where cp.nameCP = :nameCP");
+		query.setParameter("nameCP", name);
+		List<CreatePiece> op = null;
+		try{
+			op = query.getResultList();
+		}catch(NoResultException e){
+			ema.close();
+			return null;
+		}
+		ema.close();
+		return op;
 	}
 
 }

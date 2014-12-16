@@ -27,7 +27,7 @@ public class CreatePiece implements Serializable{
 	@OneToOne private Picture picture;
 	private String nameCP;
 	private float priceCP;
-	private String couleurCP;
+	private String colorCP;
 	private String themeCP;
 	
 	public CreatePiece(String nameCP){
@@ -75,12 +75,12 @@ public class CreatePiece implements Serializable{
 		this.priceCP = priceCP;
 	}
 
-	public String getCouleurCP() {
-		return couleurCP;
+	public String getColorCP() {
+		return colorCP;
 	}
 
-	public void setCouleurCP(String couleurCP) {
-		this.couleurCP = couleurCP;
+	public void setColorCP(String couleurCP) {
+		this.colorCP = couleurCP;
 	}
 
 	public String getThemeCP() {
