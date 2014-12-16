@@ -11,6 +11,7 @@ import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 
 import ecom.ejb.Model3D;
+import ecom.ejb.OriginalPiece;
 import ecom.ejb.Picture;
 
 @Stateless(mappedName="ManageModel3D") 
@@ -109,6 +110,42 @@ public class ManageModel3D implements ManageModel3DRemote, Serializable {
 			ema.remove(m);
 		}
 		ema.close();
+	}
+
+	@Override
+	public List<Model3D> getAllModel3DByTheme(String theme) {
+		// TODO Auto-generated method stub
+		EntityManager ema = em.createEntityManager();
+
+		Query query =  ema.createQuery("select m from Model3D m where m.theme3D = :theme3D");
+		query.setParameter("theme3D", theme);
+		List<Model3D> op = null;
+		try{
+			op = query.getResultList();
+		}catch(NoResultException e){
+			ema.close();
+			return null;
+		}
+		ema.close();
+		return op;
+	}
+
+	@Override
+	public List<Model3D> getAllModel3DByName(String name) {
+		// TODO Auto-generated method stub
+		EntityManager ema = em.createEntityManager();
+
+		Query query =  ema.createQuery("select m from Model3D m where m.nameM = :nameM");
+		query.setParameter("nameM", name);
+		List<Model3D> op = null;
+		try{
+			op = query.getResultList();
+		}catch(NoResultException e){
+			ema.close();
+			return null;
+		}
+		ema.close();
+		return op;
 	}
 
 }

@@ -12,7 +12,12 @@ import javax.ejb.Stateless;
 @Stateless(mappedName="Service")
 public class Service implements Serializable ,ServiceRemote {
 
-    public Date getCurrentDate(){
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public Date getCurrentDate(){
         return new Date();
     }
 }

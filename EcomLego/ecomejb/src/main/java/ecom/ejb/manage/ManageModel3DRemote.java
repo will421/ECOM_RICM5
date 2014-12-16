@@ -1,9 +1,7 @@
 package ecom.ejb.manage;
 
 import java.util.List;
-
 import javax.ejb.Remote;
-
 import ecom.ejb.Model3D;
 
 @Remote
@@ -18,4 +16,8 @@ public interface ManageModel3DRemote {
 	Model3D checkInfoModel(String nomM, String id);
 
 	void removeModel3D(String nomM);
+	
+	List<Model3D> getAllModel3DByTheme(String theme);
+	
+	List<Model3D> getAllModel3DByName(String name);
 }
