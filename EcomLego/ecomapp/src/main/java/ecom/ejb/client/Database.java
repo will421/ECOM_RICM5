@@ -94,8 +94,8 @@ public class Database {
 		return model.checkInfoModel(nameModel, id);
 	}
 
-	public Model3D doAddModel3D(String nomM, String theme, String user, byte picture){
-		return model.addModel3D(nomM, theme, user, picture);
+	public Model3D doAddModel3D(String nomM, String theme, String user, byte picture, float price3D){
+		return model.addModel3D(nomM, theme, user, picture, price3D);
 	}
 
 	public List<Model3D> doCheckModel3D(String nomM){

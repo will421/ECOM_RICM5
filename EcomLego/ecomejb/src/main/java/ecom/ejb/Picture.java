@@ -14,7 +14,6 @@ import javax.validation.constraints.NotNull;
 public class Picture implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	private String themeP;
 	private String nomP;
 	private String userP;
 	@NotNull private byte picture;
@@ -23,9 +22,8 @@ public class Picture implements Serializable{
 	@OneToOne private Model3D model3D;
 	
 	
-	public Picture(String nomP, String themeP, String userP, byte picture){
+	public Picture(String nomP, String userP, byte picture){
 		this.setNomP(nomP);
-		this.setThemeP(themeP);
 		this.setUserP(userP);
 		this.setPicture(picture);
 	}
@@ -48,14 +46,6 @@ public class Picture implements Serializable{
 
 	public Picture(){
 		
-	}
-
-	public String getThemeP() {
-		return themeP;
-	}
-
-	public void setThemeP(String themeP) {
-		this.themeP = themeP;
 	}
 
 	public String getNomP() {

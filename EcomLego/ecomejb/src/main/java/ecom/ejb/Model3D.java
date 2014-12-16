@@ -17,8 +17,7 @@ public class Model3D implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id@GeneratedValue(strategy = GenerationType.AUTO) private long idM;
 	private String nameM;
-	//private byte metadata;
-	//sourceM
+	private String theme3D;
 	@OneToMany(mappedBy="model3D") private Collection<Commande> commande;
 	@OneToOne private Picture picture;
 	private float price3D;
@@ -40,8 +39,10 @@ public class Model3D implements Serializable{
 	}
 
 	
-	public Model3D(String nameM){
+	public Model3D(String nameM, float price3D, String theme3D){
 		this.nameM=nameM;
+		this.price3D=price3D;
+		this.theme3D=theme3D;
 	}
 	
 	public Model3D(){
@@ -60,13 +61,6 @@ public class Model3D implements Serializable{
 		return this.idM;
 	}
 
-	/*public byte getMetadata() {
-		return metadata;
-	}
-
-	public void setMetadata(byte metadata) {
-		this.metadata = metadata;
-	}*/
 	
 	public String toString(){
 		if(picture==null) return "No picture associate to this model";
@@ -79,6 +73,14 @@ public class Model3D implements Serializable{
 
 	public void setPrice3D(float price3D) {
 		this.price3D = price3D;
+	}
+
+	public String getTheme3D() {
+		return theme3D;
+	}
+
+	public void setTheme3D(String theme3d) {
+		theme3D = theme3d;
 	}	
 
 }

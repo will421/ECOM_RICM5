@@ -11,7 +11,6 @@ import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 
 import ecom.ejb.CreatePiece;
-import ecom.ejb.OriginalPiece;
 import ecom.ejb.Picture;
 
 @Stateless(mappedName="ManageCreatePiece") 
@@ -54,7 +53,6 @@ public class ManageCreatePiece implements ManageCreatePieceRemote, Serializable{
 
 		Picture p = new Picture();
 		p.setNomP(nomCP);
-		p.setThemeP(theme);
 		p.setUserP(user);
 		p.setPicture(picture);
 

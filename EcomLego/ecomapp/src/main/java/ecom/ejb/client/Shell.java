@@ -404,8 +404,10 @@ public class Shell {
 					String userModel = sc.nextLine();
 					System.out.print("\n Enter the Model3D picture (in byte):\n >");
 					byte pictureModel = sc.nextByte();
+					System.out.print("\n Enter the Model3D user:\n >");
+					float priceModel = sc.nextFloat();
 					//la photo est creer en meme temps que le model3D : il ne peut pas y avoir de photos volatille
-					m = dbq.doAddModel3D(nameModel, themeModel, userModel, pictureModel);
+					m = dbq.doAddModel3D(nameModel, themeModel, userModel, pictureModel, priceModel);
 					System.out.print("\n the model3D : "+m+" success");
 					break;
 				case "/checkModel3D" :

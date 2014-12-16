@@ -47,18 +47,19 @@ public class ManageModel3D implements ManageModel3DRemote, Serializable {
 	}
 
 	@Override
-	public Model3D addModel3D(String nomM, String theme, String user, byte picture) {
+	public Model3D addModel3D(String nomM, String theme, String user, byte picture, float price3D) {
 		// TODO Auto-generated method stub
 		EntityManager ema = em.createEntityManager();
 
 		Picture p = new Picture();
 		p.setNomP(nomM);
-		p.setThemeP(theme);
 		p.setUserP(user);
 		p.setPicture(picture);
 
 		Model3D m = new Model3D();
 		m.setNameCP(nomM);
+		m.setPrice3D(price3D);
+		m.setTheme3D(theme);
 
 		m.setPicture(p);
 		p.setModel3D(m);
