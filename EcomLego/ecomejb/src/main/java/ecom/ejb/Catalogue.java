@@ -1,5 +1,6 @@
 package ecom.ejb;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Column;
@@ -15,12 +16,9 @@ public class Catalogue implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private String dateCat;
-	@NotNull@Column(name="IDCAT")@Id private int idCat;
+	@NotNull@Column(name="IDCAT")@Id private String idCat;
 	@ManyToMany(mappedBy="catalogue") private Collection<OriginalPiece> originalPieces ;
 	
-	public Catalogue(String dateCat){
-		this.setDateCat(dateCat);
-	}
 	
 	public void setOriginalPiece(OriginalPiece op){
 		this.originalPieces.add(op);
@@ -31,7 +29,7 @@ public class Catalogue implements Serializable{
 	}
 	
 	public Catalogue(){
-		
+		this.originalPieces = new ArrayList<>();
 	}
 
 	public String getDateCat() {
@@ -42,11 +40,11 @@ public class Catalogue implements Serializable{
 		this.dateCat = dateCat;
 	}
 
-	public int getRefCat() {
+	public String getRefCat() {
 		return idCat;
 	}
 
-	public void setRefCat(int refCat) {
+	public void setRefCat(String refCat) {
 		this.idCat = refCat;
 	}
 	

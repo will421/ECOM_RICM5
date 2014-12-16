@@ -1,19 +1,22 @@
 package ecom.ejb.client;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import manage.ManageCatalogueRemote;
+import manage.ManageCreatePieceRemote;
+import manage.ManageModel3DRemote;
+import manage.ManageOriginalPieceRemote;
+import manage.ManageUsersRemote;
+import ecom.ejb.Catalogue;
 import ecom.ejb.CreatePiece;
 import ecom.ejb.Model3D;
 import ecom.ejb.OriginalPiece;
 import ecom.ejb.UserAccount;
 import ecom.ejb.Users;
-import ecom.ejb.manage.ManageCreatePieceRemote;
-import ecom.ejb.manage.ManageModel3DRemote;
-import ecom.ejb.manage.ManageOriginalPieceRemote;
-import ecom.ejb.manage.ManageUsersRemote;
 
 
 public class Database {
@@ -23,6 +26,7 @@ public class Database {
 	ManageModel3DRemote model;
 	ManageCreatePieceRemote createPiece;
 	ManageOriginalPieceRemote originalPiece;
+	ManageCatalogueRemote catalogue;
 
 	public Database(){
 
@@ -33,6 +37,7 @@ public class Database {
 			model = (ManageModel3DRemote) ctx.lookup("ManageModel3D");
 			createPiece = (ManageCreatePieceRemote) ctx.lookup("ManageCreatePiece");
 			originalPiece = (ManageOriginalPieceRemote) ctx.lookup("ManageOriginalPiece");
+			catalogue = (ManageCatalogueRemote) ctx.lookup("ManageCatalogue");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
@@ -51,8 +56,8 @@ public class Database {
 		return userService.checkUser(mail);
 	}
 
-	public boolean doAddUserAccount(String mailU, String mdpU, String shippingAddress, String billingAddress, String cellPhone, String fixPhone){
-		return userService.addUserAccount(mailU, mdpU, shippingAddress, billingAddress, cellPhone, fixPhone);
+	public boolean doAddUserAccount(String mailU, String mdpU, String shippingAddress, String billingAddress, String cellPhone, String fixPhone, String rib){
+		return userService.addUserAccount(mailU, mdpU, shippingAddress, billingAddress, cellPhone, fixPhone, rib);
 	}
 	
 
@@ -123,8 +128,8 @@ public class Database {
 		return createPiece.modifCreatePiece(nomCP);
 	}
 
-	public CreatePiece doAddCreatePiece(String nomCP, String theme, String user, byte picture){
-		return createPiece.addCreatePiece(nomCP, theme, user, picture);
+	public CreatePiece doAddCreatePiece(String nomCP, String theme, String user, byte picture, float priceCP){
+		return createPiece.addCreatePiece(nomCP, theme, user, picture, priceCP);
 	}
 
 	public CreatePiece doCheckInfoPiece(String nomCP, String id){
@@ -145,8 +150,15 @@ public class Database {
 		return originalPiece.modifOriginalPiece(nomOP, idOP);
 	}
 
-	public OriginalPiece doAddOriginalPiece(String nomOP, String dateC){
-		return originalPiece.addOriginalPiece(nomOP,dateC);
+	public OriginalPiece doAddOriginalPiece(String nomOP, String dateC, String refC){
+		return originalPiece.addOriginalPiece(nomOP, dateC, refC);
+	}
+	
+
+	public OriginalPiece doAddOriginalPiece2(String namePiece, String dateCat,
+			String referenceCat) {
+		// TODO Auto-generated method stub
+		return originalPiece.addOriginalPiece2(namePiece, dateCat, referenceCat);
 	}
 
 	public OriginalPiece doCheckInfoOriginalPiece(String nomOP){
@@ -155,6 +167,27 @@ public class Database {
 	
 	public void doRemoveOriginalPiece(String nomOP){
 		originalPiece.removeOriginalPiece(nomOP);
+	}
+
+	public List<OriginalPiece> doGetAllOriginalPiece(){
+		return originalPiece.getAllOriginalPiece();
+	}
+	
+	
+	/*******************************************
+	 * 	ORIGINALPIECE METHODS
+	 ******************************************/
+
+	public Catalogue doAddCatalogue(String dateC, String refC){
+		return catalogue.addCatalogue(dateC, refC);
+	}
+	
+	public Catalogue doCheckInfoCatalogue(String dateC, String refC){
+		return catalogue.checkInfoCatalogue(dateC, refC);
+	}
+	
+	public Collection<Catalogue> doGetCatalogueFromOriginalPiece(long id){
+		return catalogue.getCatalogueFromOriginalPiece(id);
 	}
 
 

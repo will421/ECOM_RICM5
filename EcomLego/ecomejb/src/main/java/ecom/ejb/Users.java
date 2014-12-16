@@ -16,6 +16,7 @@ public class Users implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String nameC;
 	private String prenomC;
+	private boolean isValidate;
 	@Id@GeneratedValue(strategy = GenerationType.SEQUENCE) private long idC;
 	@OneToOne private UserAccount useraccount;
 	@ManyToOne private Commande commande;
@@ -23,6 +24,7 @@ public class Users implements Serializable{
 	public Users(String nameC, String prenomC){
 		this.setNameC(nameC);
 		this.setPrenomC(prenomC);
+		this.setValidate(false);
 	}
 
 	public Users(){
@@ -63,6 +65,14 @@ public class Users implements Serializable{
 	
 	public long getId(){
 		return this.idC;
+	}
+
+	public boolean isValidate() {
+		return isValidate;
+	}
+
+	public void setValidate(boolean isValidate) {
+		this.isValidate = isValidate;
 	}
 
 }

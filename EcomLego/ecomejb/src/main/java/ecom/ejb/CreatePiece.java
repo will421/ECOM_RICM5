@@ -26,6 +26,7 @@ public class CreatePiece implements Serializable{
 	private Collection<ControlLine> controlLines;
 	@OneToOne private Picture picture;
 	private String nameCP;
+	private float priceCP;
 	
 	public CreatePiece(String nameCP){
 		this.nameCP=nameCP;
@@ -62,6 +63,14 @@ public class CreatePiece implements Serializable{
 	
 	public Picture getPicture(){
 		return picture;
+	}
+
+	public float getPriceCP() {
+		return priceCP;
+	}
+
+	public void setPriceCP(float priceCP) {
+		this.priceCP = priceCP;
 	}
 
 }

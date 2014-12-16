@@ -1,6 +1,8 @@
 package ecom.ejb.client;
 
 import java.io.Console;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -47,7 +49,7 @@ public class Shell {
 					String checkMail = sc.nextLine();
 					UserAccount u = dbq.doCheckusers(checkMail);
 					if(u!=null && u.getAdministrator()!=null){
-						String adminpwd = new String (console.readPassword(" user> Enter a password : "));
+						String adminpwd = new String (console.readPassword(" > Enter a password : "));
 						if(u.getMdpU().equals(DigestUtils.sha1Hex(adminpwd))){
 							isAdmin=true;
 							System.out.println("\n\n\n/*******************************************/");
@@ -242,7 +244,30 @@ public class Shell {
 							System.out.println("Give a correct fixe Phone address :");
 						}
 					}
-					if(dbq.doAddUserAccount(mail, password, shippingAddress, billingAddress, cellPhone, fixPhone)) {
+					System.out.print("\n Enter the user rib  XXXXXXXXXX (10 numbers):\n >:\n > ");
+					String rib = null; 
+					verify = true;
+					while(verify){
+						try {
+							rib= sc.nextLine();
+							
+							Pattern patternMail = Pattern.compile("\\d{10}");
+							Matcher matcher = patternMail.matcher(rib);
+							if(matcher.matches()) {
+								System.out.println("\n rib correct");
+								verify=false;
+							}
+							else {
+								System.out.print("\n Enter the user rib with the syntaxe : XXXXXXXXXX (10 numbers):\n > ");
+							}
+						} catch (NumberFormatException e) {
+							System.out.println("Give a correct cellPhone address :");
+						}
+					}
+					
+					
+					
+					if(dbq.doAddUserAccount(mail, password, shippingAddress, billingAddress, cellPhone, fixPhone, rib)) {
 						dbq.doAddUser(lastname,firstname, mail);
 						System.out.println("User "+ firstname + " "+ lastname + " create with mail address : "+mail);
 						new JamesMail(firstname, lastname, mail);
@@ -299,7 +324,8 @@ public class Shell {
 						String userBillingAddress= RandomStringUtils.random(5,true,false);
 						String userCellPhone = RandomStringUtils.random(10,false,true);
 						String userFixePhone = RandomStringUtils.random(10,false,true);
-						if(dbq.doAddUserAccount(mail, userPassword, userShippingAddress, userBillingAddress, userCellPhone, userFixePhone)) {
+						String userPrice = RandomStringUtils.random(10,false,true);
+						if(dbq.doAddUserAccount(mail, userPassword, userShippingAddress, userBillingAddress, userCellPhone, userFixePhone, userPrice)) {
 							dbq.doAddUser(userLastName,userFirstName, mail);
 							System.out.println("User "+ userFirstName + " "+ userLastName + " create with mail address : "+mail);
 						} else {
@@ -334,6 +360,7 @@ public class Shell {
 							"valid"+RandomStringUtils.random(5,true,false).toLowerCase()+"address", 
 							"valid"+RandomStringUtils.random(5,true,false).toLowerCase()+"address", 
 							RandomStringUtils.random(10,false,true), 
+							RandomStringUtils.random(10,false,true),
 							RandomStringUtils.random(10,false,true))) {
 						dbq.doAddValidator(validName, validName, validName+"@byl.com");
 						System.out.println("Validator create : "+validName+"@byl.com");
@@ -350,6 +377,7 @@ public class Shell {
 							"admin"+RandomStringUtils.random(5,true,false).toLowerCase()+"address", 
 							"admin"+RandomStringUtils.random(5,true,false).toLowerCase()+"address", 
 							RandomStringUtils.random(10,false,true), 
+							RandomStringUtils.random(10,false,true),
 							RandomStringUtils.random(10,false,true))) {
 						dbq.doAddAdministrator(adminName,adminName, adminName+"@byl.com");
 						System.out.println("Admin create : "+adminName+"@byl.com");
@@ -405,7 +433,9 @@ public class Shell {
 					String userPiece = sc.nextLine();
 					System.out.print("\n Enter the piece picture (in byte):\n >");
 					byte picturePiece = sc.nextByte();
-					CreatePiece p= dbq.doAddCreatePiece(namePiece, themePiece, userPiece, picturePiece);
+					System.out.print("\n Enter the piece price:\n >");
+					float pricePiece = sc.nextFloat();
+					CreatePiece p= dbq.doAddCreatePiece(namePiece, themePiece, userPiece, picturePiece,pricePiece);
 					if(p!=null) System.out.println(" New Piece create");
 					else System.out.println(" Fail during the creation of your new piece");
 					break;
@@ -439,44 +469,63 @@ public class Shell {
 					dbq.doRemoveCreatePiece(namePiece,nameID);
 					break;
 				case "/addOriginalPiece":
-					System.out.println("\n Enter the piece name :\n >");
+					System.out.print("\n Enter the piece name :\n > ");
 					namePiece = sc.nextLine();
-					System.out.println("\n Enter the date of the catalogue :\n >");
-					String datePiece = sc.nextLine();
-					OriginalPiece op = dbq.doAddOriginalPiece(namePiece, datePiece);
-					if(op!= null) System.out.println(" Piece "+op+" created");
-					else System.out.println("Piece creation fail");
+					System.out.print("\n Enter the date of the catalogue :\n > ");
+					String dateCat = sc.nextLine();
+					System.out.print("\n Enter the reference of the catalogue :\n > ");
+					String referenceCat = sc.nextLine();
+					OriginalPiece op = dbq.doAddOriginalPiece(namePiece,dateCat, referenceCat);
+					
 					break;
 				case "/checkInfoOriginalPiece":
-					System.out.println("\n Enter the piece name :\n >");
+					System.out.print("\n Enter the piece name :\n >");
 					namePiece = sc.nextLine();
 					op=dbq.doCheckInfoOriginalPiece(namePiece);
-					if(op!= null) {
-						System.out.println(" Piece with name"+op);
-						boolean searchCata = false;
-						Catalogue currentC=null;
-						//on recupere le catalogue associe
-						for(Catalogue c : op.getCatalogue()){
-							for(OriginalPiece op2 : c.getOriginalPiece()){
-								if(namePiece==op2.getNameCP()) {
-									searchCata=true;
-									break;
-								}						
-							}
-							if(searchCata) {
-								currentC=c;
-								break;
-							}
+					Collection<Catalogue >cataList = dbq.doGetCatalogueFromOriginalPiece(op.getId());
+
+					if(cataList!=null){
+						for(Catalogue c : cataList){
+							System.out.println(" Catalogue ref :"+c.getRefCat()+" catalogue date :"+c.getDateCat());	
 						}
-						if(searchCata) System.out.println(" Catalogue ref :"+currentC.getRefCat()+"   catalogue date :"+currentC.getDateCat());
-						else System.out.println("no catalogue exist"); //ne doit jamais arriver normalement
-					}
-					else System.out.println("Piece "+namePiece+" doesn't exist");
+					} else System.out.println("Catalogue Empty");
+					
+//					if(op!= null) {
+//						System.out.println(" Piece with name : "+op.getNameCP());
+//						//on recupere le catalogue associe
+//						if(op.getCatalogue().isEmpty()){
+//							System.out.println("list empty");
+//						}else {
+//							for(Catalogue c : op.getCatalogue()){
+//								System.out.println(" Catalogue ref :"+c.getRefCat()+"   catalogue date :"+c.getDateCat());	
+//							}
+//						}
+//					}
+//					else System.out.println("Piece "+namePiece+" doesn't exist");
 					break;
 				case "/removeOriginalPiece":
 					System.out.println("\n Enter the piece name :\n >");
 					namePiece = sc.nextLine();
 					dbq.doRemoveOriginalPiece(namePiece);
+					break;
+
+
+
+					//ADD IN HELP A PARTIR DE LAAAAAAAAAAAAA	
+				case "/addCatalogue":
+					System.out.print("\n Enter the date if the catalogue :\n >");
+					String dateCatalogue = sc.nextLine();
+					System.out.print("\n Enter the ref of the catalogue :\n >");
+					String refCatalogue = sc.nextLine();
+					dbq.doAddCatalogue(dateCatalogue, refCatalogue);
+					break;
+				case "/getAllOriginalPiece":
+					List<OriginalPiece> lop = dbq.doGetAllOriginalPiece();
+					if(lop!=null){
+						for(OriginalPiece mop : lop){
+							System.out.println(" OriginalPiece : "+mop.getId()+ " "+mop.getNameCP());
+						}
+					}
 					break;
 				default :
 					System.out.print("\n\n ##### Unknow command : please see /help for more information");
@@ -500,6 +549,7 @@ public class Shell {
 		System.out.println("---> /addModel3D : add one model3D with picture");
 		System.out.println("---> /addCreatePiece : add one new piece with picture");
 		System.out.println("---> /addOriginalPiece : add one Piece");
+		System.out.println("---> /addCataloguee : add one Catalogue");
 
 		System.out.println("\n");
 
@@ -510,7 +560,7 @@ public class Shell {
 		System.out.println("---> /checkCreatePiece : show all piece with the same name");
 		System.out.println("---> /checkInfoCreatePiece : show all information for one piece");
 		System.out.println("---> /checkInfoOriginalPiece : show all information for one piece");
-		System.out.println("---> /createBDD : add X user/userAccount, 1 admin and 1 validator");
+		System.out.println("---> /createBDD : add X random users and their userAccount");
 
 		System.out.println("\n");
 
@@ -522,7 +572,7 @@ public class Shell {
 		System.out.println("---> /removeModel3D : remove one Model3D");		
 		System.out.println("---> /removeCreatePiece : remove one piece created");		
 		System.out.println("---> /removeOriginalPiece : remove one piece created");		
-		
+
 		System.out.println("\n");
 
 		System.out.println("---> /userMode : return to user mode");

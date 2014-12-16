@@ -21,6 +21,7 @@ public class Model3D implements Serializable{
 	//sourceM
 	@OneToMany(mappedBy="model3D") private Collection<Commande> commande;
 	@OneToOne private Picture picture;
+	private float price3D;
 	
 	public Collection<Commande> getCommande(){
 		return commande;
@@ -70,6 +71,14 @@ public class Model3D implements Serializable{
 	public String toString(){
 		if(picture==null) return "No picture associate to this model";
 		else return idM + " : " +nameM ;
+	}
+
+	public float getPrice3D() {
+		return price3D;
+	}
+
+	public void setPrice3D(float price3D) {
+		this.price3D = price3D;
 	}	
 
 }

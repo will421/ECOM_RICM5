@@ -22,6 +22,7 @@ public class UserAccount implements Serializable{
 	@NotNull private String mdpU;
 	@NotNull private String shippingAddress; //adresse de livraison
 	@NotNull private String billingAddress; //adresse de facturation
+	private String rib;
 	private String cellPhone;
 	private String fixPhone;
 	@OneToOne private Validator validator;
@@ -29,13 +30,14 @@ public class UserAccount implements Serializable{
 	@OneToOne private Users client;
 	
 	
-	public UserAccount(String mailU, String mdpU, String shippingAddress, String billingAddress, String cellPhone, String fixPhone){
+	public UserAccount(String mailU, String mdpU, String shippingAddress, String billingAddress, String cellPhone, String fixPhone, String rib){
 		this.mailU = mailU;
 		this.shippingAddress = shippingAddress;
 		this.billingAddress = billingAddress;
 		this.mdpU = mdpU;
 		this.cellPhone = cellPhone;
 		this.fixPhone = fixPhone;
+		this.setRib(rib);
 	}
 	
 	public void setClient(Users user){
@@ -122,5 +124,13 @@ public class UserAccount implements Serializable{
 		if(client==null) return "No user create";
 		else return client.getNameC()+" "+client.getPrenomC()+" "+client.getId()+" "+billingAddress+" "+shippingAddress
 				+" "+cellPhone+" "+fixPhone+" "+mailU+" "+mdpU;
+	}
+
+	public String getRib() {
+		return rib;
+	}
+
+	public void setRib(String rib) {
+		this.rib = rib;
 	}	
 }
