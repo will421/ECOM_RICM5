@@ -168,9 +168,12 @@ public class Database {
 		return originalPiece.getAllOriginalPiece();
 	}
 	
+	public List<OriginalPiece> doGetAllOriginalPieceByTheme(String theme) {
+		return originalPiece.getAllOriginalPieceByTheme(theme);
+	}
 	
 	/*******************************************
-	 * 	ORIGINALPIECE METHODS
+	 * 	CATALOGUE METHODS
 	 ******************************************/
 
 	public Catalogue doAddCatalogue(String dateC, String refC){

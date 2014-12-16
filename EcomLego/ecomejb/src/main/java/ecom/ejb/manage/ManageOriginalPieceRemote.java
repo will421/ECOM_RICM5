@@ -24,5 +24,7 @@ public interface ManageOriginalPieceRemote {
 	
 	List<OriginalPiece> getAllOriginalPiece();
 	List<OriginalPiece> getAllOriginalPieceByTheme(String theme);
+	List<OriginalPiece> getAllOriginalPieceByColor(String color);
+	List<OriginalPiece> getAllOriginalPieceByName(String name);
 	
 }

@@ -32,7 +32,7 @@ public class OriginalPiece implements Serializable{
 	
 	private String namePO;
 	private float pricePO;
-	private String couleurOP;
+	private String colorOP;
 	private String themeOP;
 	
 	
@@ -80,12 +80,12 @@ public class OriginalPiece implements Serializable{
 		this.pricePO = pricePO;
 	}
 
-	public String getCouleurOP() {
-		return couleurOP;
+	public String getColorOP() {
+		return colorOP;
 	}
 
-	public void setCouleurOP(String couleurOP) {
-		this.couleurOP = couleurOP;
+	public void setColorOP(String couleurOP) {
+		this.colorOP = couleurOP;
 	}
 
 	public String getThemeOP() {

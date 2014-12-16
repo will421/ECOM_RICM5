@@ -115,7 +115,7 @@ public class ManageOriginalPiece implements ManageOriginalPieceRemote, Serializa
 		OriginalPiece op = new OriginalPiece();
 		op.setNameCP(nomOP);
 		op.setThemeOP(themePiece);
-		op.setCouleurOP(colorPiece);
+		op.setColorOP(colorPiece);
 		op.setPricePO(pricePiece);
 
 		Query query =  ema.createQuery("select c from Catalogue c where c.dateCat = :dateCat and c.idCat=:idCat");
@@ -149,6 +149,44 @@ public class ManageOriginalPiece implements ManageOriginalPieceRemote, Serializa
 
 		Query query =  ema.createQuery("select op from OriginalPiece op where op.themeOP = :themeOP");
 		query.setParameter("themeOP", theme);
+		List<OriginalPiece> op = null;
+		try{
+			op = query.getResultList();
+		}catch(NoResultException e){
+			ema.close();
+			return null;
+		}
+		ema.close();
+		return op;
+	}
+
+
+	@Override
+	public List<OriginalPiece> getAllOriginalPieceByColor(String color) {
+		// TODO Auto-generated method stub
+		EntityManager ema = em.createEntityManager();
+
+		Query query =  ema.createQuery("select op from OriginalPiece op where op.colorOP = :colorOP");
+		query.setParameter("colorOP", color);
+		List<OriginalPiece> op = null;
+		try{
+			op = query.getResultList();
+		}catch(NoResultException e){
+			ema.close();
+			return null;
+		}
+		ema.close();
+		return op;
+	}
+
+
+	@Override
+	public List<OriginalPiece> getAllOriginalPieceByName(String name) {
+		// TODO Auto-generated method stub
+		EntityManager ema = em.createEntityManager();
+
+		Query query =  ema.createQuery("select op from OriginalPiece op where op.namePO = :namePO");
+		query.setParameter("namePO", name);
 		List<OriginalPiece> op = null;
 		try{
 			op = query.getResultList();

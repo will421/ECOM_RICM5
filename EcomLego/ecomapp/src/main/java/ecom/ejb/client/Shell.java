@@ -519,14 +519,24 @@ public class Shell {
 
 					//ADD IN HELP A PARTIR DE LAAAAAAAAAAAAA	
 				case "/addCatalogue":
-					System.out.print("\n Enter the date if the catalogue :\n >");
+					System.out.print("\n Enter the date of the catalogue :\n >");
 					String dateCatalogue = sc.nextLine();
-					System.out.print("\n Enter the ref of the catalogue :\n >");
+					System.out.print("\n Enter the reference of the catalogue :\n >");
 					String refCatalogue = sc.nextLine();
 					dbq.doAddCatalogue(dateCatalogue, refCatalogue);
 					break;
 				case "/getAllOriginalPiece":
 					List<OriginalPiece> lop = dbq.doGetAllOriginalPiece();
+					if(lop!=null){
+						for(OriginalPiece mop : lop){
+							System.out.println(" OriginalPiece : "+mop.getId()+ " "+mop.getNameCP());
+						}
+					}
+					break;
+				case "/getAllOriginalPieceByTheme":
+					System.out.print("\n Enter the theme researshed :\n >");
+					themePiece = sc.nextLine();
+					lop = dbq.doGetAllOriginalPieceByTheme(themePiece);
 					if(lop!=null){
 						for(OriginalPiece mop : lop){
 							System.out.println(" OriginalPiece : "+mop.getId()+ " "+mop.getNameCP());
