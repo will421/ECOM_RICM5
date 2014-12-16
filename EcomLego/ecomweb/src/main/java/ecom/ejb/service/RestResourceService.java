@@ -5,10 +5,13 @@ import javax.naming.NamingException;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
+
+import ecom.ejb.manage.ManageUsersRemote;
 
 
 
@@ -20,10 +23,12 @@ public class RestResourceService extends Application {
 
 	
     ServiceRemote service;
-    //ManageUsersRemote manageUser;
+    ManageUsersRemote manageUser;
 	
    public RestResourceService() throws NamingException {
-		service = (ServiceRemote) new InitialContext().lookup("Service");
+	   InitialContext context = new InitialContext();
+		service = (ServiceRemote) context.lookup("Service");
+		manageUser = (ManageUsersRemote) context.lookup("ManageUser");
 	}
    
    @GET
@@ -32,4 +37,15 @@ public class RestResourceService extends Application {
        return service.getCurrentDate().toString();
    }
 	
+   
+  @POST
+  @Path("users")
+  public void createUser(UserJson user) 
+  {
+	  manageUser.addUserAccount(user.mail, user.mdp, user.adrLivraison, user.adrFacturation, user.numTel, user.numFix);
+	  manageUser.addUser(user.name, user.surname, user.mail);
+	  System.out.println("User added");
+  }
+   
+   
 }

@@ -15,18 +15,26 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-public class Person implements Serializable {
+public class UserJson implements Serializable {
 	
-    @XmlElement
-    String name;
-    @XmlElement
-	int age;
+	@XmlElement
+	String mail;
+	@XmlElement
+	String mdp;
+	@XmlElement
+	String name;
+	@XmlElement
+	String surname;
+	@XmlElement
+	String numTel;
+	@XmlElement
+	String numFix;
+	@XmlElement
+	String adrLivraison;
+	@XmlElement
+	String adrFacturation;
 	
-    
-    
-	@Override
-	public String toString() {
-		return name+":"+age;
-	}
+
+	
 }
 

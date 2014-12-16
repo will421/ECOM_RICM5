@@ -22,7 +22,7 @@
     <dependencies>
 
     <dependency>
-    	<groupId>fr.polytech.grenoble.ricm5.ecom</groupId>
+    	<groupId>fr.polytech.grenoble.ricm.ecom</groupId>
     	<artifactId>ecomejb</artifactId>
     	<version>0.1.0-SNAPSHOT</version>
     	<scope>provided</scope>

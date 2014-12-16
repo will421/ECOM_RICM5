@@ -5,15 +5,15 @@ import java.util.List;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import manage.ManageCreatePieceRemote;
-import manage.ManageModel3DRemote;
-import manage.ManageOriginalPieceRemote;
-import manage.ManageUsersRemote;
 import ecom.ejb.CreatePiece;
 import ecom.ejb.Model3D;
 import ecom.ejb.OriginalPiece;
 import ecom.ejb.UserAccount;
 import ecom.ejb.Users;
+import ecom.ejb.manage.ManageCreatePieceRemote;
+import ecom.ejb.manage.ManageModel3DRemote;
+import ecom.ejb.manage.ManageOriginalPieceRemote;
+import ecom.ejb.manage.ManageUsersRemote;
 
 
 public class Database {

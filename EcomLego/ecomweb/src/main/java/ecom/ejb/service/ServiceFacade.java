@@ -60,21 +60,23 @@ public class ServiceFacade extends Application {
     @GET
     @Path("person") //http://localhost:8080/ecomweb/resources/hello/person
     public Person getPerson(){
-    	System.out.println("Rage");
-    	Person p = new Person("name",5);
-    	System.out.println("Rage2");
+    	Person p = new Person();
+    	p.name = "name";
+    	p.age = 5;
+    	System.out.println("Rage4");
     	return p;
     }
     
     @POST
-    @Path("post1")
-    public Person savePerson(Person person) 
+    @Path("person")
+    public void savePerson(Person person) 
     //Faire une methode post sur http://localhost:8080/ecomweb/resources/hello/post1 avec {"age":6,"name":"lionel"}
     //J'ai pu le tester avec un plugin chrome
     {
-    	System.out.println(person.toString());
+    	System.out.println("why?3");
+    	//System.out.println(person.toString());
     	person.name = person.name+"Response";
-    	return person;
+    	//return person;
     }
     
 }
