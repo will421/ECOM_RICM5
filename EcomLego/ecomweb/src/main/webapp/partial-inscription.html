@@ -1,77 +1,74 @@
-<div class="container-fluid">
-    <section class="container">
-        <div class="container-page">				
-            <div class="col-md-6">
-                <h3 class="dark-grey">
-                    <p>Créer un compte utilisateur</p>
-                    <h5><small>Vous avez déjâ un compte? Connectez-vous en haut.</small></h5>
-                </h3>
-                
-
-                <div class="form-group col-lg-12">
-                    <label>Nom d'utilisateur (votre adresse mail)</label>
-                    <input type="" name="" class="form-control" id="" value="">
-                </div>
-
-                <div class="form-group col-lg-6">
-                    <label>Mot de passe</label>
-                    <input type="password" name="" class="form-control" id="" value="">
-                </div>
-
-                <div class="form-group col-lg-6">
-                    <label>Saisis le mot de passe à nouveau</label>
-                    <input type="password" name="" class="form-control" id="" value="">
-                </div>
-
-                <div class="form-group col-lg-6">
-                    <p><label>Nom</label>
-                        <input type="" name="" class="form-control" id="" value=""></p>
-                    <p><label>Prénom</label>
-                        <input type="" name="" class="form-control" id="" value=""></p>
-                    <p><label>Numéro de téléphone (portable)</label>
-                        <input type="" name="" class="form-control" id="" value=""></p>
-                    <p><label>Numéro de téléphone (fixe)</label>
-                        <input type="" name="" class="form-control" id="" value=""></p>
-                </div>
+<div ng-controller="InscriptionCtrl" >
+    <div class="col-md-6">
+        <h3 class="dark-grey">
+            <p>Créer un compte utilisateur</p>
+            <h5><small>Vous avez déjâ un compte? Connectez-vous en haut.</small></h5>
+        </h3>
 
 
-
-                <div class="form-group col-lg-12">
-                    <label>Adresse de livraision</label>
-                    <input type="" name="" class="form-control" id="" value="">
-                </div>
-
-                <div class="form-group col-lg-12">
-                    <label>Adresse de facturation</label>
-                    <input type="" name="" class="form-control" id="" value="">
-                </div>			
-
-
-            </div>
-
-            <div class="col-md-6">
-
-                <h3 class="dark-grey" >Termes et conditions</h3>
-                <p>
-                    En s'inscrivant sur notre site, l’utilisateur s’engage à respecter et à accepter ses termes et conditions d’utilisation
-                </p>
-                <p>
-                    Nous collectons des informations sur votre ordinateur ou votre dispositif, par exemple votre adresse IP. Nous pouvons vous demander votre date de naissance, votre sexe, votre pays et l'adresse email de vos parents, afin de vous offrir une expérience exceptionnelle. Si vous avez moins de 12 ans, nous demanderons l'autorisation d'un parent ou d'un tuteur légal.
-                </p>
-                <p>
-                    Les informations contenues sur ce site, notamment le domaine, les marques mentionnées, les logos, dessins, illustrations, photos, films, contenus, textes, graphiques et documents annexes – appartiennent en exclusivité à la société BuildYourLego SA. (BuildYourLego) et sont protégées par la législation en vigueur. Leur téléchargement, copie, modification, transmission, distribution, reproduction ou retransmission, partiel ou intégral, dans un but commercial ou autre, sans l’autorisation écrite préalable du groupe Altis Hotels, sont expressément interdits et punis par la loi.
- 
-L’utilisateur s’engage à ne pas accéder au site qu’à des fins licites.
-                </p>
-                <p>
-                    Certains de nos Services vous permettent d'importer, de soumettre, de stocker, d'envoyer ou de recevoir des contenus. Vous conservez tous vos droits de propriété intellectuelle sur ces contenus. En somme, ce qui est à vous reste à vous. (Paragraph 13.5.6)
-                </p>
-
-                <button type="submit" class="btn btn-primary">Register</button>
-
-                <input type="checkbox" class="checkbox" />S'abonner aux newsletter
-            </div>
+        <div class="form-group col-lg-12">
+            <label>Nom d'utilisateur (votre adresse mail)</label>
+            <input class="form-control" ng-model="newSingleUser.mail">
+            Test <div ng-bind="newSingleUser.mail"></div>
         </div>
-    </section>
+
+        <div class="form-group col-lg-6">
+            <label>Mot de passe</label>
+            <input type="password" class="form-control" ng-model="newSingleUser.mdp">
+        </div>
+
+        <div class="form-group col-lg-6">
+            <label>Saisis le mot de passe à nouveau</label>
+            <input type="password" name="" class="form-control" id="" value="">
+        </div>
+
+        <div class="form-group col-lg-6">
+            <p><label>Nom</label>
+                <input type="" name="" class="form-control" id="" value=""></p>
+            <p><label>Prénom</label>
+                <input type="" name="" class="form-control" id="" value=""></p>
+            <p><label>Numéro de téléphone (portable)</label>
+                <input type="" name="" class="form-control" id="" value=""></p>
+            <p><label>Numéro de téléphone (fixe)</label>
+                <input type="" name="" class="form-control" id="" value=""></p>
+        </div>
+
+
+
+        <div class="form-group col-lg-12">
+            <label>Adresse de livraision</label>
+            <input type="" name="" class="form-control" id="" value="">
+        </div>
+
+        <div class="form-group col-lg-12">
+            <label>Adresse de facturation</label>
+            <input type="" name="" class="form-control" id="" value="">
+        </div>			
+
+
+    </div>
+
+    <div class="col-md-6">
+
+        <h3 class="dark-grey" >Termes et conditions</h3>
+        <p>
+            En s'inscrivant sur notre site, l’utilisateur s’engage à respecter et à accepter ses termes et conditions d’utilisation
+        </p>
+        <p>
+            Nous collectons des informations sur votre ordinateur ou votre dispositif, par exemple votre adresse IP. Nous pouvons vous demander votre date de naissance, votre sexe, votre pays et l'adresse email de vos parents, afin de vous offrir une expérience exceptionnelle. Si vous avez moins de 12 ans, nous demanderons l'autorisation d'un parent ou d'un tuteur légal.
+        </p>
+        <p>
+            Les informations contenues sur ce site, notamment le domaine, les marques mentionnées, les logos, dessins, illustrations, photos, films, contenus, textes, graphiques et documents annexes – appartiennent en exclusivité à la société BuildYourLego SA. (BuildYourLego) et sont protégées par la législation en vigueur. Leur téléchargement, copie, modification, transmission, distribution, reproduction ou retransmission, partiel ou intégral, dans un but commercial ou autre, sans l’autorisation écrite préalable du groupe Altis Hotels, sont expressément interdits et punis par la loi.
+
+            L’utilisateur s’engage à ne pas accéder au site qu’à des fins licites.
+        </p>
+        <p>
+            Certains de nos Services vous permettent d'importer, de soumettre, de stocker, d'envoyer ou de recevoir des contenus. Vous conservez tous vos droits de propriété intellectuelle sur ces contenus. En somme, ce qui est à vous reste à vous. (Paragraph 13.5.6)
+        </p>
+
+        <button type="submit" class="btn btn-primary" ng-click="newSingleUserRestPost()">Register</button>
+
+        <input type="checkbox" class="checkbox" />S'abonner aux newsletter
+
+    </div>
 </div>
-<script>console.log("fuckme");</script>
