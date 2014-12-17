@@ -57,6 +57,7 @@ public class RestResourceService extends Application {
    @GET
    @Path("test")
    public String getDate(){ //http://localhost:8080/ecom/resources/rest
+	   System.out.println("test");
        return service.getCurrentDate().toString();
    }
 
@@ -64,7 +65,7 @@ public class RestResourceService extends Application {
    @POST
    @Path("users")
    public void createUser(UserJson user) 
-   {
+   { 
 	   user = UserJson.createOne();
 	   MessageDigest md = null;
 	   try {
@@ -97,7 +98,10 @@ public class RestResourceService extends Application {
    @Path("products/byTheme/{theme}")
    public List<OriginalPiece> getProduitsByTheme(@PathParam("theme")String theme)
    {
-	   return manageOriginalPiece.getAllOriginalPieceByTheme(theme);
+	   List<OriginalPiece> l = manageOriginalPiece.getAllOriginalPieceByTheme(theme);
+	   System.out.println(l.toString());
+	   System.out.println(l.size());
+	   return l;
    }
    
    @GET
