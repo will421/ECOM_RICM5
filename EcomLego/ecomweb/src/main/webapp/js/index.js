@@ -217,18 +217,8 @@ app.controller('FileUpload', ['$scope', 'FileUploader', function ($scope, FileUp
  */
 app.controller("ProduitsCtrl", ['$scope', 'Rest', function ($scope, Rest) {
 
-        $scope.resultProduits = [
-            {'Produit1': 'shitlego'},
-            {'Produit2': 'shitlego2'},
-            {'Produit3': 'shitlego3'},
-            {'Produit4': 'shitlego4'},
-            {'Produit5': 'shitlego5'},
-            {'Produit6': 'shitlego6'}
-        ]
+        $scope.resultProduits = Rest.getAllProduits.query();
 
-        $scope.getAllProduits = function () {
-            console.log("my ass");
-        }
         $scope.getProduitsParPrixCroissant = function () {
 
         }
@@ -254,13 +244,47 @@ app.controller("InscriptionCtrl", ['$scope', 'Rest', function ($scope, Rest) {
         $scope.newSingleUser = {
             'mail': '',
             'mdp': '',
-            'mdpRetype': '',
-            'name': '',
-            'surname': '',
+            'nom': '',
+            'prenom': '',
             'numTel': '',
             'numFix': '',
             'adrLivraison': '',
             'adrFacturation': '',
             'newsletter': false
         }
+
+        $scope.newSingleUserRestPost = function () {
+            console.log("NEW USER CREATED");
+            console.log($scope.newSingleUser);
+        }
+
     }]);
+app.directive('equals', function () {
+    return {
+        restrict: 'A', // only activate on element attribute
+        require: '?ngModel', // get a hold of NgModelController
+        link: function (scope, elem, attrs, ngModel) {
+            if (!ngModel)
+                return; // do nothing if no ng-model
+
+            // watch own value and re-validate on change
+            scope.$watch(attrs.ngModel, function () {
+                validate();
+            });
+
+            // observe the other value and re-validate on change
+            attrs.$observe('equals', function (val) {
+                validate();
+            });
+
+            var validate = function () {
+                // values
+                var val1 = ngModel.$viewValue;
+                var val2 = attrs.equals;
+
+                // set validity
+                ngModel.$setValidity('equals', !val1 || !val2 || val1 === val2);
+            };
+        }
+    }
+});
