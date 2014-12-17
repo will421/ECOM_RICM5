@@ -30,16 +30,25 @@ app.controller('CarouselDemoCtrl', function ($scope) {
     $scope.myInterval = 5000;
     $scope.slides = [
         {
-            image: 'img/lego_sample_project_1.jpg'
+            image: 'img/lego_sample_project_1.jpg',
+            text: 'Creation de George44'
+
         },
         {
-            image: 'img/lego_sample_project_2.jpg'
+            image: 'img/lego_sample_project_2.jpg',
+            text: 'Creation de Rad84'
+
+
         },
         {
-            image: 'img/lego_sample_project_3.jpg'
+            image: 'img/lego_sample_project_3.jpg',
+            text: 'Creation de Leou41'
+
         },
         {
-            image: 'img/lego_sample_project_4.jpg'
+            image: 'img/lego_sample_project_4.jpg',
+            text: 'Creation de Alice'
+
         }
     ];
 });

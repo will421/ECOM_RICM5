@@ -2,12 +2,11 @@
 <div ng-controller="CarouselDemoCtrl">
     <carousel interval="myInterval">
         <slide ng-repeat="slide in slides" active="slide.active">
-            <img ng-src="{{slide.image}}"   style="width: auto;
+            <img ng-src="{{slide.image}}"   style="width: 400px;
                  height: 500px;
                  max-height: 500px;"></img>
             <div class="carousel-caption">
-                <h4>Slide {{$index}}</h4>
-                <p>{{slide.text}}</p>
+                <p> {{slide.text}}</p>
             </div>
 
         </slide>
