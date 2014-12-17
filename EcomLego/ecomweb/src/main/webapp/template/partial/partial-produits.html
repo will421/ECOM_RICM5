@@ -4,6 +4,8 @@
         <!-- Side menu recherche par criteres-->
         <div class="list-group">
 
+
+
             <span class="list-group-item active">
                 <b>Trier les produits</b>
                 <span class="pull-right" id="slide-submenu">
@@ -16,12 +18,59 @@
             <a ng-click="getProduitsParPrixDecroissant()" class="list-group-item">
                 <i class="fa fa-search"></i> Par prix décroissant
             </a>
-            <a class="list-group-item">
-                <i class="fa fa-user"></i> Par thème<span class="badge">5</span>
-            </a>
-            <a class="list-group-item">
-                <i class="fa fa-folder-open-o"></i> Par couleur <span class="badge">14</span>
-            </a>
+
+
+            <li class="list-group-item">
+                <i class="fa fa-user"></i> Par couleur<span class="badge">6</span>
+                <span class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <!--Nameless dropdown--> <span class="caret"></span>
+
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a ng-click="critere = {'couleur': 'bleu'}">Bleu</a>
+                        </li>
+                        <li><a ng-click="critere = {'couleur': 'rouge'}">Rouge</a>
+                        </li>
+                        <li><a ng-click="critere = {'couleur': 'vert'}">Vert</a>
+                        </li>
+                        <li><a ng-click="critere = {'couleur': 'rose'}">Rose</a>
+                        </li>
+                        <li><a ng-click="critere = {'couleur': 'blanc'}">Blanc</a>
+                        </li>
+                        <li><a ng-click="critere = {'couleur': 'noir'}">Noir</a>
+                        </li>
+                        <!--                        <li class="divider"></li>
+                                                {{critere}}-->
+                    </ul>
+                </span>
+            </li>
+
+            <li class="list-group-item">
+                <i class="fa fa-user"></i> Par thème<span class="badge">3</span>
+                <span class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <!--Nameless dropdown--> <span class="caret"></span>
+
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a ng-click="critere = {'theme': 'bleu'}">Bleu</a>
+                        </li>
+                        <li><a ng-click="critere = {'theme': 'rouge'}">Rouge</a>
+                        </li>
+                        <li><a ng-click="critere = {'theme': 'vert'}">Vert</a>
+                        </li>
+                        <li><a ng-click="critere = {'theme': 'rose'}">Rose</a>
+                        </li>
+                        <li><a ng-click="critere = {'theme': 'blanc'}">Blanc</a>
+                        </li>
+                        <li><a ng-click="critere = {'theme': 'noir'}">Noir</a>
+                        </li>
+                    </ul>
+                </span>
+            </li>
+
+
             <a class="list-group-item">
                 <i class="fa fa-bar-chart-o"></i> Par nom
                 <form role="search">

@@ -218,6 +218,11 @@ app.controller('FileUpload', ['$scope', 'FileUploader', function ($scope, FileUp
 app.controller("ProduitsCtrl", ['$scope', 'Rest', function ($scope, Rest) {
 
         $scope.resultProduits = Rest.getAllProduits.query();
+        
+        $scope.critere = {
+            'crit' : null
+        }
+        
 
         $scope.getProduitsParPrixCroissant = function () {
 
