@@ -66,7 +66,6 @@ public class RestResourceService extends Application {
    @Path("users")
    public void createUser(UserJson user) 
    { 
-	   user = UserJson.createOne();
 	   MessageDigest md = null;
 	   try {
 		   md = MessageDigest.getInstance("SHA-1");
