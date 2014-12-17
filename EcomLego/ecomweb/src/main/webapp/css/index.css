@@ -13,7 +13,7 @@ body {
     -webkit-border-radius: 101px;
     -moz-border-radius: 101px;
     border-radius: 101px;
-    /* Bacground couleur dÃƒÂ©gradÃƒÂ© */
+    /* Bacground couleur dÃƒÆ’Ã‚Â©gradÃƒÆ’Ã‚Â© */
     /* background:-webkit-gradient(linear, 11% 56%, 10% 32%, from(#EBFFFF), to(#C9FFFF)); */
 
     /* Aligner pour que la barre de navigation haut ne parte pas en vrille */
@@ -231,12 +231,12 @@ a {
 -------------------------------------------------------------------------------------------------------------------------- */
 #header{
     display: inline-block;
-    width: 1100px;
+    width: 1160px;
     background-image: url(../img/banniere.jpg);
     height: 200px;
-    opacity: 0.9;
+    opacity: 1;
     z-index: -1;
-    margin: 0 auto; /*stretch banner*/
+    margin-left: 130px; /*stretch banner*/
    border:dotted 1px #b0cbeb;
     border:dotted 1px #b0cbeb;
     /* Bord arrondie */
