@@ -29,6 +29,7 @@
 
         <!--Menu de navigation principal-->
         <div ng-controller="DropdownCtrl" class="container">
+
             <nav class="navbar navbar-default" role="navigation">
                 <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -72,14 +73,8 @@
                             </li>
                             <li><a ui-sref="inscription">S'incrire</a></li>
                             <li class="dropdown" id="menuLogin">
-                                <a class="dropdown-toggle" data-toggle="dropdown" id="navLogin">Connexion</a>
-                                <div class="dropdown-menu" style="padding:17px;">
-                                    <form class="form" id="formLogin"> 
-                                        <input name="username" id="username" placeholder="Nom d'utilisateur" type="text"> 
-                                        <input name="password" id="password" placeholder="Mot de passe" type="password"><br>
-                                        <button type="button" id="btnLogin" class="btn">Connexion</button>
-                                    </form>
-                                </div>
+                                <a class="dropdown-toggle" data-toggle="dropdown" id="navLogin" ng-click="open('md')">Connexion</a>
+                                <div ng-show="selected">Selection from a modal: {{ selected}}</div>
                             </li>
 
                         </ul>
@@ -193,10 +188,10 @@
         <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
         <script type="text/javascript" src="js/bootstrap.js"></script>
         <script>
-            $("#menu-toggle").click(function (e) {
-                e.preventDefault();
-                $("#wrapper").toggleClass("toggled");
-            });
+                                    $("#menu-toggle").click(function (e) {
+                                        e.preventDefault();
+                                        $("#wrapper").toggleClass("toggled");
+                                    });
         </script>
     </body>
 </html>

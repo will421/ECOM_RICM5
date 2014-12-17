@@ -20,3 +20,32 @@
      });
      
      */
+    
+    
+    /**
+     * Ne REST SERVICE
+     */
+    
+                /**
+             * TEST POST 
+             */
+//            Rest.POSTNEWSINGLEUSER.post();
+//            console.log(posted);
+//            console.log(posted.$promise.then(function (data) {
+//                console.log(data);
+//            }));
+    
+        }
+
+        /*
+         * TEST GET
+         */
+//    var test = Rest.GETTEST.query();
+//    console.log(test);
+//    /*
+//     * Need to resolve the returned values 
+//     */
+//    console.log(test.$promise.then(function(data) {
+//       console.log(data.msg);
+//       console.log(data);
+//   }));

@@ -4,9 +4,9 @@ var app = angular.module('appMain', ['ui.bootstrap', 'ngResource', 'ui.router', 
 });
 /**
  * Controller menu navigation principal (Dropdown)
+ * alot of useless tests
  */
-
-app.controller('DropdownCtrl', function ($scope, $log, $http) {
+app.controller('DropdownCtrl', function ($scope, $log, $modal) {
     $scope.items = [
         'The first choice!',
         'And another choice for you.',
@@ -18,6 +18,47 @@ app.controller('DropdownCtrl', function ($scope, $log, $http) {
 
     $scope.toggled = function (open) {
         $log.log('Dropdown is now: ', open);
+    };
+
+    $scope.items = ['item1', 'item2', 'item3'];
+
+    $scope.open = function (size) {
+
+        var modalInstance = $modal.open({
+            templateUrl: 'template/partial/modal-login.html',
+            controller: 'ModalInstanceCtrl',
+            size: size,
+            resolve: {
+                items: function () {
+                    return $scope.items;
+                }
+            }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+            $scope.selected = selectedItem;
+        }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
+});
+
+/**
+ * Modal controller login
+ */
+app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, items) {
+
+    $scope.items = items;
+    $scope.selected = {
+        item: $scope.items[0]
+    };
+
+    $scope.ok = function () {
+        $modalInstance.close($scope.selected.item);
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
     };
 });
 
@@ -56,42 +97,42 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             // HOME STATES AND NESTED VIEWS ========================================
             .state('#', {
                 url: '/home',
-                templateUrl: 'partial-home.html'
+                templateUrl: 'template/partial/partial-home.html'
             })
 
             .state('produits', {
                 url: 'produits',
-                templateUrl: 'partial-produits.html'
+                templateUrl: 'template/partial/partial-produits.html'
             })
 
             .state('imprimer-commanderundevis', {
                 url: 'imprimer-commanderundevis',
-                templateUrl: 'partial-imprimer-commanderundevis.html'
+                templateUrl: 'template/partial/partial-imprimer-commanderundevis.html'
             })
 
             .state('imprimer-creerunmodele', {
                 url: 'imprimer-creerunmodele',
-                templateUrl: 'partial-imprimer-creerunmodele.html'
+                templateUrl: 'template/partial/partial-imprimer-creerunmodele.html'
             })
 
             .state('imprimer-chargervotremodele', {
                 url: 'imprimer-chargervotremodele',
-                templateUrl: 'partial-imprimer-chargervotremodele.html'
+                templateUrl: 'template/partial/partial-imprimer-chargervotremodele.html'
             })
 
             .state('imprimer-autres', {
                 url: 'imprimer-autres',
-                templateUrl: 'partial-imprimer-autres.html'
+                templateUrl: 'template/partial/partial-imprimer-autres.html'
             })
 
             .state('panier', {
                 url: 'panier',
-                templateUrl: 'panier.html'
+                templateUrl: 'template/partial/panier.html'
             })
 
             .state('inscription', {
                 url: 'inscription',
-                templateUrl: 'partial-inscription.html'
+                templateUrl: 'template/partial/partial-inscription.html'
             })
 
 
@@ -222,30 +263,4 @@ app.controller("InscriptionCtrl", ['$scope', 'Rest', function ($scope, Rest) {
             'adrFacturation': '',
             'newsletter': false
         }
-
-        $scope.newSingleUserRestPost = new function () {
-            console.log("Sending POST to REST server with new user");
-            /**
-             * TEST POST 
-             */
-            Rest.POSTNEWSINGLEUSER.post();
-            console.log(posted);
-            console.log(posted.$promise.then(function (data) {
-                console.log(data);
-            }));
-        }
-
-        /*
-         * TEST GET
-         */
-//    var test = Rest.GETTEST.query();
-//    console.log(test);
-//    /*
-//     * Need to resolve the returned values 
-//     */
-//    console.log(test.$promise.then(function(data) {
-//       console.log(data.msg);
-//       console.log(data);
-//   }));
-
     }]);

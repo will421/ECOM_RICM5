@@ -1,0 +1,16 @@
+<div class="modal-header">
+    <h3>Connexion</h3>
+</div>
+<div class="modal-body">
+    <form method="post" action='' name="login_form">
+        <p><input type="text" class="form-control" name="eid" id="email" placeholder="Nom d'utilisateur (votre mail)"></p>
+        <p><input type="password" class="form-control" name="passwd" placeholder="Mot de passe"></p>
+        <p><button type="submit" class="btn btn-primary">Se connecter</button>
+            <a href="#">Mot de passe oublié?</a>
+        </p>
+    </form>
+</div>
+<div class="modal-footer">
+    Première visite sur notre site?
+    <a ui-sref='inscription' class="btn btn-primary" ng-click="cancel()">Inscription</a>
+</div>
