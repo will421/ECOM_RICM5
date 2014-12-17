@@ -231,7 +231,7 @@ a {
 -------------------------------------------------------------------------------------------------------------------------- */
 #header{
     display: inline-block;
-    width: 1476px;
+    width: 1100px;
     background-image: url(../img/banniere.jpg);
     height: 200px;
     opacity: 0.9;
@@ -252,9 +252,7 @@ a {
     border-top-right-radius:22px;
     border-bottom-left-radius:21px;
     border-bottom-right-radius:20px;
-    -moz-box-shadow: 40px 5px 5px #000000;
-    -webkit-box-shadow: 51px 10px 5px #000000;
-    box-shadow: 51px 10px 5px #000000;
+    
 }
 #header-brand{
     display: inline-block;

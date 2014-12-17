@@ -93,6 +93,10 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 url: 'inscription',
                 templateUrl: 'partial-inscription.html'
             })
+            .state('contactez-nous', {
+                url: 'contactez-nous',
+                templateUrl: 'partial-contactez-nous.html'
+            })
 
 
 
