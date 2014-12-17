@@ -22,9 +22,9 @@ public class UserJson implements Serializable {
 	@XmlElement
 	String mdp;
 	@XmlElement
-	String name;
+	String nom;
 	@XmlElement
-	String surname;
+	String prenom;
 	@XmlElement
 	String numTel;
 	@XmlElement
@@ -36,7 +36,21 @@ public class UserJson implements Serializable {
 	@XmlElement
 	String rib;
 	
-
+	public static UserJson createOne()
+	{
+		UserJson user = new UserJson();
+		user.mail = "toto@tutu.tata";
+		user.mdp = "tralala";
+		user.nom ="toto";
+		user.prenom = "truc";
+		user.numTel = "numTel";
+		user.numFix = "numFix";
+		user.adrLivraison = "adrLivraison";
+		user.adrFacturation = "adrFacturation";
+		user.rib = "rib";
+		
+		return user;
+	}
 	
 }
 

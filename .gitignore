@@ -9,3 +9,5 @@ target
 .project
 .settings/
 target/
+sun-appserv-samples/
+derby.log

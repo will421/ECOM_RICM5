@@ -2,6 +2,7 @@ package ecom.ejb.service;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -10,10 +11,18 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 
+import ecom.ejb.Model3D;
+import ecom.ejb.OriginalPiece;
+import ecom.ejb.manage.ManageCatalogueRemote;
+import ecom.ejb.manage.ManageControlLineRemote;
+import ecom.ejb.manage.ManageCreatePieceRemote;
+import ecom.ejb.manage.ManageModel3DRemote;
+import ecom.ejb.manage.ManageOriginalPieceRemote;
 import ecom.ejb.manage.ManageUsersRemote;
 
 
@@ -27,11 +36,22 @@ public class RestResourceService extends Application {
 	
     ServiceRemote service;
     ManageUsersRemote manageUser;
+    ManageCatalogueRemote manageCatalogue;
+    ManageControlLineRemote manageControlLine;
+    ManageCreatePieceRemote manageCreatePiece;
+    ManageModel3DRemote manageModel3D;
+    ManageOriginalPieceRemote manageOriginalPiece;
 	
    public RestResourceService() throws NamingException {
 	   InitialContext context = new InitialContext();
 		service = (ServiceRemote) context.lookup("Service");
 		manageUser = (ManageUsersRemote) context.lookup("ManageUser");
+		manageCatalogue =(ManageCatalogueRemote) context.lookup("ManageCatalogue");
+		//manageControlLine = (ManageControlLineRemote) context.lookup("ManageControlLine");
+		manageCreatePiece = (ManageCreatePieceRemote) context.lookup("ManageCreatePiece");
+		manageModel3D = (ManageModel3DRemote) context.lookup("ManageModel3D");
+		manageOriginalPiece = (ManageOriginalPieceRemote) context.lookup("ManageOriginalPiece");
+		
 	}
    
    @GET
@@ -45,6 +65,7 @@ public class RestResourceService extends Application {
    @Path("users")
    public void createUser(UserJson user) 
    {
+	   user = UserJson.createOne();
 	   MessageDigest md = null;
 	   try {
 		   md = MessageDigest.getInstance("SHA-1");
@@ -54,10 +75,45 @@ public class RestResourceService extends Application {
 	   } 
 	   user.mdp = bytesToHex(md.digest(user.mdp.getBytes()));
 	   manageUser.addUserAccount(user.mail, user.mdp, user.adrLivraison, user.adrFacturation, user.numTel, user.numFix,user.rib);
-	   manageUser.addUser(user.name, user.surname, user.mail);
+	   manageUser.addUser(user.nom, user.prenom, user.mail);
 	   System.out.println("User added");
    }
+   
+   /*@POST
+   @Path("validate")
+   public void isValidUser()
+*/
+   
+   @GET
+   @Path("products")
+   public List<OriginalPiece> getAllProduits()
+   {
+	   return manageOriginalPiece.getAllOriginalPiece();
+   }
 
+   //Pocsbla43
+   
+   @GET
+   @Path("products/byTheme/{theme}")
+   public List<OriginalPiece> getProduitsByTheme(@PathParam("theme")String theme)
+   {
+	   return manageOriginalPiece.getAllOriginalPieceByTheme(theme);
+   }
+   
+   @GET
+   @Path("products/byColor/{color}")
+   public List<OriginalPiece> getProduitsByColor(@PathParam("color")String color)
+   {
+	   return manageOriginalPiece.getAllOriginalPieceByColor(color);
+   }
+   
+   @GET
+   @Path("products/byName/{name}")
+   public List<OriginalPiece> getProduitsByName(@PathParam("name")String name)
+   {
+	   return manageOriginalPiece.getAllOriginalPieceByColor(name);
+   }
+   
    
    final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
    public static String bytesToHex(byte[] bytes) {
