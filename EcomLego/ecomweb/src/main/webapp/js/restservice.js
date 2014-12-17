@@ -10,7 +10,7 @@ restservice.factory('Rest', ['$resource', function ($resource) {
                 query: {method: 'GET', isArray:true},
             }),
             
-            POSTNEWSINGLEUSER: $resource('/resource/rest/users', {}, {
+            createUser: $resource('resources/rest/', {}, {
                 post: {method: 'POST'}
             }),
         };

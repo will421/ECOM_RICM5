@@ -255,7 +255,8 @@ app.controller("InscriptionCtrl", ['$scope', 'Rest', function ($scope, Rest) {
 
         $scope.newSingleUserRestPost = function () {
             console.log("NEW USER CREATED");
-            console.log($scope.newSingleUser);
+//            console.log($scope.newSingleUser);
+            Rest.createUser($scope.newSingleUser);
         }
 
     }]);
