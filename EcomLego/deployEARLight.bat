@@ -1,10 +1,4 @@
 (
-set DERBY_INSTALL=C:\Users\Pingu\Documents\db-derby-10.11.1.1-bin
-
-set CLASSPATH=%DERBY_INSTALL%\lib\derby.jar;%DERBY_INSTALL%\lib\derbytools.jar;
-
-cd %DERBY_INSTALL%\bin
-setEmbeddedCP.bat
 echo " ------> mvn clean install"
 mvn clean install
 echo " ------> asadmin start-domain"
