@@ -98,9 +98,10 @@ app.controller('CarouselDemoCtrl', function ($scope) {
  * Login Ctrl
  */
 app.controller('LoginCtrl', function ($scope, $stateParams) {
-    console.log("ENTERED ROUTE CONTROLER");
+    console.log("ENTERED LOGIN CONTROLER");
     console.log($stateParams);
     $scope.loginparams = $stateParams;
+
     //pour l'instant il y a $scope.loginparams.urlmail et $scope.loginparams.urlmdp
 });
 
@@ -244,7 +245,14 @@ app.controller('FileUpload', ['$scope', 'FileUploader', function ($scope, FileUp
 app.controller("ProduitsCtrl", ['$scope', 'Rest', function ($scope, Rest) {
 
         $scope.resultProduits = Rest.getAllProduits.query();
-
+        $scope.resultProduits = [
+            {'name': 'Lego1'},
+            {'name': 'Lego2'},
+            {'name': 'Lego3'},
+            {'name': 'Lego4'},
+            {'name': 'Lego5'},
+            {'name': 'Lego6'}
+        ]
         $scope.critere = {
             'crit': null
         }
@@ -283,17 +291,12 @@ app.controller("InscriptionCtrl", ['$scope', 'Rest', '$state', function ($scope,
         }
 
         $scope.newSingleUserRestPost = function () {
+            console.log("User created ", $scope.newSingleUser);
             var posted = Rest.createUser.query();
             console.log(posted);
             console.log(posted.$promise.then(function (data) {
                 console.log(data);
             }));
-
-//            var testget = Rest.testGet.query();
-//            console.log(testget);
-//            console.log(testget.$promise.then(function (data) {
-//                console.log(data);
-//            }));
 
             if (posted) {
                 $state.go('#')
