@@ -255,7 +255,12 @@ public class ManageUsers implements ManageUsersRemote, Serializable {
 		a.setValidator(val);
 		ema.persist(val);
 		ema.close();
-
+	}
+	
+	public boolean verifUser(String mailU, String pwdSAH){
+		UserAccount ua = checkInfoUser(mailU);
+		if(DigestUtils.sha1Hex(ua.getMdpU()).equals(pwdSAH)) return true;
+		return false;
 	}
 
 
