@@ -1,0 +1,28 @@
+PATH=/home/ec2-user/glassfish4/bin:$PATH
+PATH=/home/ec2-user/glassfish4/javadb/bin/:$PATH
+PATH=/home/ec2-user/glassfish4/glassfish/bin/:$PATH
+asadmin --port 6969 stop-database
+asadmin --port 6969 stop-domain
+asadmin start-domain
+asadmin undeploy --port 6969 ecomear
+asadmin start-database
+ij dropDatabase.sql
+asadmin deploy --port 6969 --name ecomear --contextroot "ecom" ecomear/target/ecomear-0.1.0-SNAPSHOT.ear
+asadmin get-client-stubs --port 6969 --appname ecomear ecomear/target/
+ij derbyinitadmin.sql
+appclient -jar ecomear/target/ecomearClient.jar
+
+scp - i C:\Users\PolytechRICM\Documents\ecom\ByYourLego.pem -r C:\Users\PolytechRICM\
+
+[ec2-user@ip-172-31-8-41 ~]$ appclient -jar ecomearClient.jar
+java.io.FileNotFoundException: /home/ec2-user/ecomearClient/ecomapp-0.1.0-SNAPSHOTClient.jar
+
+
+
+asadmin --port 6969 stop-database
+asadmin --port 6969 stop-domain
+asadmin start-domain
+asadmin undeploy --port 6969 ecomear
+asadmin deploy --port 6969 --name ecomear --contextroot "ecom" ecomear/target/ecomear-0.1.0-SNAPSHOT.ear
+asadmin get-client-stubs --port 6969 --appname ecomear ecomear/target/
+appclient -jar ecomear/target/ecomearClient.jar

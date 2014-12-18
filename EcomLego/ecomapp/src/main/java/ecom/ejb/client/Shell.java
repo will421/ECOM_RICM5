@@ -245,21 +245,21 @@ public class Shell {
 							System.out.println("Give a correct fixe Phone address :");
 						}
 					}
-					System.out.print("\n Enter the user rib  XXXXXXXXXX (10 numbers):\n >:\n > ");
+					System.out.print("\n Enter the user rib  XXXXXXXXXXXXXX (14 numbers):\n >:\n > ");
 					String rib = null; 
 					verify = true;
 					while(verify){
 						try {
 							rib= sc.nextLine();
 							
-							Pattern patternMail = Pattern.compile("\\d{10}");
+							Pattern patternMail = Pattern.compile("\\d{14}");
 							Matcher matcher = patternMail.matcher(rib);
 							if(matcher.matches()) {
 								System.out.println("\n rib correct");
 								verify=false;
 							}
 							else {
-								System.out.print("\n Enter the user rib with the syntaxe : XXXXXXXXXX (10 numbers):\n > ");
+								System.out.print("\n Enter the user rib with the syntaxe : XXXXXXXXXXXXXX (14 numbers):\n > ");
 							}
 						} catch (NumberFormatException e) {
 							System.out.println("Give a correct cellPhone address :");
