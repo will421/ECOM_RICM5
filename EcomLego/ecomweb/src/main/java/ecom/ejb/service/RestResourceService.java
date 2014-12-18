@@ -64,7 +64,7 @@ public class RestResourceService extends Application {
 
    @POST
    @Path("users")
-   public String createUser(UserJson user) 
+   public void createUser(UserJson user) 
    { 
 	   MessageDigest md = null;
 	   try {

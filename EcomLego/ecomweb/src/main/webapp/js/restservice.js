@@ -13,7 +13,7 @@ restservice.factory('Rest', ['$resource', function ($resource) {
                 query: {method: 'GET', isArray: true},
             }),
             createUser: $resource('resources/rest/users', {}, {
-                query: {method: 'POST'}
+                query: {method: 'POST' , isArray:false}
             }),
             testGet: $resource('http://demo8894144.mockable.io/', {}, {
                 query: {method: 'GET'},

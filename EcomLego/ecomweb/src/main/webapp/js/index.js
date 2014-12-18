@@ -283,21 +283,21 @@ app.controller("InscriptionCtrl", ['$scope', 'Rest', '$state', function ($scope,
         }
 
         $scope.newSingleUserRestPost = function () {
-//            var posted = Rest.createUser.query($scope.newSingleUser);
-//            console.log(posted);
-//            console.log(posted.$promise.then(function (data) {
-//                console.log(data);
-//            }));
-            console.log("FUCK U");
-            var testget = Rest.testGet.query();
-            console.log(testget);
-            console.log(testget.$promise.then(function (data) {
+            var posted = Rest.createUser.query();
+            console.log(posted);
+            console.log(posted.$promise.then(function (data) {
                 console.log(data);
             }));
 
-//            if (resCreateUser) {
-//                $state.go('#')
-//            }
+//            var testget = Rest.testGet.query();
+//            console.log(testget);
+//            console.log(testget.$promise.then(function (data) {
+//                console.log(data);
+//            }));
+
+            if (posted) {
+                $state.go('#')
+            }
         }
     }]);
 
