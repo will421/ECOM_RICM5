@@ -12,7 +12,7 @@ restservice.factory('Rest', ['$resource', function ($resource) {
             getProduitsByTheme: $resource('resources/rest/products', {}, {
                 query: {method: 'GET', isArray: true},
             }),
-            createUser: $resource('resources/rest/', {}, {
+            createUser: $resource('resources/rest/users', {}, {
                 post: {method: 'POST'}
             }),
         };

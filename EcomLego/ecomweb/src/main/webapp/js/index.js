@@ -9,6 +9,13 @@ var app = angular.module('appMain', ['ui.bootstrap', 'ngResource', 'ui.router', 
  * alot of useless tests
  */
 app.controller('DropdownCtrl', function ($scope, $log, $modal) {
+
+
+    $scope.isConnected = false;
+
+    $scope.connectOk = function () {
+
+    }
     $scope.items = [
         'The first choice!',
         'And another choice for you.',
@@ -237,12 +244,9 @@ app.controller('FileUpload', ['$scope', 'FileUploader', function ($scope, FileUp
 app.controller("ProduitsCtrl", ['$scope', 'Rest', function ($scope, Rest) {
 
         $scope.resultProduits = Rest.getAllProduits.query();
-
         $scope.critere = {
             'crit': null
         }
-
-
         $scope.getProduitsParPrixCroissant = function () {
 
         }
@@ -264,7 +268,7 @@ app.controller("ProduitsCtrl", ['$scope', 'Rest', function ($scope, Rest) {
 /**
  * Controller inscription
  */
-app.controller("InscriptionCtrl", ['$scope', 'Rest', function ($scope, Rest) {
+app.controller("InscriptionCtrl", ['$scope', 'Rest', '$state', function ($scope, Rest, $state) {
         $scope.newSingleUser = {
             'mail': '',
             'mdp': '',
@@ -278,9 +282,11 @@ app.controller("InscriptionCtrl", ['$scope', 'Rest', function ($scope, Rest) {
         }
 
         $scope.newSingleUserRestPost = function () {
-            console.log("NEW USER CREATED");
-//            console.log($scope.newSingleUser);
-            Rest.createUser($scope.newSingleUser);
+            var resCreateUser = Rest.createUser($scope.newSingleUser)];
+            console.log(resCreateUser);
+            if (resCreateUser) {
+                $state.go('#')
+            }
         }
 
     }]);
