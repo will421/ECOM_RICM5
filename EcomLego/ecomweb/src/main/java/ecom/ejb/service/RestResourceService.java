@@ -77,7 +77,6 @@ public class RestResourceService extends Application {
 	   manageUser.addUserAccount(user.mail, user.mdp, user.adrLivraison, user.adrFacturation, user.numTel, user.numFix,user.rib);
 	   manageUser.addUser(user.nom, user.prenom, user.mail);
 	   System.out.println("User added");
-	   return "{\"createOK\" : \"true\"}" 
 	   }
    
    /*@POST
