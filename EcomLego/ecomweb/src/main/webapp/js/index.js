@@ -1,6 +1,8 @@
 var app = angular.module('appMain', ['ui.bootstrap', 'ngResource', 'ui.router', 'ngCart', 'angularFileUpload', 'restservice'], function ($httpProvider) {
     // Use x-www-form-urlencoded Content-Type
+    //templateURL changes ng-view
 });
+
 
 /**
  * Controller menu navigation principal (Dropdown)
@@ -86,7 +88,18 @@ app.controller('CarouselDemoCtrl', function ($scope) {
 });
 
 /**
+ * Login Ctrl
+ */
+app.controller('LoginCtrl', function ($scope, $stateParams) {
+    console.log("ENTERED ROUTE CONTROLER");
+    console.log($stateParams);
+    $scope.loginparams = $stateParams;
+    //pour l'instant il y a $scope.loginparams.urlmail et $scope.loginparams.urlmdp
+});
+
+/**
  * Configuration Angular UI Router
+ * add state to ui-sref
  */
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -97,9 +110,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             // HOME STATES AND NESTED VIEWS ========================================
             .state('#', {
                 url: '/home',
-                templateUrl: 'template/partial/partial-home.html'
+                templateUrl: 'template/partial/partial-home.html',
             })
-
+            //methode deeegeeeuuulaaassseee~~
+            .state('home', {
+                //file:///C:/Users/Pingu/Desktop/ECOM_RICM5/EcomLego/ecomweb/src/main/webapp/index.html#/home/mailde@user.com?urlmdp=passwr0D
+                url: '/home/:urlmail?urlmdp',
+                templateUrl: 'template/partial/partial-home.html',
+                controller: 'LoginCtrl'
+            })
             .state('produits', {
                 url: 'produits',
                 templateUrl: 'template/partial/partial-produits.html'

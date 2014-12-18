@@ -14,12 +14,14 @@
         <script src="js/angular-file-upload.js"></script>
         <script src="js/restservice.js"></script>
         <script src="js/ui-utils.js"></script>
-        <script src="js/angular-route.js"></script>
 
         <script src="js/ui-bootstrap-custom-tpls-0.12.0.js"></script>
         <script src="js/index.js"></script>
     </head>
     <body>
+        <!--        <a href="#/route1/kkkk">Route 1 + param</a><br/>
+                <a href="#/route2/aaaa">Route 2 + param</a><br/>
+                <div ng-view></div>-->
         <!-- Header banner and cart-->
         <div id="header">
             <div id="header-brand">
@@ -42,7 +44,8 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" ui-sref="#">Accueil</a>
+                        <!--for login with params in url.. see index.js-->
+                        <a class="navbar-brand" ui-sref="home({foo: 'fooVal', urlmdp: 'barVal'})">Accueil</a>
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -195,5 +198,9 @@
                                         $("#wrapper").toggleClass("toggled");
                                     });
         </script>
+        <!--
+                <div ng-controller="RouteCtrl">
+                    <p>GET PARAMS PLS {{$routeParams}}</p>
+                </div>-->
     </body>
 </html>
