@@ -1,6 +1,6 @@
 /**
  * Angular REST service api for Lego site
- * 
+ * isArray is for reply
  */
 var restservice = angular.module('restservice', ['ngResource']);
 
@@ -13,7 +13,10 @@ restservice.factory('Rest', ['$resource', function ($resource) {
                 query: {method: 'GET', isArray: true},
             }),
             createUser: $resource('resources/rest/users', {}, {
-                post: {method: 'POST'}
+                query: {method: 'POST'}
+            }),
+            testGet: $resource('http://demo8894144.mockable.io/', {}, {
+                query: {method: 'GET'},
             }),
         };
     }]);

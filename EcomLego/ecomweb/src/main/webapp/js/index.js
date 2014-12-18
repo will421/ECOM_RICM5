@@ -244,6 +244,7 @@ app.controller('FileUpload', ['$scope', 'FileUploader', function ($scope, FileUp
 app.controller("ProduitsCtrl", ['$scope', 'Rest', function ($scope, Rest) {
 
         $scope.resultProduits = Rest.getAllProduits.query();
+
         $scope.critere = {
             'crit': null
         }
@@ -282,14 +283,24 @@ app.controller("InscriptionCtrl", ['$scope', 'Rest', '$state', function ($scope,
         }
 
         $scope.newSingleUserRestPost = function () {
-            var resCreateUser = Rest.createUser($scope.newSingleUser)];
-            console.log(resCreateUser);
-            if (resCreateUser) {
-                $state.go('#')
-            }
-        }
+//            var posted = Rest.createUser.query($scope.newSingleUser);
+//            console.log(posted);
+//            console.log(posted.$promise.then(function (data) {
+//                console.log(data);
+//            }));
+            console.log("FUCK U");
+            var testget = Rest.testGet.query();
+            console.log(testget);
+            console.log(testget.$promise.then(function (data) {
+                console.log(data);
+            }));
 
+//            if (resCreateUser) {
+//                $state.go('#')
+//            }
+        }
     }]);
+
 app.directive('equals', function () {
     return {
         restrict: 'A', // only activate on element attribute
