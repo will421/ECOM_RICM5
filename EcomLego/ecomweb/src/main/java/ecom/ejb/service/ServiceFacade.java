@@ -45,6 +45,13 @@ public class ServiceFacade extends Application {
     }
     
     @GET
+    @Path("testbool")
+    public boolean testBool()
+    {
+    	return true;
+    }
+    
+    @GET
     @Path("{id}/{id2}") //http://localhost:8080/ecomweb/resources/hello/truc/muche
     public String getInt(@PathParam("id")String s,@PathParam("id2")String s2){
     	return s+"/"+s2;

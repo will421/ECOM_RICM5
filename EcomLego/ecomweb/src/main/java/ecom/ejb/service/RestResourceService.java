@@ -117,6 +117,14 @@ public class RestResourceService extends Application {
 	   return manageOriginalPiece.getAllOriginalPieceByColor(name);
    }
    
+   @POST
+   @Path("connect-{mail}-{mdp}")
+   public boolean connect(@PathParam("mail")String mail,@PathParam("mdp")String mdp)
+   {
+	   return manageUser.verifUser(mail, mdp);
+	   
+   }
+   
    
    final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
    public static String bytesToHex(byte[] bytes) {
@@ -128,5 +136,6 @@ public class RestResourceService extends Application {
        }
        return new String(hexChars);
    }
+   
    
 }

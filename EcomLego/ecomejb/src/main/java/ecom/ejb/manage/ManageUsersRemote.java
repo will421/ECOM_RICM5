@@ -2,6 +2,8 @@ package ecom.ejb.manage;
 
 import javax.ejb.Remote;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import ecom.ejb.UserAccount;
 import ecom.ejb.Users;
 
@@ -29,4 +31,6 @@ public interface ManageUsersRemote {
 	void addAdministrator(String nom, String prenom, String mail);
 
 	void addValidator(String nom, String prenom, String mail);
+	
+	boolean verifUser(String mailU, String pwdSAH);
 }
