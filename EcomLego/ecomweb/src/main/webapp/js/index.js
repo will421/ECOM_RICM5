@@ -1,7 +1,7 @@
 var app = angular.module('appMain', ['ui.bootstrap', 'ngResource', 'ui.router', 'ngCart', 'angularFileUpload', 'restservice'], function ($httpProvider) {
     // Use x-www-form-urlencoded Content-Type
-
 });
+
 /**
  * Controller menu navigation principal (Dropdown)
  * alot of useless tests
@@ -218,11 +218,11 @@ app.controller('FileUpload', ['$scope', 'FileUploader', function ($scope, FileUp
 app.controller("ProduitsCtrl", ['$scope', 'Rest', function ($scope, Rest) {
 
         $scope.resultProduits = Rest.getAllProduits.query();
-        
+
         $scope.critere = {
-            'crit' : null
+            'crit': null
         }
-        
+
 
         $scope.getProduitsParPrixCroissant = function () {
 
